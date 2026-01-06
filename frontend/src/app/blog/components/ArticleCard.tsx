@@ -2,6 +2,7 @@
 import { ArrowRight, Clock, User } from 'lucide-react';
 import Link from 'next/link';
 import { Article } from './types';
+import { SimpleReadTime } from './ReadTimeDisplay';
 
 interface ArticleCardProps {
     article: Article;
@@ -36,8 +37,8 @@ export default function ArticleCard({ article }: ArticleCardProps) {
                 <div className="flex flex-col flex-1 p-6">
                     {/* Metadata */}
                     <div className="flex items-center gap-2 text-xs text-text-muted dark:text-gray-500 mb-3 font-body">
-                        <Clock className="w-4 h-4" />
-                        <span>{article.readTime}</span>
+
+                        <SimpleReadTime readTime={article.readTime} />
                         <span>•</span>
                         <time dateTime={article.date}>{article.date}</time>
                     </div>

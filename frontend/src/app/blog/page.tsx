@@ -4,7 +4,9 @@ import FeaturedStory from "./components/FeaturedStory";
 import NewsletterStrip from "./components/NewsletterStrip";
 import ArticleGrid from "./components/ArticleGrid";
 import MobileArticleGrid from "./components/MobileArticleGrid";
-import { getAllArticles, getCategories } from "./components/articles";
+import { getAllArticles, getCategories, getNewestArticles } from "./components/articles";
+import FeaturedStoriesCarousel from "./components/FeaturedStoriesCarousel";
+import { getFeaturedTopPicks } from "./components/featuredArticles";
 
 
 export default async function Home() {
@@ -13,7 +15,12 @@ export default async function Home() {
         getAllArticles(1, 12), // Get first 12 articles for homepage
         getCategories()
     ]);
-
+    // Fetch data in parallel
+    const [topPicks, newestArticles] = await Promise.all([
+        getFeaturedTopPicks(),
+        getNewestArticles(12),
+        getCategories()
+    ]);
     // Filter for featured article (you might want to add a 'featured' field in Sanity)
     const featuredArticle = articles.length > 0 ? articles[0] : null;
     const otherArticles = articles; // Remaining articles
@@ -23,6 +30,11 @@ export default async function Home() {
 
             {/* Featured Story - Show only if we have articles */}
             {/* {featuredArticle && <FeaturedStory article={featuredArticle} />} */}
+            <FeaturedStoriesCarousel
+                articles={topPicks}
+                autoPlay={true}
+                delay={6000}
+            />
 
             <NewsletterStrip />
 

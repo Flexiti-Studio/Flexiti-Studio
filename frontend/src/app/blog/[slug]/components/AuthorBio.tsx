@@ -1,60 +1,48 @@
 // app/blog/[slug]/components/AuthorBio.tsx
-import { Globe, Mail } from 'lucide-react';
-import { Author } from './types';
-
 interface AuthorBioProps {
-    author: Author;
+    author: {
+        name: string;
+        title?: string;
+        avatar: string;
+        bio?: string;
+    };
 }
 
 export default function AuthorBio({ author }: AuthorBioProps) {
+    if (!author.bio) return null;
+
     return (
-        <section className="w-full bg-surface-light dark:bg-surface-dark border-y border-gray-200 dark:border-gray-800 py-16">
-            <div className="max-w-[800px] mx-auto px-4 flex flex-col md:flex-row gap-8 items-center md:items-start">
-                {/* Avatar */}
-                <div className="shrink-0">
-                    <div className="relative size-24 rounded-full overflow-hidden">
-                        <img
-                            src={author.avatar}
-                            alt={`Portrait of ${author.name}`}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </div>
+        <section className="w-full px-4 md:px-6 py-12">
+            <div className="max-w-4xl mx-auto">
+                <div className="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-100 dark:border-gray-800">
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                        {/* Avatar */}
+                        <div className="flex-shrink-0">
+                            <div className="relative size-20 md:size-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg">
+                                <img
+                                    src={author.avatar}
+                                    alt={author.name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
 
-                {/* Bio */}
-                <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-2xl font-bold text-text-main dark:text-white mb-2">
-                        Written by {author.name}
-                    </h3>
-                    <p className="text-text-muted dark:text-gray-400 mb-4 leading-relaxed">
-                        {author.bio}
-                    </p>
+                        {/* Bio */}
+                        <div className="flex-1">
+                            <div className="mb-2">
+                                <h3 className="text-xl font-bold text-text-main dark:text-white">
+                                    {author.name}
+                                </h3>
+                                {author.title && (
+                                    <p className="text-sm text-text-muted dark:text-gray-400">
+                                        {author.title}
+                                    </p>
+                                )}
+                            </div>
 
-                    <div className="flex items-center justify-center md:justify-start gap-4">
-                        <button className="text-primary font-bold text-sm hover:underline">
-                            View Profile
-                        </button>
-                        <div className="flex gap-3">
-                            {author.twitter && (
-                                <a
-                                    href={author.twitter}
-                                    className="text-gray-400 hover:text-primary transition-colors"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Globe className="w-5 h-5" />
-                                </a>
-                            )}
-                            {author.linkedin && (
-                                <a
-                                    href={author.linkedin}
-                                    className="text-gray-400 hover:text-primary transition-colors"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Mail className="w-5 h-5" />
-                                </a>
-                            )}
+                            <p className="text-text-muted dark:text-gray-400 leading-relaxed">
+                                {author.bio}
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -1,47 +1,75 @@
-import Image from 'next/image'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// app/blog/[slug]/components/ArticleContent.tsx - Update to add IDs
+'use client';
 
-import { PortableText, PortableTextComponents } from '@portabletext/react'
-import { Article, BlockContent, ImageAsset, KeyInsight } from './types'
-import { urlFor } from '@/sanity/client'
+import { PortableText } from '@portabletext/react';
+
+import Image from 'next/image';
+import { Article, TableOfContentItem } from './types';
+import { urlFor } from '@/sanity/client';
+
 
 interface ArticleContentProps {
-    article: Article
+    article: Article;
 }
 
-// Define how to render Portable Text blocks
-const portableTextComponents: PortableTextComponents = {
+// Helper function to generate ID from text
+const generateId = (text: string): string => {
+    return text.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+};
+
+const portableTextComponents = (toc: TableOfContentItem[]) => ({
     block: {
-        normal: ({ children }) => (
+        normal: ({ children }: any) => (
             <p className="mb-6 text-text-main dark:text-white leading-relaxed">{children}</p>
         ),
-        h1: ({ children }) => (
+        h1: ({ children }: any) => (
             <h1 className="text-4xl md:text-5xl font-bold mb-6 mt-12 tracking-tight">{children}</h1>
         ),
-        h2: ({ children }) => (
-            <h2 className="text-3xl font-bold mb-6 mt-12" id={children?.toString().toLowerCase().replace(/\s+/g, '-')}>
-                {children}
-            </h2>
-        ),
-        h3: ({ children }) => (
-            <h3 className="text-2xl font-bold mb-4 mt-10">{children}</h3>
-        ),
-        h4: ({ children }) => (
-            <h4 className="text-xl font-bold mb-4 mt-8">{children}</h4>
-        ),
-        blockquote: ({ children }) => (
+        h2: ({ children }: any) => {
+            const id = generateId(children?.toString() || 'section');
+            // Ensure this ID exists in TOC
+            const tocItem = toc.find(item => item.id === id);
+            const finalId = tocItem ? tocItem.id : id;
+
+            return (
+                <h2
+                    id={finalId}
+                    className="text-3xl font-bold mb-6 mt-12 scroll-mt-24"
+                >
+                    {children}
+                </h2>
+            );
+        },
+        h3: ({ children }: any) => {
+            const id = generateId(children?.toString() || 'subsection');
+            // Ensure this ID exists in TOC
+            const tocItem = toc.find(item => item.id === id);
+            const finalId = tocItem ? tocItem.id : id;
+
+            return (
+                <h3
+                    id={finalId}
+                    className="text-2xl font-bold mb-4 mt-10 scroll-mt-24"
+                >
+                    {children}
+                </h3>
+            );
+        },
+        blockquote: ({ children }: any) => (
             <blockquote className="border-l-4 border-primary pl-6 italic my-8 text-xl">
                 {children}
             </blockquote>
         ),
     },
     marks: {
-        strong: ({ children }) => (
+        strong: ({ children }: any) => (
             <strong className="font-bold text-text-main dark:text-white">{children}</strong>
         ),
-        em: ({ children }) => (
-            <em className="italic">{children}</em>
-        ),
-        link: ({ value, children }) => (
+        link: ({ value, children }: any) => (
             <a
                 href={value?.href}
                 target="_blank"
@@ -53,24 +81,16 @@ const portableTextComponents: PortableTextComponents = {
         ),
     },
     list: {
-        bullet: ({ children }) => (
+        bullet: ({ children }: any) => (
             <ul className="list-disc pl-6 mb-6 space-y-2">{children}</ul>
         ),
-        number: ({ children }) => (
+        number: ({ children }: any) => (
             <ol className="list-decimal pl-6 mb-6 space-y-2">{children}</ol>
         ),
     },
-    listItem: {
-        bullet: ({ children }) => (
-            <li className="mb-2">{children}</li>
-        ),
-        number: ({ children }) => (
-            <li className="mb-2">{children}</li>
-        ),
-    },
     types: {
-        image: ({ value }: { value: ImageAsset }) => {
-            if (!value?.asset?._ref) return null
+        image: ({ value }: any) => {
+            if (!value?.asset?._ref) return null;
 
             return (
                 <figure className="my-10">
@@ -88,9 +108,9 @@ const portableTextComponents: PortableTextComponents = {
                         </figcaption>
                     )}
                 </figure>
-            )
+            );
         },
-        keyInsight: ({ value }: { value: KeyInsight }) => (
+        keyInsight: ({ value }: any) => (
             <div className="my-8 p-6 bg-background-light dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800">
                 <h4 className="text-lg font-bold mb-2 flex items-center gap-2">
                     <span className="material-symbols-outlined text-primary">lightbulb</span>
@@ -102,22 +122,24 @@ const portableTextComponents: PortableTextComponents = {
             </div>
         )
     }
-}
+});
 
 export default function ArticleContent({ article }: ArticleContentProps) {
+    console.log('Article Content:', article.tags);
     return (
         <article className="col-span-1 lg:col-span-7 lg:col-start-4 prose prose-lg prose-slate dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl max-w-none font-body">
-            {/* Introduction - using article.description */}
-            <p className="lead text-xl md:text-2xl text-text-main dark:text-white font-medium mb-8" id="intro">
-                {article.description}
-            </p>
+            {/* Introduction Section with ID for TOC */}
+            <div id="intro" className="scroll-mt-24">
+                <p className="lead text-xl md:text-2xl text-text-main dark:text-white font-medium mb-8">
+                    {article.description}
+                </p>
+            </div>
 
-            {/* Main Content - Portable Text */}
+            {/* Render Portable Text content with TOC-aware components */}
             {article.body && (
                 <PortableText
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    value={article.body as any}
-                    components={portableTextComponents}
+                    value={article.body}
+                    components={portableTextComponents(article.toc || [])}
                 />
             )}
 
@@ -128,8 +150,9 @@ export default function ArticleContent({ article }: ArticleContentProps) {
                     <div className="flex flex-wrap gap-2">
                         {article.tags.map((tag) => (
                             <span
-                                key={tag.id}
+                                key={tag.name}
                                 className="px-3 py-1 bg-gray-100 dark:bg-surface-dark rounded-full text-sm hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
+                                style={{ color: tag.color }}
                             >
                                 {tag.name}
                             </span>
@@ -138,5 +161,5 @@ export default function ArticleContent({ article }: ArticleContentProps) {
                 </div>
             )}
         </article>
-    )
+    );
 }

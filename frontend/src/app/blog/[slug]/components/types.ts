@@ -9,30 +9,30 @@ export interface Author {
   linkedin?: string;
 }
 
-export interface Article {
-  id: string;
-  slug: string;
-  description: string;
-  title: string;
-  publishedAt: string;
-  excerpt: string;
-  content: string;
-  readTime: string;
-  publishedDate: string;
-  category: string;
-  tags: string[];
-  featuredImage: string;
-  author: Author;
-  toc: TableOfContentItem[];
-  relatedArticles: ArticlePreview[];
-  body: BlockContent[];
-}
+// export interface Article {
+//   id: string;
+//   slug: string;
+//   description: string;
+//   title: string;
+//   publishedAt: string;
+//   excerpt: string;
+//   content: string;
+//   readTime: string;
+//   publishedDate: string;
+//   category: string;
+//   tags: string[];
+//   featuredImage: string;
+//   author: Author;
+//   toc: TableOfContentItem[];
+//   relatedArticles: ArticlePreview[];
+//   body: BlockContent[];
+// }
 
-export interface TableOfContentItem {
-  id: string;
-  title: string;
-  level: number;
-}
+// export interface TableOfContentItem {
+//   id: string;
+//   title: string;
+//   level: number;
+// }
 
 export interface ArticlePreview {
   id: string;
@@ -135,4 +135,88 @@ export interface SanityArticle {
     name: string;
     color?: string;
   }>;
+}
+
+// components/types.ts
+// export interface Article {
+//   publishedDate: string;
+//   id: string;
+//   title: string;
+//   slug: string;
+//   description: string;
+//   excerpt?: string;
+//   category: string;
+//   readTime: string;
+//   publishedAt: string; // Add this
+//   date: string;
+//   featuredImage: string; // Changed from 'image' to match your usage
+//   badgeColor?: string;
+//   author: {
+//     name: string;
+//     title?: string;
+//     avatar: string;
+//     bio?: string;
+//   };
+//   content?: any[];
+//   body?: any[];
+//   toc?: Array<{ id: string; title: string }>; // Add this
+//   relatedArticles?: Article[]; // Add this
+//   tags?: Array<{
+//     name: string;
+//     color?: string;
+//     id: string;
+//   }>;
+// }
+
+export interface Category {
+  id: string;
+  name: string;
+  icon?: string;
+  count: number;
+  isActive?: boolean;
+}
+
+// components/types.ts
+export interface TableOfContentItem {
+  id: string;
+  title: string;
+  level: 1 | 2 | 3; // 1 = intro, 2 = h2, 3 = h3
+}
+
+export interface Article {
+  id: string;
+  title: string;
+  slug: string;
+
+  description: string;
+  publishedDate: string;
+  excerpt?: string;
+  category: string;
+  readTime: string;
+  publishedAt: string;
+  date: string;
+  featuredImage: string;
+  badgeColor?: string;
+  author: {
+    name: string;
+    title?: string;
+    avatar: string;
+    bio?: string;
+  };
+  content?: any[];
+  body?: any[];
+  toc?: TableOfContentItem[]; // Add this
+  relatedArticles?: Article[];
+  tags?: Array<{
+    name: string;
+    color?: string;
+  }>;
+  readTimeDetails?: {
+    // Optional detailed stats
+    minutes: number;
+    textMinutes: number;
+    imageMinutes: number;
+    codeMinutes: number;
+    formatted: string;
+  };
 }

@@ -3,6 +3,8 @@
 
 import { Bookmark, Share2 } from 'lucide-react';
 import { Article } from './types';
+import ReadTimeDisplay from '../../components/ReadTimeDisplay';
+
 
 interface ArticleHeaderProps {
     article: Article;
@@ -13,7 +15,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
         if (navigator.share) {
             navigator.share({
                 title: article.title,
-                text: article.excerpt,
+                text: article.description,
                 url: window.location.href,
             });
         } else {
@@ -23,7 +25,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
     };
 
     return (
-        <section className="w-full px-4 pt-12 pb-8 md:pt-20 md:pb-12 bg-background-light dark:bg-background-dark flex justify-center">
+        <header className="w-full px-4 md:px-10 pt-12 pb-8 md:pt-20 md:pb-12 bg-background-light dark:bg-background-dark flex justify-center">
             <div className="w-full max-w-[800px] flex flex-col items-center text-center gap-6">
                 {/* Metadata */}
                 <div className="flex items-center gap-3 mb-2">
@@ -31,11 +33,15 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
                         {article.category}
                     </span>
                     <span className="text-sm text-text-muted dark:text-gray-400 font-body">
-                        {article.readTime}
+                        <ReadTimeDisplay
+                            readTime={article.readTime}
+                            details={article.readTimeDetails}
+                            showDetails={true}
+                        />
                     </span>
                     <span className="text-sm text-text-muted dark:text-gray-400 font-body">•</span>
                     <span className="text-sm text-text-muted dark:text-gray-400 font-body">
-                        {article.publishedDate}
+                        {article.date}
                     </span>
                 </div>
 
@@ -46,7 +52,7 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
 
                 {/* Excerpt */}
                 <p className="text-lg md:text-xl text-text-muted dark:text-gray-300 max-w-2xl font-body leading-relaxed">
-                    {article.excerpt}
+                    {article.description}
                 </p>
 
                 {/* Author & Actions */}
@@ -88,6 +94,6 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
     );
 }

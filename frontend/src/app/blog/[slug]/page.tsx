@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// app/blog/[slug]/page.tsx
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-// import { getArticleBySlug, getAllArticleSlugs } from './components/articles'
+
 import ArticleHeader from './components/ArticleHeader'
 import ArticleSidebar from './components/ArticleSidebar'
 import ArticleContent from './components/ArticleContent'
 import AuthorBio from './components/AuthorBio'
 import RelatedArticles from './components/RelatedArticles'
 import NewsletterCTASection from './components/NewsletterCTASection'
-// import { getArticleBySlug } from './components/sanity.queries'
 import { getAllArticleSlugs, getArticleBySlug } from './components/articles'
 
 interface BlogPostPageProps {
@@ -18,7 +19,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const { slug } = await params
   const article = await getArticleBySlug(slug)
 
-  if (!article) return { title: 'Article Not Found' }
+  if (!article) {
+    return {
+      title: 'Article Not Found',
+      description: 'The requested article could not be found.'
+    }
+  }
 
   return {
     title: `${article.title} | Flexiti Blog`,
@@ -31,11 +37,18 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       authors: [article.author.name],
       images: [article.featuredImage],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.description,
+      images: [article.featuredImage],
+    }
   }
 }
 
 export async function generateStaticParams() {
-  return await getAllArticleSlugs()
+  const slugs = await getAllArticleSlugs()
+  return slugs.map(({ slug }: { slug: any }) => ({ slug }))
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -47,37 +60,63 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="w-full">
+    <main className="min-h-screen bg-background-light dark:bg-background-dark">
+      {/* Article Header */}
       <ArticleHeader article={article} />
 
       {/* Hero Image */}
-      <section className="w-full px-4 md:px-10 pb-12 flex justify-center">
-        <div className="w-full max-w-[1024px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-          <div className="relative w-full aspect-[21/9]">
+      <section className="w-full px-4 md:px-6 pb-12 flex justify-center">
+        <div className="w-full max-w-6xl">
+          <div className="relative w-full aspect-[21/9] md:aspect-[16/7] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
             <img
-              alt={article.title}
               src={article.featuredImage}
+              alt={article.title}
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+            {/* Category Badge */}
+            <div className="absolute top-6 left-6">
+              <span
+                className="px-4 py-2 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-sm font-bold shadow-sm"
+                style={{ color: article.badgeColor || '#330df2' }}
+              >
+                {article.category}
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Article Content with Sidebar */}
-      <section className="w-full px-4 pb-20 flex justify-center relative">
-        <div className="w-full max-w-[1280px] grid grid-cols-1 lg:grid-cols-12 gap-10">
-          <ArticleSidebar toc={article.toc} />
+      <section className="w-full px-4 md:px-6 pb-20 flex justify-center">
+        <div className="w-full max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Sidebar */}
+            <aside className="lg:col-span-3">
+              <ArticleSidebar toc={article.toc || []} />
+            </aside>
 
-          <ArticleContent article={article} />
+            {/* Main Content */}
+            <div className="lg:col-span-7">
+              <ArticleContent article={article} />
+            </div>
 
-          <div className="hidden lg:block lg:col-span-2"></div>
+            {/* Right Spacer */}
+            <div className="hidden lg:block lg:col-span-2"></div>
+          </div>
         </div>
       </section>
 
-      <AuthorBio author={article.author} />
+      {/* Author Bio */}
+      {article.author.bio && <AuthorBio author={article.author} />}
 
-      <RelatedArticles articles={article.relatedArticles} />
+      {/* Related Articles */}
+      {article.relatedArticles && article.relatedArticles.length > 0 && (
+        <RelatedArticles articles={article.relatedArticles} />
+      )}
 
+      {/* Newsletter CTA */}
       <NewsletterCTASection />
     </main>
   )

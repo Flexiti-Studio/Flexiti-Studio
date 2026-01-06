@@ -2,6 +2,7 @@
 // data/articles.ts
 import client from "@/sanity/client";
 import { Article, Category } from "./types";
+import { ar } from "zod/v4/locales";
 
 export const articles: Article[] = [
   {
@@ -470,6 +471,148 @@ export async function getRelatedArticles(
     }));
   } catch (error) {
     console.error("Error fetching related articles:", error);
+    return [];
+  }
+}
+
+// Get newest articles (most recent first)
+export async function getNewestArticles(
+  limit: number = 12
+): Promise<Article[]> {
+  try {
+    const query = `*[_type == "article"] | order(publishedAt desc)[0...$limit] {
+      _id,
+      title,
+      "slug": slug.current,
+      description,
+      category,
+      publishedAt,
+      readTime,
+      featured,
+      isTopPick,
+      featuredOrder,
+      author->{
+        name,
+        "title": role,
+        "avatar": avatar.asset->url
+      },
+      "image": image.asset->url,
+      badgeColor,
+      tags[]->{
+        name,
+        badgeColor
+      }
+    }`;
+
+    const articles = await client.fetch(query, { limit });
+
+    return articles.map(
+      (article: any): Article => ({
+        id: article._id,
+        title: article.title,
+        slug: article.slug,
+        description: article.description || "",
+        excerpt: article.description?.substring(0, 150) + "...",
+        category: article.category,
+        readTime: article.readTime || "5 min read",
+        date: new Date(article.publishedAt).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        image: article.image || "/default-article.jpg",
+        badgeColor: article.badgeColor || "#330df2",
+        // featured: article.featured || false,
+        isTopPick: article.isTopPick || false,
+        // featuredOrder: article.featuredOrder || 0,
+        author: {
+          name: article.author?.name || "Unknown Author",
+          title: article.author?.title || "",
+          avatar: article.author?.avatar || "/default-avatar.jpg",
+          bio: "",
+        },
+        tags: (article.tags || []).map((tag: any) => ({
+          name: tag.name,
+          color: tag.badgeColor,
+        })),
+        body: article.body || "",
+      })
+    );
+  } catch (error) {
+    console.error("Error fetching newest articles:", error);
+    return [];
+  }
+}
+
+// Get featured top picks (one per category)
+export async function getFeaturedTopPicks(): Promise<Article[]> {
+  try {
+    // Get all articles marked as top picks
+    const query = `*[_type == "article" && isTopPick == true] | order(publishedAt desc) {
+      _id,
+      title,
+      "slug": slug.current,
+      description,
+      category,
+      publishedAt,
+      readTime,
+      author->{
+        name,
+        "title": role,
+        "avatar": avatar.asset->url
+      },
+      "image": image.asset->url,
+      badgeColor
+    }`;
+
+    const articles = await client.fetch(query);
+
+    // Group by category and take only the most recent from each
+    const articlesByCategory = new Map<string, any>();
+
+    articles.forEach((article: any) => {
+      if (!articlesByCategory.has(article.category)) {
+        articlesByCategory.set(article.category, article);
+      }
+    });
+
+    // Transform to Article objects
+    const featuredArticles: Article[] = Array.from(
+      articlesByCategory.values()
+    ).map((article: any) => ({
+      id: article._id,
+      title: article.title,
+      slug: article.slug,
+      description: article.description || "",
+      excerpt: article.description?.substring(0, 150) + "...",
+      category: article.category,
+      readTime: article.readTime || "5 min read",
+      date: new Date(article.publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      image: article.image || "/default-article.jpg",
+      badgeColor: article.badgeColor || "#330df2",
+      author: {
+        name: article.author?.name || "Unknown Author",
+        title: article.author?.title || "",
+        avatar: article.author?.avatar || "/default-avatar.jpg",
+        bio: article.author?.bio || "",
+      },
+      body: article.body || [],
+      tags: (article.tags || []).map((tag: any) => ({
+        name: tag.name,
+        color: tag.badgeColor,
+      })),
+    }));
+
+    // Sort by category name for consistent display
+    return featuredArticles.sort((a, b) =>
+      a.category.localeCompare(b.category)
+    );
+  } catch (error) {
+    console.error("Error fetching featured top picks:", error);
     return [];
   }
 }

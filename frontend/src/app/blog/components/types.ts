@@ -9,6 +9,7 @@ export interface Article {
   body: any;
   tags: string[];
   category: string;
+  isTopPick?: boolean;
   readTime: string;
   date: string;
   author: {

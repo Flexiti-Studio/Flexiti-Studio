@@ -1,65 +1,80 @@
 // app/blog/[slug]/components/RelatedArticles.tsx
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { ArticlePreview } from './types';
+import Link from 'next/link';
+import { Article } from './types';
 
 interface RelatedArticlesProps {
-    articles: ArticlePreview[];
+    articles: Article[];
 }
 
 export default function RelatedArticles({ articles }: RelatedArticlesProps) {
+    if (!articles || articles.length === 0) return null;
+
     return (
-        <section className="w-full py-20 px-4 md:px-10 bg-background-light dark:bg-background-dark">
-            <div className="max-w-[1280px] mx-auto">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-10">
+        <section className="w-full px-4 md:px-6 py-12">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold text-text-main dark:text-white">
                         Related Articles
                     </h2>
-                    <Link
-                        href="/blog"
-                        className="text-primary font-bold hover:underline hidden sm:flex items-center gap-2"
-                    >
-                        View all articles
-                        <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    <p className="text-text-muted dark:text-gray-400 mt-2">
+                        You might also like these articles
+                    </p>
                 </div>
 
-                {/* Articles Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {articles.map((article) => (
-                        <Link
+                        <article
                             key={article.id}
-                            href={`/blog/${article.slug}`}
-                            className="flex flex-col group"
+                            className="group bg-surface-light dark:bg-surface-dark rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-all"
                         >
-                            {/* Image */}
-                            <div className="relative overflow-hidden rounded-xl aspect-[16/10] mb-4">
-                                <div className="absolute inset-0">
+                            <Link href={`/blog/${article.slug}`}>
+                                {/* Image */}
+                                <div className="relative aspect-video overflow-hidden">
                                     <img
-                                        src={article.image}
+                                        src={article.featuredImage}
                                         alt={article.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
                                 </div>
-                            </div>
 
-                            {/* Content */}
-                            <div className="flex flex-col">
-                                <span
-                                    className="text-xs font-bold uppercase tracking-wide mb-2"
-                                    style={{ color: article.badgeColor }}
-                                >
-                                    {article.category}
-                                </span>
-                                <h3 className="text-lg font-bold text-text-main dark:text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                                    {article.title}
-                                </h3>
-                                <p className="text-sm text-text-muted dark:text-gray-400 line-clamp-2">
-                                    {article.excerpt}
-                                </p>
-                            </div>
-                        </Link>
+                                {/* Content */}
+                                <div className="p-6">
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+                                            {article.category}
+                                        </span>
+                                        <span className="text-xs text-text-muted dark:text-gray-400">
+                                            {article.readTime}
+                                        </span>
+                                    </div>
+
+                                    <h3 className="text-lg font-bold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                                        {article.title}
+                                    </h3>
+
+                                    <p className="text-sm text-text-muted dark:text-gray-400 mb-4 line-clamp-2">
+                                        {article.description}
+                                    </p>
+
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                            <div className="relative size-6 rounded-full overflow-hidden">
+                                                <img
+                                                    src={article.author.avatar}
+                                                    alt={article.author.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <span className="text-xs font-bold text-text-main dark:text-white">
+                                                {article.author.name}
+                                            </span>
+                                        </div>
+                                        <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </div>
+                            </Link>
+                        </article>
                     ))}
                 </div>
             </div>
