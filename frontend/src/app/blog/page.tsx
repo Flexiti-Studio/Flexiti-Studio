@@ -1,42 +1,59 @@
 // app/page.tsx
-
-import ArticleCard from "./components/ArticleCard";
-import { articles } from "./components/articles";
-import CategoryFilter from "./components/CategoryFilter";
-import FeaturedStory from "./components/FeaturedStory";
 import HeroSection from "./components/HeroSection";
+import FeaturedStory from "./components/FeaturedStory";
 import NewsletterStrip from "./components/NewsletterStrip";
+import ArticleGrid from "./components/ArticleGrid";
+import MobileArticleGrid from "./components/MobileArticleGrid";
+import { getAllArticles, getCategories } from "./components/articles";
 
 
-export default function Home() {
+export default async function Home() {
+    // Fetch articles and categories from Sanity
+    const [{ articles, total }, categories] = await Promise.all([
+        getAllArticles(1, 12), // Get first 12 articles for homepage
+        getCategories()
+    ]);
+
+    // Filter for featured article (you might want to add a 'featured' field in Sanity)
+    const featuredArticle = articles.length > 0 ? articles[0] : null;
+    const otherArticles = articles; // Remaining articles
     return (
         <>
             <HeroSection />
-            <FeaturedStory />
+
+            {/* Featured Story - Show only if we have articles */}
+            {/* {featuredArticle && <FeaturedStory article={featuredArticle} />} */}
+
             <NewsletterStrip />
 
             {/* Latest Articles */}
-            <section className="layout-container pb-20">
+            <section className="layout-container pb-20" id="articles">
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
                     <h2 className="text-2xl font-bold text-text-main dark:text-white">
                         Latest Articles
                     </h2>
-                    <CategoryFilter />
+                    <p className="text-sm text-text-muted dark:text-gray-400">
+                        {total} articles published
+                    </p>
                 </div>
 
-                {/* Articles Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {articles.map((article) => (
-                        <ArticleCard key={article.id} article={article} />
-                    ))}
-                </div>
+                {/* Desktop Articles */}
+                <section className="container mx-auto px-4 pb-20 hidden lg:block">
+                    <ArticleGrid
+                        articles={otherArticles}
+                        categories={categories}
+                        showFilter={true}
+                        showPagination={false} // Don't show pagination on homepage
+                    />
+                </section>
 
-                {/* Load More Button */}
-                <div className="mt-12 flex justify-center">
-                    <button className="px-8 py-3 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all">
-                        Load More Articles
-                    </button>
-                </div>
+                {/* Mobile Articles */}
+                <section className="container mx-auto px-4 pb-20 lg:hidden">
+                    <MobileArticleGrid
+                        articles={otherArticles}
+                        categories={categories}
+                    />
+                </section>
             </section>
         </>
     );

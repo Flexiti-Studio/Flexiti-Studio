@@ -1,24 +1,49 @@
-// app/blog/[slug]/page.tsx
-import { notFound } from 'next/navigation';
-import ArticleHeader from './components/ArticleHeader';
-import { getArticleBySlug } from './components/articles';
-import ArticleSidebar from './components/ArticleSidebar';
-import ArticleContent from './components/ArticleContent';
-import AuthorBio from './components/AuthorBio';
-import RelatedArticles from './components/RelatedArticles';
-import NewsletterCTASection from './components/NewsletterCTASection';
-
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+// import { getArticleBySlug, getAllArticleSlugs } from './components/articles'
+import ArticleHeader from './components/ArticleHeader'
+import ArticleSidebar from './components/ArticleSidebar'
+import ArticleContent from './components/ArticleContent'
+import AuthorBio from './components/AuthorBio'
+import RelatedArticles from './components/RelatedArticles'
+import NewsletterCTASection from './components/NewsletterCTASection'
+// import { getArticleBySlug } from './components/sanity.queries'
+import { getAllArticleSlugs, getArticleBySlug } from './components/articles'
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const article = await getArticleBySlug(slug)
+
+  if (!article) return { title: 'Article Not Found' }
+
+  return {
+    title: `${article.title} | Flexiti Blog`,
+    description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      type: 'article',
+      publishedTime: article.publishedAt,
+      authors: [article.author.name],
+      images: [article.featuredImage],
+    },
+  }
+}
+
+export async function generateStaticParams() {
+  return await getAllArticleSlugs()
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const { slug } = await params
+  const article = await getArticleBySlug(slug)
 
   if (!article) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -55,5 +80,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <NewsletterCTASection />
     </main>
-  );
+  )
 }

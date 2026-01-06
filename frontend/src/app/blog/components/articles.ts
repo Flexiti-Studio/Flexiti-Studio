@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // data/articles.ts
-import { Article } from "./types";
+import client from "@/sanity/client";
+import { Article, Category } from "./types";
 
 export const articles: Article[] = [
   {
@@ -12,12 +14,17 @@ export const articles: Article[] = [
     date: "Nov 12, 2023",
     author: {
       name: "Sarah Jenkins",
+      title: "Frontend Engineer",
       avatar:
         "https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80",
+      bio: "Sarah focuses on web performance and scalable frontend architectures.",
     },
     image:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
     badgeColor: "#330df2",
+    excerpt: "",
+    body: undefined,
+    tags: [],
   },
   {
     id: "2",
@@ -29,12 +36,17 @@ export const articles: Article[] = [
     date: "Oct 28, 2023",
     author: {
       name: "Daniel Cooper",
+      title: "Senior Engineer",
       avatar:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
+      bio: "Daniel writes about type-safe architectures and developer tooling.",
     },
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
     badgeColor: "#2563eb",
+    excerpt: "",
+    body: undefined,
+    tags: [],
   },
   {
     id: "3",
@@ -46,12 +58,17 @@ export const articles: Article[] = [
     date: "Oct 10, 2023",
     author: {
       name: "Emily Rodriguez",
+      title: "Accessibility Specialist",
       avatar:
         "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=100&q=80",
+      bio: "Emily advocates for inclusive design and accessibility best practices.",
     },
     image:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
     badgeColor: "#16a34a",
+    excerpt: "",
+    body: undefined,
+    tags: [],
   },
   {
     id: "4",
@@ -63,12 +80,17 @@ export const articles: Article[] = [
     date: "Sep 22, 2023",
     author: {
       name: "Michael Lee",
+      title: "Fullstack Developer",
       avatar:
         "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=100&q=80",
+      bio: "Michael explores modern React frameworks and server-side rendering.",
     },
     image:
       "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=1200&q=80",
     badgeColor: "#000000",
+    excerpt: "",
+    body: undefined,
+    tags: [],
   },
   {
     id: "5",
@@ -80,12 +102,17 @@ export const articles: Article[] = [
     date: "Aug 30, 2023",
     author: {
       name: "Olivia Brown",
+      title: "Frontend Architect",
       avatar:
         "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80",
+      bio: "Olivia analyzes trade-offs between state libraries and architecture patterns.",
     },
     image:
       "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80",
     badgeColor: "#7c3aed",
+    excerpt: "",
+    body: undefined,
+    tags: [],
   },
   {
     id: "6",
@@ -97,11 +124,352 @@ export const articles: Article[] = [
     date: "Aug 12, 2023",
     author: {
       name: "James Wilson",
+      title: "Software Engineer",
       avatar:
         "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80",
+      bio: "James writes career-focused advice for early-career developers.",
     },
     image:
       "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
     badgeColor: "#f59e0b",
+    excerpt: "",
+    body: undefined,
+    tags: [],
+  },
+  {
+    id: "7",
+    title: "From Junior to Mid-Level Developer: Skills That Matter",
+    description:
+      "Practical advice on improving problem-solving, code reviews, and architectural thinking as a growing developer.",
+    category: "Career",
+    readTime: "4 min read",
+    date: "Aug 12, 2023",
+    author: {
+      name: "James Wilson",
+      title: "Software Engineer",
+      avatar:
+        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80",
+      bio: "James writes career-focused advice for early-career developers.",
+    },
+    image:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+    badgeColor: "#f59e0b",
+    excerpt: "",
+    body: undefined,
+    tags: [],
+  },
+  {
+    id: "8",
+    title: "From Junior to Mid-Level Developer: Skills That Matter",
+    description:
+      "Practical advice on improving problem-solving, code reviews, and architectural thinking as a growing developer.",
+    category: "Career",
+    readTime: "4 min read",
+    date: "Aug 12, 2023",
+    author: {
+      name: "James Wilson",
+      title: "Software Engineer",
+      avatar:
+        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80",
+      bio: "James writes career-focused advice for early-career developers.",
+    },
+    image:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+    badgeColor: "#f59e0b",
+    excerpt: "",
+    body: undefined,
+    tags: [],
   },
 ];
+
+// lib/articles
+// Fetch all articles with pagination support
+export async function getAllArticles(
+  page: number = 1,
+  limit: number = 6,
+  category?: string
+): Promise<{
+  articles: Article[];
+  total: number;
+  totalPages: number;
+}> {
+  const start = (page - 1) * limit;
+  const end = start + limit;
+
+  // Build the query based on category filter
+  let query = `*[_type == "article"`;
+
+  if (category && category !== "all") {
+    query += ` && category == "${category}"`;
+  }
+
+  query += `] | order(publishedAt desc) [${start}...${end}] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    excerpt,
+    category,
+    publishedAt,
+    readTime,
+    author->{
+      name,
+      "title": role,
+      "avatar": avatar.asset->url
+    },
+    "image": image.asset->url,
+    badgeColor,
+    tags[]->{
+      name,
+      badgeColor
+    }
+  }`;
+
+  const countQuery = `count(*[_type == "article" ${
+    category && category !== "all" ? `&& category == "${category}"` : ""
+  }])`;
+
+  try {
+    const [articles, total] = await Promise.all([
+      client.fetch(query),
+      client.fetch(countQuery),
+    ]);
+
+    // Transform Sanity data to match your Article interface
+    const transformedArticles: Article[] = articles.map((article: any) => ({
+      id: article._id,
+      title: article.title,
+      slug: article.slug,
+      description: article.description || "",
+      excerpt:
+        article.excerpt || article.description?.substring(0, 150) + "...",
+      category: article.category,
+      readTime: article.readTime || "5 min read",
+      date: new Date(article.publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      image: article.image || "/default-article.jpg",
+      badgeColor: article.badgeColor || "#330df2",
+      author: {
+        name: article.author?.name || "Unknown Author",
+        title: article.author?.title || "",
+        avatar: article.author?.avatar || "/default-avatar.jpg",
+      },
+      tags: (article.tags || []).map((tag: any) => ({
+        name: tag.name,
+        color: tag.badgeColor,
+      })),
+    }));
+
+    return {
+      articles: transformedArticles,
+      total,
+      totalPages: Math.ceil(total / limit),
+    };
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    return {
+      articles: [],
+      total: 0,
+      totalPages: 0,
+    };
+  }
+}
+
+// Fetch a single article by slug
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const query = `*[_type == "article" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    excerpt,
+    category,
+    publishedAt,
+    readTime,
+    author->{
+      name,
+      "title": role,
+      "avatar": avatar.asset->url,
+      bio
+    },
+    "image": image.asset->url,
+    badgeColor,
+    body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        asset->
+      },
+      markDefs[]{
+        ...,
+        _type == "link" => {
+          ...,
+          "href": @.href
+        }
+      }
+    },
+    tags[]->{
+      name,
+      badgeColor
+    }
+  }`;
+
+  try {
+    const article = await client.fetch(query, { slug });
+
+    if (!article) return null;
+
+    return {
+      id: article._id,
+      title: article.title,
+      slug: article.slug,
+      description: article.description || "",
+      excerpt:
+        article.excerpt || article.description?.substring(0, 150) + "...",
+      category: article.category,
+      readTime: article.readTime || "5 min read",
+      date: new Date(article.publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      image: article.image || "/default-article.jpg",
+      badgeColor: article.badgeColor || "#330df2",
+      author: {
+        name: article.author?.name || "Unknown Author",
+        title: article.author?.title || "",
+        avatar: article.author?.avatar || "/default-avatar.jpg",
+        bio: article.author?.bio,
+      },
+      body: article.body || [],
+      tags: (article.tags || []).map((tag: any) => ({
+        name: tag.name,
+        color: tag.badgeColor,
+      })),
+    };
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    return null;
+  }
+}
+
+// Fetch all categories with article counts
+export async function getCategories(): Promise<Category[]> {
+  const query = `*[_type == "article"] {
+    category
+  }`;
+
+  try {
+    const articles = await client.fetch(query);
+
+    // Count articles per category
+    const categoryCounts = articles.reduce(
+      (acc: Record<string, number>, article: any) => {
+        acc[article.category] = (acc[article.category] || 0) + 1;
+        return acc;
+      },
+      {}
+    );
+
+    // Get all unique categories
+    const uniqueCategories = Array.from(
+      new Set(articles.map((a: any) => a.category))
+    ) as string[];
+
+    // Transform to Category objects
+    const categories: Category[] = [
+      {
+        id: "all",
+        name: "All",
+        count: articles.length,
+        icon: "checklist_rtl",
+      },
+      ...uniqueCategories.map((category: string) => ({
+        id: category.toLowerCase().replace(/\s+/g, "-"),
+        name: category,
+        count: categoryCounts[category] || 0,
+        // Icon will be auto-matched in Navigation component
+      })),
+    ];
+
+    return categories;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
+
+// Fetch all article slugs for static generation
+export async function getAllArticleSlugs(): Promise<{ slug: string }[]> {
+  const query = `*[_type == "article" && defined(slug.current)] {
+    "slug": slug.current
+  }`;
+
+  try {
+    const slugs = await client.fetch(query);
+    return slugs;
+  } catch (error) {
+    console.error("Error fetching slugs:", error);
+    return [];
+  }
+}
+
+// Get related articles (same category)
+export async function getRelatedArticles(
+  currentArticleId: string,
+  category: string,
+  limit: number = 3
+): Promise<Article[]> {
+  const query = `*[_type == "article" && category == $category && _id != $currentArticleId] | order(publishedAt desc)[0...$limit] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    category,
+    publishedAt,
+    readTime,
+    author->{
+      name,
+      "avatar": avatar.asset->url
+    },
+    "image": image.asset->url,
+    badgeColor
+  }`;
+
+  try {
+    const articles = await client.fetch(query, {
+      category,
+      currentArticleId,
+      limit,
+    });
+
+    return articles.map((article: any) => ({
+      id: article._id,
+      title: article.title,
+      slug: article.slug,
+      description: article.description || "",
+      excerpt: article.description?.substring(0, 150) + "...",
+      category: article.category,
+      readTime: article.readTime || "5 min read",
+      date: new Date(article.publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      image: article.image || "/default-article.jpg",
+      badgeColor: article.badgeColor || "#330df2",
+      author: {
+        name: article.author?.name || "Unknown Author",
+        title: "",
+        avatar: article.author?.avatar || "/default-avatar.jpg",
+      },
+      tags: [],
+    }));
+  } catch (error) {
+    console.error("Error fetching related articles:", error);
+    return [];
+  }
+}
