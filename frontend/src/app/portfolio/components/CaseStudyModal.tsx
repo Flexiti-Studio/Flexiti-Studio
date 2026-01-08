@@ -55,7 +55,7 @@ const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ item, isOpen, onClose }
                         <img
                             src={item.image}
                             alt={item.alt}
-                            fill
+
                             className="object-cover"
                             sizes="100vw"
                         />
