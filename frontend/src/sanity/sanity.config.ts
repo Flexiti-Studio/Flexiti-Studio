@@ -5,6 +5,7 @@ import { post } from "./schemaTypes/post";
 import { article } from "./schemaTypes/article";
 import { author } from "./schemaTypes/author";
 import { tag } from "./schemaTypes/tag";
+import { portfolioItem } from "./schemaTypes/portfolioItem";
 
 export default defineConfig({
   name: "flexiti-studio",
@@ -15,6 +16,6 @@ export default defineConfig({
 
   plugins: [deskTool()],
   schema: {
-    types: [post, article, author, tag],
+    types: [post, article, author, tag, portfolioItem],
   },
 });
