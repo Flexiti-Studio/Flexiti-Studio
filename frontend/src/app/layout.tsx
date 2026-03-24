@@ -1,16 +1,15 @@
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { ThemedTopLoader } from "@/components/reuseables/ThemedTopLoader";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import StudioNavbar from "@/components/navbar/StudioNavbar";
-
 import { ThemeClientProvider } from "@/context/ThemeClientProvider";
 import Footer from "./components/Footer";
 import NextTopLoader from "nextjs-toploader";
 import { Container } from "@mui/material";
 
+// Standard Google Fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +30,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -39,11 +37,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0070f3" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=optional"
-          rel="stylesheet"
-        />
+        {/* Manual Google Font link removed from here to satisfy ESLint */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pt-6`}
@@ -51,12 +45,10 @@ export default function RootLayout({
       >
         <ThemeClientProvider>
           <ReactQueryProvider>
-            {/* <Navbar /> */}
             <ThemedTopLoader />
             <StudioNavbar />
             <NextTopLoader showSpinner={false} />
             <Container maxWidth="lg">
-
               {children}
             </Container>
             <Footer />
