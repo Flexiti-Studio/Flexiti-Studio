@@ -70,7 +70,7 @@ export default function NotFound() {
                                         Page Lost in Space
                                     </div>
                                     <p className="text-text-muted dark:text-gray-400 max-w-md">
-                                        The digital coordinates you entered don't match any known location in our universe.
+                                        The digital coordinates you entered don&apos;t match any known location in our universe.
                                     </p>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ export default function NotFound() {
                             Lost in the <span className="text-primary">Digital Void</span>
                         </h1>
                         <p className="text-lg text-text-muted dark:text-gray-400 max-w-xl mx-auto">
-                            Don't worry, even the best explorers get lost sometimes. Let's get you back on track.
+                            Don&apos;t worry, even the best explorers get lost sometimes. Let&apos;s get you back on track.
                         </p>
                     </div>
 

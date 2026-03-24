@@ -1,7 +1,7 @@
 // schemas/portfolioItem.ts
 import { defineField, defineType } from 'sanity'
 
-export default defineType({
+export const portfolioItem = defineType({
   name: 'portfolioItem',
   title: 'Portfolio Item',
   type: 'document',

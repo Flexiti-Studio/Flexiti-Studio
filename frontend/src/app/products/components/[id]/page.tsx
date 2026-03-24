@@ -5,13 +5,14 @@ import { products } from '../products-data'
 
 
 interface ProductDetailPageProps {
-    params: {
+    params: Promise<{
         id: string
-    }
+    }>
 }
 
 export async function generateMetadata({ params }: ProductDetailPageProps) {
-    const product = products.find(p => p.id === parseInt(params.id))
+    const { id } = await params
+    const product = products.find(p => p.id === parseInt(id))
 
     return {
         title: product ? `${product.name} - Flexiti Studio` : 'Product Not Found',
@@ -19,8 +20,9 @@ export async function generateMetadata({ params }: ProductDetailPageProps) {
     }
 }
 
-export default function ProductDetailPage({ params }: ProductDetailPageProps) {
-    const product = products.find(p => p.id === parseInt(params.id))
+export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
+    const { id } = await params
+    const product = products.find(p => p.id === parseInt(id))
 
     if (!product) {
         notFound()

@@ -11,10 +11,10 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item }) => {
     return (
         <div className="group overflow-hidden rounded-xl">
             <div className="relative h-80 w-full overflow-hidden">
-                <img
+                <Image
                     src={item.image}
                     alt={item.alt}
-                    // fill
+                    fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />

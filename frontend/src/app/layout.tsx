@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
+
 import { ThemedTopLoader } from "@/components/reuseables/ThemedTopLoader";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import StudioNavbar from "@/components/navbar/StudioNavbar";
-import StudioLogo from "@/components/navbar/StudioLogo";
+
 import { ThemeClientProvider } from "@/context/ThemeClientProvider";
 import Footer from "./components/Footer";
 import NextTopLoader from "nextjs-toploader";
@@ -41,12 +41,13 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link
 
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=optional"
           rel="stylesheet"
         />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pt-6`}
+        suppressHydrationWarning={true}
       >
         <ThemeClientProvider>
           <ReactQueryProvider>

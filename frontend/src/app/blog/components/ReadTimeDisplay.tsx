@@ -1,7 +1,7 @@
 // components/ReadTimeDisplay.tsx
 'use client';
 
-import { Clock, Image, Code, FileText } from 'lucide-react';
+import { Clock, Image as ImageIcon, Code, FileText } from 'lucide-react';
 import { useState } from 'react';
 
 interface ReadTimeDisplayProps {
@@ -56,7 +56,7 @@ export default function ReadTimeDisplay({
                         {details.imageMinutes > 0 && (
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-1.5">
-                                    <Image className="w-3 h-3" />
+                                    <ImageIcon className="w-3 h-3" />
                                     <span>Images</span>
                                 </div>
                                 <span>{details.imageMinutes} min</span>

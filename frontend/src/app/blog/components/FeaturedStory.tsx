@@ -16,10 +16,10 @@ export default function FeaturedStory() {
                 {/* Image */}
                 <div className="w-full md:w-3/5 aspect-video md:aspect-auto overflow-hidden">
                     <div className="relative w-full h-full">
-                        <img
+                        <Image
                             src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
                             alt="AI neural networks visualization"
-                            // fill
+                            fill
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, 60vw"
                         />
@@ -48,10 +48,10 @@ export default function FeaturedStory() {
                     {/* Author */}
                     <div className="flex items-center gap-3 mt-4">
                         <div className="relative size-10 rounded-full overflow-hidden">
-                            <img
+                            <Image
                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80"
                                 alt="Alex Morgan"
-                                // fill
+                                fill
                                 className="object-cover"
                             />
                         </div>

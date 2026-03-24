@@ -5,7 +5,7 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 export default function ModernScene() {
-    const group = useRef<any>(null);
+    const group = useRef<THREE.Group>(null);
 
     useFrame(({ mouse }) => {
         if (!group.current) return;

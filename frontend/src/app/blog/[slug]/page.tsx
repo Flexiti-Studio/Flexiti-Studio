@@ -7,7 +7,7 @@ import ArticleHeader from './components/ArticleHeader'
 import ArticleSidebar from './components/ArticleSidebar'
 import ArticleContent from './components/ArticleContent'
 import AuthorBio from './components/AuthorBio'
-import RelatedArticles from './components/RelatedArticles'
+import RelatedArticles from './components/RelatedArticlesComp'
 import NewsletterCTASection from './components/NewsletterCTASection'
 import { getAllArticleSlugs, getArticleBySlug } from './components/articles'
 

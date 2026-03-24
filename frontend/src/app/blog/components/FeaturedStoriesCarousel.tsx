@@ -7,6 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowRight, Star, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Article } from './types';
 
 import 'swiper/css';
@@ -113,10 +114,12 @@ export default function FeaturedStoriesCarousel({
                                     {/* Image Side */}
                                     <div className="relative overflow-hidden">
                                         <div className="absolute inset-0">
-                                            <img
+                                            <Image
                                                 src={article.image}
                                                 alt={article.title}
-                                                className="w-full h-full object-cover transition-transform duration-700"
+                                                fill
+                                                className="object-cover transition-transform duration-700"
+                                                sizes="(max-width: 1024px) 100vw, 50vw"
                                             />
                                         </div>
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent lg:bg-gradient-to-r lg:from-black/40 lg:via-black/20 lg:to-transparent" />
@@ -158,10 +161,11 @@ export default function FeaturedStoriesCarousel({
                                         {/* Author Info */}
                                         <div className="flex items-center gap-4 mb-8">
                                             <div className="relative size-14 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-md">
-                                                <img
+                                                <Image
                                                     src={article.author.avatar}
                                                     alt={article.author.name}
-                                                    className="w-full h-full object-cover"
+                                                    fill
+                                                    className="object-cover"
                                                 />
                                             </div>
                                             <div>
@@ -203,10 +207,12 @@ export default function FeaturedStoriesCarousel({
                             className={`flex-shrink-0 w-[120px] rounded-lg overflow-hidden border-2 transition-all ${index === activeIndex ? 'border-primary shadow-lg' : 'border-transparent hover:border-gray-300 dark:hover:border-gray-700'}`}
                         >
                             <div className="relative aspect-video">
-                                <img
+                                <Image
                                     src={article.image}
                                     alt={article.title}
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
+                                    sizes="120px"
                                 />
                                 <div className={`absolute bottom-2 left-2 px-2 py-1 rounded text-xs font-bold ${getCategoryColor(article.category).bg} ${getCategoryColor(article.category).text}`}>
                                     {article.category}

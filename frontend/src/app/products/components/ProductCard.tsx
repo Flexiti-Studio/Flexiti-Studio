@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onLearnMore }) => {
         >
             {/* Image */}
             <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                <img
+                <Image
                     src={product.image}
                     alt={product.alt}
                     fill

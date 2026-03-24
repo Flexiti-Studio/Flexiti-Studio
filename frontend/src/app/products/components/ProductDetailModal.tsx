@@ -61,7 +61,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, isOpen
                 <div className="p-6">
                     {/* Product Image */}
                     <div className="relative w-full h-64 rounded-xl overflow-hidden mb-6">
-                        <img
+                        <Image
                             src={product.image}
                             alt={product.alt}
                             fill
