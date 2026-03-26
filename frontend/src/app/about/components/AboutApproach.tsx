@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const steps = [
   {
     num: '01',
@@ -37,11 +39,13 @@ export default function AboutApproach() {
               ))}
             </div>
           </div>
-          <div className="bg-surface-container rounded-lg p-2">
-            <img
+          <div className="bg-surface-container rounded-lg p-2 overflow-hidden">
+            <Image
               alt="Design Process — Designer hand sketching a UI flow on a tablet"
               className="rounded-lg shadow-lg w-full object-cover aspect-[4/3]"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMJFgiOt0Dp9F7tUF27_tefqUpxcFi5fzINksWGEd6nXTG4uxWCFqSOpH91qr6BbH_4okqQJE4sanxeyDdP4hlXa1_HEFCF3rqbxNplCatngsXAIlm3C3pKYix9xoFCM9Dbc7I-GI9S46-Rzx37WCxap_U-6trANPa_Gm2qXOIHLbQ6Oc3eW_jNq9K-U1emKvNMa4Q0PDz9WayPECPu9nQZyMcirhZpRysXjyequC8b0Js9L2n_EKKbT3H3jpcfRUzvLBA2zF_erkz"
+              width={800}
+              height={600}
             />
           </div>
         </div>

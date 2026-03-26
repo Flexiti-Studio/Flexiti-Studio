@@ -1,0 +1,4 @@
+﻿src/app/api/admin/memes/analyze/route.ts(53,11): error TS2533: Object is possibly 'null' or 'undefined'.
+src/app/api/admin/memes/analyze/route.ts(53,31): error TS2339: Property 'push' does not exist on type 'string | ChatCompletionContentPartText[] | ChatCompletionContentPart[] | (ChatCompletionContentPartText | ChatCompletionContentPartRefusal)[]'.
+  Property 'push' does not exist on type 'string'.
+

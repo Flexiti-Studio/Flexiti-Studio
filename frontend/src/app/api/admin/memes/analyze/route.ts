@@ -2,6 +2,7 @@ import { dbConnect } from '@/lib/mongodb';
 import { failure, success } from '@/lib/response';
 import { MemeAsset } from '@/models/MemeAsset';
 import { getOpenAI } from '@/lib/openai';
+import OpenAI from 'openai';
 
 
 export async function POST(req: Request) {
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
       try {
         const frameData = body.frameData; // Base64 image data
         
-        let prompt = `
+        const prompt = `
 You are categorizing meme video assets for a public meme library.
 
 Return ONLY strict JSON with this shape (no markdown, no code fences):
@@ -46,14 +47,20 @@ Use the content of the image (if provided) and the filename to infer the best me
 Keep description under 20 words.
 `.trim();
 
-        const messages: any[] = [{ role: 'user', content: [{ type: 'text', text: prompt }] }];
-        
-        if (frameData) {
-          messages[0].content.push({
-            type: 'image_url',
-            image_url: { url: frameData.startsWith('data:') ? frameData : `data:image/jpeg;base64,${frameData}` }
-          });
-        }
+        const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
+          { 
+            role: 'user', 
+            content: frameData 
+              ? [
+                  { type: 'text', text: prompt },
+                  { 
+                    type: 'image_url', 
+                    image_url: { url: frameData.startsWith('data:') ? frameData : `data:image/jpeg;base64,${frameData}` } 
+                  }
+                ]
+              : prompt 
+          }
+        ];
 
         const response = await getOpenAI().chat.completions.create({
           model: 'gpt-4o-mini',

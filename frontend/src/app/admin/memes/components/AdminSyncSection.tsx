@@ -9,9 +9,17 @@ interface Props {
   onAnalyze?: (id: string, frameData?: string) => Promise<void>;
 }
 
+interface SyncItem {
+  key: string;
+  size: number;
+  lastModified: Date;
+  publicUrl: string;
+  filename: string;
+}
+
 export default function AdminSyncSection({ onSyncComplete, onAnalyze }: Props) {
   const [loading, setLoading] = useState(false);
-  const [unsynced, setUnsynced] = useState<any[]>([]);
+  const [unsynced, setUnsynced] = useState<SyncItem[]>([]);
   const [processing, setProcessing] = useState<string | null>(null);
   const [show, setShow] = useState(false);
 
@@ -19,7 +27,7 @@ export default function AdminSyncSection({ onSyncComplete, onAnalyze }: Props) {
     setLoading(true);
     try {
       const res = await fetch('/api/admin/memes/sync');
-      const data = await res.json();
+      const data = await res.json() as { items?: SyncItem[] };
       setUnsynced(data.items || []);
       setShow(true);
     } catch (err) {
@@ -29,7 +37,7 @@ export default function AdminSyncSection({ onSyncComplete, onAnalyze }: Props) {
     }
   }
 
-  async function processItem(item: any) {
+  async function processItem(item: SyncItem) {
     setProcessing(item.key);
     try {
       // 1. Generate thumbnail from R2 URL (browser side)
@@ -75,8 +83,10 @@ export default function AdminSyncSection({ onSyncComplete, onAnalyze }: Props) {
         })
       });
 
-      const completeData = await completeRes.json();
-      if (completeRes.ok && completeData.item?._id) {
+      const completeData = await completeRes.json() as { item?: { _id: string } };
+      const itemId = completeData.item?._id;
+
+      if (completeRes.ok && itemId) {
         setUnsynced((prev) => prev.filter((i) => i.key !== item.key));
         
         // 4. Trigger AI analysis with the thumbnail frame if onAnalyze is provided
@@ -85,10 +95,10 @@ export default function AdminSyncSection({ onSyncComplete, onAnalyze }: Props) {
           reader.readAsDataURL(thumbnailBlob);
           reader.onloadend = async () => {
             const base64data = reader.result as string;
-            await onAnalyze(completeData.item._id, base64data);
+            await onAnalyze(itemId, base64data);
           };
         } else if (onAnalyze) {
-          await onAnalyze(completeData.item._id);
+          await onAnalyze(itemId);
         }
       }
     } catch (err) {

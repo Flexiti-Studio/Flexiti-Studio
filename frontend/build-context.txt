@@ -1,0 +1,64 @@
+﻿
+  System.Management.Aut
+omation.RemoteException
+  ./src/app/admin/memes
+/page.tsx
+  215:7  Warning: 
+Expected an assignment 
+or function call and 
+instead saw an 
+expression.  @typescrip
+t-eslint/no-unused-expr
+essions
+  System.Management.Aut
+omation.RemoteException
+  ./src/app/api/admin/m
+emes/analyze/route.ts
+> 29:13  Error: 
+'prompt' is never 
+reassigned. Use 
+'const' instead.  
+prefer-const
+  System.Management.Aut
+omation.RemoteException
+  ./src/app/blog/compon
+ents/ArticleCard.tsx
+  2:22  Warning: 
+'Clock' is defined but 
+never used.  @typescrip
+t-eslint/no-unused-vars
+  18:25  Warning: 
+Using `<img>` could 
+result in slower LCP 
+and higher bandwidth. 
+Consider using `<Image 
+/>` from `next/image` 
+or a custom image 
+loader to 
+automatically optimize 
+images. This may incur 
+additional usage or 
+cost from your 
+provider. See: https://
+nextjs.org/docs/message
+s/no-img-element  @next
+/next/no-img-element
+  61:37  Warning: 
+Using `<img>` could 
+result in slower LCP 
+and higher bandwidth. 
+Consider using `<Image 
+/>` from `next/image` 
+or a custom image 
+loader to 
+automatically optimize 
+images. This may incur 
+additional usage or 
+cost from your 
+provider. See: https://
+nextjs.org/docs/message
+s/no-img-element  @next
+/next/no-img-element
+
+
+

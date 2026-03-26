@@ -1,0 +1,6 @@
+﻿   Γû▓ Next.js 15.4.10
+   - Environments: .env
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 50s
+   Linting and checking validity of types ...
