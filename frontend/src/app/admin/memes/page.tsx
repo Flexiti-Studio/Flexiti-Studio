@@ -8,6 +8,7 @@ import AdminUploadDropzone from './components/AdminUploadDropzone';
 import AdminQueueCard from './components/AdminQueueCard';
 import AdminReviewCard from './components/AdminReviewCard';
 import AdminStatsSidebar from './components/AdminStatsSidebar';
+import { generateVideoThumbnail } from '@/lib/video';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                              */
@@ -51,9 +52,35 @@ export default function AdminMemesPage() {
   async function handleUpload(files: File[]) {
     setUploading(true);
     const formData = new FormData();
-    files.slice(0, 10).forEach((f) => formData.append('files', f));
+    const batch = files.slice(0, 10);
+    
+    for (const file of batch) {
+      formData.append('files', file);
+      
+      // Generate thumbnail for videos
+      if (file.type.startsWith('video/')) {
+        try {
+          const thumbnailBlob = await generateVideoThumbnail(file);
+          formData.append('thumbnails', thumbnailBlob, 'thumbnail.jpg');
+        } catch (err) {
+          console.error('Failed to generate thumbnail for', file.name, err);
+          // Still append an empty blob or nothing to keep indexes aligned if backend expects it
+          // In my updated backend, I check if thumbnail exists, so appending nothing is fine
+          // but if we want to ensure 1:1 mapping, appending an empty placeholder might be better.
+          // However, my backend code uses i as index, so if we skip one, the mapping breaks.
+          // Let's append a dummy null if it fails? No, FormData doesn't like null.
+          // Let's just append an empty file.
+          formData.append('thumbnails', new Blob(), 'empty.jpg');
+        }
+      } else {
+        // For non-videos (like GIFs), we might not need a thumbnail or could use the file itself
+        // but to keep index alignment for the backend loop:
+        formData.append('thumbnails', new Blob(), 'empty.jpg');
+      }
+    }
+
     const res = await fetch('/api/admin/memes/upload', { method: 'POST', body: formData });
-    if (res.ok) { await loadPending(); showToast(`${files.length} file(s) uploaded ✓`); }
+    if (res.ok) { await loadPending(); showToast(`${batch.length} file(s) uploaded ✓`); }
     else         { showToast('Upload failed — check R2 credentials.'); }
     setUploading(false);
   }
