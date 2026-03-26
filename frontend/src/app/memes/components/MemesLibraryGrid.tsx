@@ -25,7 +25,7 @@ export default function MemesLibraryGrid({ onPlay, category = 'all', sort = 'new
           sort,
           q: search,
           page: page.toString(),
-          limit: '12',
+          limit: '20',
         });
         const res = await fetch(`/api/memes?${params.toString()}`);
         const data = await res.json();

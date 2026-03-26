@@ -48,40 +48,81 @@ export default function AdminMemesPage() {
     setTimeout(() => setToast(''), 3000);
   }
 
-  /* ---- Upload ---- */
+  /* ---- Upload (Direct to R2) ---- */
   async function handleUpload(files: File[]) {
     setUploading(true);
-    const formData = new FormData();
     const batch = files.slice(0, 10);
     
     for (const file of batch) {
-      formData.append('files', file);
-      
-      // Generate thumbnail for videos
-      if (file.type.startsWith('video/')) {
-        try {
-          const thumbnailBlob = await generateVideoThumbnail(file);
-          formData.append('thumbnails', thumbnailBlob, 'thumbnail.jpg');
-        } catch (err) {
-          console.error('Failed to generate thumbnail for', file.name, err);
-          // Still append an empty blob or nothing to keep indexes aligned if backend expects it
-          // In my updated backend, I check if thumbnail exists, so appending nothing is fine
-          // but if we want to ensure 1:1 mapping, appending an empty placeholder might be better.
-          // However, my backend code uses i as index, so if we skip one, the mapping breaks.
-          // Let's append a dummy null if it fails? No, FormData doesn't like null.
-          // Let's just append an empty file.
-          formData.append('thumbnails', new Blob(), 'empty.jpg');
+      try {
+        showToast(`Preparing upload for ${file.name}...`);
+        
+        // 1. Generate thumbnail locally
+        let thumbnailBlob: Blob | null = null;
+        if (file.type.startsWith('video/')) {
+          try {
+            thumbnailBlob = await generateVideoThumbnail(file);
+          } catch (err) {
+            console.error('Thumbnail gen failed', err);
+          }
         }
-      } else {
-        // For non-videos (like GIFs), we might not need a thumbnail or could use the file itself
-        // but to keep index alignment for the backend loop:
-        formData.append('thumbnails', new Blob(), 'empty.jpg');
+
+        // 2. Get presigned URL for the video/asset
+        const assetRes = await fetch('/api/admin/memes/upload/presigned', {
+          method: 'POST',
+          body: JSON.stringify({ filename: file.name, contentType: file.type || 'video/mp4' })
+        });
+        const assetData = await assetRes.json();
+        if (!assetRes.ok) throw new Error('Failed to get asset presigned URL');
+
+        // 3. Upload video direct to R2
+        await fetch(assetData.uploadUrl, {
+          method: 'PUT',
+          body: file,
+          headers: { 'Content-Type': file.type || 'video/mp4' }
+        });
+
+        // 4. Upload thumbnail if exists
+        let finalThumbnailUrl = '';
+        if (thumbnailBlob) {
+          const thumbPresignedRes = await fetch('/api/admin/memes/upload/presigned', {
+            method: 'POST',
+            body: JSON.stringify({ filename: 'thumbnail.jpg', contentType: 'image/jpeg', folder: 'thumbnails' })
+          });
+          const thumbPresignedData = await thumbPresignedRes.json();
+          if (thumbPresignedRes.ok) {
+            await fetch(thumbPresignedData.uploadUrl, {
+              method: 'PUT',
+              body: thumbnailBlob,
+              headers: { 'Content-Type': 'image/jpeg' }
+            });
+            finalThumbnailUrl = thumbPresignedData.publicUrl;
+          }
+        }
+
+        // 5. Tell backend to save the metadata
+        await fetch('/api/admin/memes/upload/complete', {
+          method: 'POST',
+          body: JSON.stringify({
+            title: assetData.rawTitle,
+            originalFileName: file.name,
+            slug: assetData.slug,
+            storageKey: assetData.key,
+            publicUrl: assetData.publicUrl,
+            mimeType: file.type || 'video/mp4',
+            sizeBytes: file.size,
+            thumbnailUrl: finalThumbnailUrl,
+          })
+        });
+
+      } catch (err) {
+        console.error('Upload flow failed for', file.name, err);
+        showToast(`Failed to upload ${file.name}`);
       }
     }
 
-    const res = await fetch('/api/admin/memes/upload', { method: 'POST', body: formData });
-    if (res.ok) { await loadPending(); showToast(`${batch.length} file(s) uploaded ✓`); }
-    else         { showToast('Upload failed — check R2 credentials.'); }
+    await loadPending();
+    showToast(`Upload batch complete ✓`);
     setUploading(false);
   }
 
