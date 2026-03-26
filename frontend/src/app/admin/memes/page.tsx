@@ -8,6 +8,7 @@ import AdminUploadDropzone from './components/AdminUploadDropzone';
 import AdminQueueCard from './components/AdminQueueCard';
 import AdminReviewCard from './components/AdminReviewCard';
 import AdminStatsSidebar from './components/AdminStatsSidebar';
+import AdminSyncSection from './components/AdminSyncSection';
 import { generateVideoThumbnail } from '@/lib/video';
 
 /* ------------------------------------------------------------------ */
@@ -101,19 +102,23 @@ export default function AdminMemesPage() {
         }
 
         // 5. Tell backend to save the metadata
-        await fetch('/api/admin/memes/upload/complete', {
-          method: 'POST',
-          body: JSON.stringify({
-            title: assetData.rawTitle,
-            originalFileName: file.name,
-            slug: assetData.slug,
-            storageKey: assetData.key,
-            publicUrl: assetData.publicUrl,
-            mimeType: file.type || 'video/mp4',
-            sizeBytes: file.size,
-            thumbnailUrl: finalThumbnailUrl,
-          })
-        });
+        try {
+          await fetch('/api/admin/memes/upload/complete', {
+            method: 'POST',
+            body: JSON.stringify({
+              title: assetData.rawTitle.replace(/[-_]/g, ' '),
+              originalFileName: file.name,
+              slug: assetData.slug,
+              storageKey: assetData.key,
+              publicUrl: assetData.publicUrl,
+              mimeType: file.type || 'video/mp4',
+              sizeBytes: file.size,
+              thumbnailUrl: finalThumbnailUrl,
+            })
+          });
+        } catch (saveErr) {
+          console.error('Metadata save failed, but file is in R2', saveErr);
+        }
 
       } catch (err) {
         console.error('Upload flow failed for', file.name, err);
@@ -285,6 +290,20 @@ export default function AdminMemesPage() {
           <div className="grid grid-cols-12 gap-8">
             {/* Left column */}
             <div className="col-span-12 lg:col-span-8 space-y-8">
+              {/* Sync Section */}
+              <AdminSyncSection 
+                onSyncComplete={loadPending} 
+                onAnalyze={async (id, frameData) => {
+                  showToast(`Analyzing synced item…`);
+                  const res = await fetch('/api/admin/memes/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ids: [id], frameData }),
+                  });
+                  if (res.ok) { await loadPending(); showToast('Analysis complete ✓'); }
+                }}
+              />
+
               {/* Dropzone */}
               <AdminUploadDropzone onFilesSelected={handleUpload} uploading={uploading} />
 

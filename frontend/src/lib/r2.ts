@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 export const r2 = new S3Client({
@@ -39,4 +39,12 @@ export async function getPresignedUploadUrl(
   });
 
   return await getSignedUrl(r2, command, { expiresIn });
+}
+
+export async function listR2Objects(prefix?: string) {
+  const command = new ListObjectsV2Command({
+    Bucket: process.env.R2_BUCKET_NAME!,
+    Prefix: prefix,
+  });
+  return await r2.send(command);
 }

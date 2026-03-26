@@ -23,7 +23,9 @@ export async function POST(req: Request) {
       await item.save();
 
       try {
-        const prompt = `
+        const frameData = body.frameData; // Base64 image data
+        
+        let prompt = `
 You are categorizing meme video assets for a public meme library.
 
 Return ONLY strict JSON with this shape (no markdown, no code fences):
@@ -40,19 +42,27 @@ Allowed categories: Reaction, Shock, Celebration, Working, Cinematic, Funny, Sad
 Asset title: ${item.title}
 Original filename: ${item.originalFileName}
 
-Use the filename/title to infer the best category and tags.
+Use the content of the image (if provided) and the filename to infer the best metadata.
 Keep description under 20 words.
-Confidence must be between 0 and 1.
 `.trim();
+
+        const messages: any[] = [{ role: 'user', content: [{ type: 'text', text: prompt }] }];
+        
+        if (frameData) {
+          messages[0].content.push({
+            type: 'image_url',
+            image_url: { url: frameData.startsWith('data:') ? frameData : `data:image/jpeg;base64,${frameData}` }
+          });
+        }
 
         const response = await getOpenAI().chat.completions.create({
           model: 'gpt-4o-mini',
-          messages: [{ role: 'user', content: prompt }],
+          messages,
           temperature: 0.3,
         });
 
         const outputText = response.choices[0]?.message?.content ?? '{}';
-        const parsed = JSON.parse(outputText);
+        const parsed = JSON.parse(outputText.replace(/```json|```/g, '').trim());
 
         item.aiSuggestion = {
           title: parsed.title || item.title,
