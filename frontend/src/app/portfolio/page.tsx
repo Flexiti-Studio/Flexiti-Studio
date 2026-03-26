@@ -1,19 +1,29 @@
-import { Metadata } from 'next'
-import PortfolioHero from './components/PortfolioHero'
-import PortfolioGrid from './components/PortfolioGrid'
-
+import { Metadata } from 'next';
+import PortfolioHero from './components/PortfolioHero';
+import PortfolioFilters from './components/PortfolioFilters';
+import PortfolioFeatured from './components/PortfolioFeatured';
+import PortfolioGrid from './components/PortfolioGrid';
+import PortfolioPositioning from './components/PortfolioPositioning';
+import PortfolioTechStack from './components/PortfolioTechStack';
+import PortfolioCTA from './components/PortfolioCTA';
+import PortfolioFooter from './components/PortfolioFooter';
 
 export const metadata: Metadata = {
-    title: 'Flexiti Studio - Portfolio',
-    description: 'Explore our portfolio of innovative software, AI, and hardware solutions that transform ideas into reality.',
-}
+  title: 'Our Work | Flexiti Studio',
+  description: 'We build scalable digital products for startups and global businesses. Explore our portfolio.',
+};
 
 export default function OurWorkPage() {
-    return (
-        <main className="flex-grow">
-            <PortfolioHero />
-            <PortfolioGrid />
-        </main>
-
-    )
+  return (
+    <main className="min-h-screen bg-background text-on-surface">
+      <PortfolioHero />
+      <PortfolioFilters />
+      <PortfolioFeatured />
+      <PortfolioGrid />
+      <PortfolioPositioning />
+      <PortfolioTechStack />
+      <PortfolioCTA />
+      <PortfolioFooter />
+    </main>
+  );
 }

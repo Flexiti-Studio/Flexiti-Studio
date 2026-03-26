@@ -1,70 +1,46 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-'use client'
+import { Metadata } from 'next';
+import ContactHeroForm from './components/ContactHeroForm';
+import ContactTrust from './components/ContactTrust';
+import ContactCTA from './components/ContactCTA';
+import ContactFooter from './components/ContactFooter';
 
-import React, { useState } from 'react'
-import { toast, Toaster } from 'react-hot-toast'
-import AnimatedBackground from './components/AnimatedBackground'
-import ContactHero from './components/ContactHero'
-import ContactForm from './components/ContactForm'
-import ContactChannels from './components/ContactChannels'
-
+export const metadata: Metadata = {
+  title: "Contact | Flexiti Studio — Let's Build Something Powerful",
+  description: "Have an idea or project? Tell us about it and let's build something powerful together.",
+};
 
 export default function ContactPage() {
-    const [isSubmitting, setIsSubmitting] = useState(false)
+  return (
+    <>
+      <main
+        className="pt-32 pb-24 min-h-screen"
+        style={{
+          background:
+            'radial-gradient(circle at top right, #dde1ff 0%, transparent 40%), radial-gradient(circle at bottom left, #f2f3ff 0%, transparent 40%)',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-8">
+          {/* Hero Header */}
+          <div className="mb-20 max-w-3xl">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label text-xs font-bold tracking-widest uppercase mb-6">
+              Contact Us
+            </span>
+            <h1 className="font-headline text-6xl md:text-7xl font-bold text-on-surface tracking-tight leading-[1.1] mb-8">
+              Let&apos;s Work Together
+            </h1>
+            <p className="text-on-surface-variant text-xl md:text-2xl leading-relaxed font-body max-w-2xl">
+              Have an idea or project? Tell us about it and let&apos;s build something powerful together.
+            </p>
+          </div>
 
-    const handleFormSubmit = async (data: any) => {
-        setIsSubmitting(true)
+          {/* Form + Sidebar */}
+          <ContactHeroForm />
+        </div>
+      </main>
 
-        try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500))
-
-            toast.success('Message sent successfully! We\'ll get back to you within 24 hours.', {
-                duration: 5000,
-                position: 'top-right',
-            })
-
-            // Reset form would be handled by react-hook-form reset
-            console.log('Form data:', data)
-
-        } catch (error) {
-            toast.error('Something went wrong. Please try again.', {
-                duration: 3000,
-                position: 'top-right',
-            })
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
-
-    return (
-        <>
-            <Toaster />
-
-            <div className="relative min-h-screen w-full overflow-hidden bg-background-dark">
-                <AnimatedBackground />
-
-                <div className="relative z-10 flex h-full grow flex-col">
-
-
-                    <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                            {/* Left Column: Form */}
-                            <div id="form" className="flex flex-col gap-8">
-                                <ContactHero />
-                                <ContactForm
-                                    onSubmit={handleFormSubmit}
-                                    isLoading={isSubmitting}
-                                />
-                            </div>
-
-                            {/* Right Column: Direct Contact */}
-                            <ContactChannels />
-                        </div>
-                    </main>
-
-                </div>
-            </div>
-        </>
-    )
+      <ContactTrust />
+      <ContactCTA />
+      <ContactFooter />
+    </>
+  );
 }

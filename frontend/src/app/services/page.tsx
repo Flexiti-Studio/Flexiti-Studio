@@ -1,20 +1,29 @@
-import { Metadata } from 'next'
-import ServicesHero from './components/ServicesHero'
-import ServicesGrid from './components/ServicesGrid'
-import CTASection from '../components/CTASection'
-
+import { Metadata } from 'next';
+import ServicesHero from './components/ServicesHero';
+import ServicesOverview from './components/ServicesOverview';
+import ServicesDetail from './components/ServicesDetail';
+import ServicesProcess from './components/ServicesProcess';
+import ServicesWhyUs from './components/ServicesWhyUs';
+import ServicesTechStack from './components/ServicesTechStack';
+import ServicesCTABanner from './components/ServicesCTABanner';
+import ServicesFooter from './components/ServicesFooter';
 
 export const metadata: Metadata = {
-    title: 'Flexiti Studio - Services',
-    description: 'Innovate with Our Suite of Tech Services. Flexiti Studio transforms your ideas into reality across software, hardware, and design.',
-}
+  title: 'Services | Flexiti Studio',
+  description: 'End-to-end digital solutions for modern businesses: Web Apps, Mobile Apps, SaaS, and AI-powered systems.',
+};
 
 export default function ServicesPage() {
-    return (
-        <main className="flex-grow">
-            <ServicesHero />
-            <ServicesGrid />
-            <CTASection />
-        </main>
-    )
+  return (
+    <main className="min-h-screen bg-surface text-on-surface-variant">
+      <ServicesHero />
+      <ServicesOverview />
+      <ServicesDetail />
+      <ServicesProcess />
+      <ServicesWhyUs />
+      <ServicesTechStack />
+      <ServicesCTABanner />
+      <ServicesFooter />
+    </main>
+  );
 }

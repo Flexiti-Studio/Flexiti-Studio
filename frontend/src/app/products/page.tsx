@@ -1,25 +1,31 @@
-import { Metadata } from 'next'
-import ProductsHero from './components/ProductsHero'
-import ProductsSection from './components/ProductsSection'
-import FeatureGrid from './components/FeatureGrid'
-import ProductsCTASection from './components/ProductsCTASection'
-
+import { Metadata } from 'next';
+import ProductsHero from './components/ProductsHero';
+import ProductsCategoryTabs from './components/ProductsCategoryTabs';
+import ProductsFeatured from './components/ProductsFeatured';
+import ProductsGrid from './components/ProductsGrid';
+import ProductsScalability from './components/ProductsScalability';
+import ProductsLabs from './components/ProductsLabs';
+import ProductsStats from './components/ProductsStats';
+import ProductsCTA from './components/ProductsCTA';
+import ProductsFooter from './components/ProductsFooter';
 
 export const metadata: Metadata = {
-    title: 'Flexiti Studio - Products',
-    description: 'The Future of Digital Interaction. Empowering users and businesses through intelligently crafted software, AI systems, and innovative hardware solutions.',
-}
+  title: 'Products | Flexiti Studio',
+  description: 'We design and engineer high-performance SaaS platforms and internal tools that empower modern teams to scale beyond their limits.',
+};
 
 export default function ProductsPage() {
-    return (
-
-
-        <main className="flex flex-col gap-12 md:gap-16 lg:gap-20 mt-10">
-            <ProductsHero />
-            <ProductsSection />
-            <FeatureGrid />
-        </main>
-
-
-    )
-}
+  return (
+    <main className="pt-24 min-h-screen bg-surface text-on-surface">
+      <ProductsHero />
+      <ProductsCategoryTabs />
+      <ProductsFeatured />
+      <ProductsGrid />
+      <ProductsScalability />
+      <ProductsLabs />
+      <ProductsStats />
+      <ProductsCTA />
+      <ProductsFooter />
+    </main>
+  );
+}

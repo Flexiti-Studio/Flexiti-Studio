@@ -74,15 +74,46 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
             {/* Desktop Navigation */}
             <div className="hidden md:flex flex-1 justify-end gap-8">
                 <nav className="flex items-center gap-9">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.label}
-                            href={item.href}
-                            className={`text-sm font-medium leading-normal transition-colors ${isActive(item.href)}`}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        if (item.label === 'Blog') {
+                            return (
+                                <div key={item.label} className="relative group">
+                                    <button className={`flex items-center gap-1 text-sm font-medium leading-normal transition-colors ${isActive(item.href)}`}>
+                                        Blog
+                                        <span className="material-symbols-outlined text-[16px] group-hover:rotate-180 transition-transform duration-200">expand_more</span>
+                                    </button>
+                                    {/* Dropdown panel */}
+                                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                        <div className="p-2">
+                                            <Link
+                                                href="/blog"
+                                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-500/10 transition-colors"
+                                            >
+                                                <span className="material-symbols-outlined text-[18px]">article</span>
+                                                Blog
+                                            </Link>
+                                            <Link
+                                                href="/memes"
+                                                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-500/10 transition-colors"
+                                            >
+                                                <span className="material-symbols-outlined text-[18px]">video_library</span>
+                                                Free Memes
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        return (
+                            <Link
+                                key={item.label}
+                                href={item.href}
+                                className={`text-sm font-medium leading-normal transition-colors ${isActive(item.href)}`}
+                            >
+                                {item.label}
+                            </Link>
+                        )
+                    })}
                 </nav>
 
                 <ThemeToggle />
@@ -119,18 +150,33 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="absolute top-full left-0 right-0 mt-2 md:hidden bg-white/5 backdrop-blur-md border border-solid border-white/10 rounded-xl p-4 shadow-lg">
-                    <nav className="flex flex-col gap-4">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.label}
-                                href={item.href}
-                                className={`text-sm font-medium leading-normal transition-colors py-2 ${isActive(item.href)}`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item.label}
-                            </Link>
-                        ))}
+                <div className="absolute top-full left-0 right-0 mt-2 md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-solid border-white/10 rounded-xl p-4 shadow-lg">
+                    <nav className="flex flex-col gap-2">
+                        {navItems.map((item) => {
+                            if (item.label === 'Blog') {
+                                return (
+                                    <div key={item.label} className="flex flex-col gap-1">
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-2">Blog</span>
+                                        <Link href="/blog" className="flex items-center gap-2 text-sm font-medium py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                                            <span className="material-symbols-outlined text-[18px]">article</span> Blog Articles
+                                        </Link>
+                                        <Link href="/memes" className="flex items-center gap-2 text-sm font-medium py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                                            <span className="material-symbols-outlined text-[18px]">video_library</span> Free Memes
+                                        </Link>
+                                    </div>
+                                )
+                            }
+                            return (
+                                <Link
+                                    key={item.label}
+                                    href={item.href}
+                                    className={`text-sm font-medium leading-normal transition-colors py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 ${isActive(item.href)}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    {item.label}
+                                </Link>
+                            )
+                        })}
                     </nav>
                 </div>
             )}

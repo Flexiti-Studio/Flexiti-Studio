@@ -1,43 +1,26 @@
-import React from 'react'
-import Button from './ui/Button'
-
-const ServicesHero: React.FC = () => {
-    return (
-        <div
-            className="relative @container mt-10 sm:mt-16 md:mt-20 mb-8 rounded-2xl overflow-hidden"
-            style={{
-                backgroundImage: "url('/images/service background.jpg')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-            }}
-        >
-            {/* Overlay to make text readable */}
-            <div className="absolute inset-0 bg-black/50 dark:bg-black/60"></div>
-
-            <div className="relative flex flex-col gap-6 px-4 py-20">
-                <div className="flex flex-col gap-4 text-center items-center">
-                    <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[864px]:text-6xl max-w-3xl">
-                        Innovate with Our Suite of Tech Services
-                    </h1>
-                    <h2 className="text-gray-200 text-base font-normal leading-normal @[480px]:text-lg max-w-2xl">
-                        Flexiti Studio transforms your ideas into reality across software, hardware, and design with cutting-edge technology and creative expertise.
-                    </h2>
-                </div>
-                <div className="flex justify-center">
-                    <Button
-                        variant="primary"
-                        href="#services"
-                        size="md"
-                        rounded="xl"
-                        className="bg-blue-600 hover:bg-blue-700 text-white transition-all flex items-center gap-2 shadow-lg hover:shadow-2xl hover:scale-105"
-                        leftIcon={<span className="material-symbols-outlined text-sm">explore</span>}
-                    >
-                        Explore Services
-                    </Button>
-                </div>
-            </div>
+export default function ServicesHero() {
+  return (
+    <section className="relative pt-44 pb-32 overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_45%_at_50%_50%,#eaedff_0%,transparent_100%)] opacity-60"></div>
+      <div className="max-w-7xl mx-auto px-8 text-center">
+        <span className="inline-block px-4 py-1.5 mb-8 rounded-full bg-primary-fixed text-on-primary-fixed font-label text-[0.75rem] font-semibold tracking-widest uppercase">
+          Full-Cycle Engineering
+        </span>
+        <h1 className="font-headline text-[3.5rem] md:text-[4.5rem] leading-[1.1] font-bold text-on-surface tracking-tighter mb-8">
+          Build Scalable Systems, <br /><span className="text-gradient">Not Just Websites.</span>
+        </h1>
+        <p className="max-w-2xl mx-auto font-body text-lg text-on-surface-variant mb-12">
+          End-to-end digital solutions for modern businesses: Web Apps, Mobile Apps, SaaS, and AI-powered systems architected for performance and growth.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-headline font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95">
+            Start a Project
+          </button>
+          <button className="bg-surface-container-high text-primary px-8 py-4 rounded-full font-headline font-semibold hover:bg-surface-container transition-all active:scale-95">
+            Book a Call
+          </button>
         </div>
-    )
+      </div>
+    </section>
+  );
 }
-
-export default ServicesHero

@@ -1,20 +1,29 @@
-import CTASection from "./components/CTASection";
-import HeroSection from "./components/HeroSection";
-import PortfolioSection from "./components/PortfolioSection";
-import ServicesSection from "./components/ServicesSection";
+import LandingHero from "./components/home/LandingHero";
+import LandingSocialProof from "./components/home/LandingSocialProof";
+import LandingServices from "./components/home/LandingServices";
+import LandingHowItWorks from "./components/home/LandingHowItWorks";
+import LandingPortfolio from "./components/home/LandingPortfolio";
+import LandingProducts from "./components/home/LandingProducts";
+import LandingStats from "./components/home/LandingStats";
+import LandingAbout from "./components/home/LandingAbout";
+import LandingCTA from "./components/home/LandingCTA";
+import LandingFooter from "./components/home/LandingFooter";
 
 export default function Home() {
   return (
-
-    <main className="flex-grow">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <HeroSection />
-        <ServicesSection />
-        <PortfolioSection />
-        <CTASection />
+    <main className="min-h-screen">
+      <div className="pt-20">
+        <LandingHero />
+        <LandingSocialProof />
+        <LandingServices />
+        <LandingHowItWorks />
+        <LandingPortfolio />
+        <LandingProducts />
+        <LandingStats />
+        <LandingAbout />
+        <LandingCTA />
       </div>
+      <LandingFooter />
     </main>
-
-
-  )
+  );
 }
