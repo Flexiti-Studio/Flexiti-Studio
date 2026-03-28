@@ -2,6 +2,7 @@
 'use client';
 
 import { Bookmark, Share2 } from 'lucide-react';
+import Image from 'next/image';
 import { Article } from './types';
 import ReadTimeDisplay from '../../components/ReadTimeDisplay';
 
@@ -58,11 +59,13 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
                 {/* Author & Actions */}
                 <div className="flex items-center gap-4 mt-4">
                     <div className="flex items-center gap-3">
+
                         <div className="relative size-12 rounded-full overflow-hidden border-2 border-white dark:border-gray-700 shadow-md">
-                            <img
+                            <Image
                                 src={article.author.avatar}
                                 alt={article.author.name}
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                             />
                         </div>
                         <div className="flex flex-col items-start text-left">

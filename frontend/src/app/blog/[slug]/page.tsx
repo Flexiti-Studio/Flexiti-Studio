@@ -2,6 +2,7 @@
 // app/blog/[slug]/page.tsx
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 
 export const revalidate = 60;
 
@@ -76,11 +77,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Hero Image */}
       <section className="w-full px-4 md:px-6 pb-12 flex justify-center">
         <div className="w-full max-w-6xl">
+
           <div className="relative w-full aspect-[21/9] md:aspect-[16/7] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
-            <img
+            <Image
               src={article.featuredImage}
               alt={article.title}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 

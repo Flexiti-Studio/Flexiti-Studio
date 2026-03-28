@@ -95,7 +95,7 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
             return (
                 <figure className="my-10">
                     <Image
-                        src={urlFor(value).width(1200).height(630).url()}
+                        src={urlFor(value.asset).width(1200).height(630).url()}
                         alt={value.alt || 'Article image'}
                         width={1200}
                         height={630}
