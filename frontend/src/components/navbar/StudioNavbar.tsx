@@ -21,7 +21,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
     ],
     logo,
     ctaText = 'Get Started',
-    ctaHref = '/get-started',
+    ctaHref = '/contact',
     className = '',
     blurIntensity = 'md'
 }) => {
