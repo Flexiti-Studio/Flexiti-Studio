@@ -90,7 +90,7 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
     },
     types: {
         image: ({ value }: any) => {
-            if (!value?.asset?._ref) return null;
+            if (!value?.asset?._ref && !value?.asset?._id) return null;
 
             return (
                 <figure className="my-10">
