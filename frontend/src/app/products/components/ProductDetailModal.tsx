@@ -143,7 +143,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, isOpen
 
                         <Button
                             variant="outline"
-                            href="/get-started"
+                            href="/contact"
                             size="lg"
                             fullWidth
                             className="hover:bg-white/5"

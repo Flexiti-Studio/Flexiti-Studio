@@ -9,28 +9,28 @@ export default function LandingHowItWorks() {
         <div className="grid md:grid-cols-4 gap-12 relative">
           {/* Steps */}
           <div className="relative z-10 text-center">
-            <div className="w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
+            <div className="w-20 h-20 bg-surface-container-highest rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
               <span className="material-symbols-outlined text-3xl" data-icon="lightbulb">lightbulb</span>
             </div>
             <h4 className="font-bold mb-2">Idea / Consultation</h4>
             <p className="text-sm text-on-surface-variant">Defining your vision and market fit.</p>
           </div>
           <div className="relative z-10 text-center">
-            <div className="w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
+            <div className="w-20 h-20 bg-surface-container-highest rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
               <span className="material-symbols-outlined text-3xl" data-icon="draw">draw</span>
             </div>
             <h4 className="font-bold mb-2">Design &amp; Planning</h4>
             <p className="text-sm text-on-surface-variant">High-fidelity UI/UX and system architecture.</p>
           </div>
           <div className="relative z-10 text-center">
-            <div className="w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
+            <div className="w-20 h-20 bg-surface-container-highest rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
               <span className="material-symbols-outlined text-3xl" data-icon="code">code</span>
             </div>
             <h4 className="font-bold mb-2">Development</h4>
             <p className="text-sm text-on-surface-variant">Agile building with weekly updates.</p>
           </div>
           <div className="relative z-10 text-center">
-            <div className="w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
+            <div className="w-20 h-20 bg-surface-container-highest rounded-full shadow-lg flex items-center justify-center mx-auto mb-6 text-primary">
               <span className="material-symbols-outlined text-3xl" data-icon="auto_awesome">auto_awesome</span>
             </div>
             <h4 className="font-bold mb-2">Launch &amp; Scale</h4>

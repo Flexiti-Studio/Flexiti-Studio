@@ -9,9 +9,8 @@ export async function GET() {
     const items = await MemeAsset.find({
       visibility:   'public',
       reviewStatus: 'published',
-      trending:     true,
     })
-      .sort({ createdAt: -1 })
+      .sort({ downloads: -1, createdAt: -1 })
       .limit(8);
 
     return success({ items });

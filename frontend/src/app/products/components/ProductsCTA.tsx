@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function ProductsCTA() {
   return (
     <section className="py-32 px-8">
@@ -11,12 +13,18 @@ export default function ProductsCTA() {
             Whether you need a custom tool for your team or have the next billion-dollar SaaS idea, we are ready to architect it.
           </p>
           <div className="flex flex-wrap justify-center gap-6 pt-8">
-            <button className="px-10 py-4 rounded-full bg-white text-primary font-bold hover:scale-105 transition-transform shadow-xl">
+            <Link 
+              href="/contact"
+              className="px-10 py-4 rounded-full bg-white text-primary font-bold hover:scale-105 transition-transform shadow-xl flex items-center justify-center"
+            >
               Start a Project
-            </button>
-            <button className="px-10 py-4 rounded-full border-2 border-white/20 text-white font-bold hover:bg-white/10 transition-colors">
+            </Link>
+            <Link 
+              href="/contact"
+              className="px-10 py-4 rounded-full border-2 border-white/20 text-white font-bold hover:bg-white/10 transition-colors flex items-center justify-center"
+            >
               Partner With Us
-            </button>
+            </Link>
           </div>
         </div>
       </div>

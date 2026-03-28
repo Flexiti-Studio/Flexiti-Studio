@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function ProductsHero() {
   return (
     <section className="relative overflow-hidden px-8 py-24 md:py-32 bg-surface">
@@ -16,9 +18,12 @@ export default function ProductsHero() {
             <button className="btn-gradient px-8 py-4 rounded-full text-on-primary font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
               Explore Products
             </button>
-            <button className="px-8 py-4 rounded-full bg-surface-container-high text-primary font-bold hover:bg-surface-container-highest transition-colors">
+            <Link 
+              href="/contact"
+              className="px-8 py-4 rounded-full bg-surface-container-high text-primary font-bold hover:bg-surface-container-highest transition-colors flex items-center justify-center"
+            >
               Start a Project
-            </button>
+            </Link>
           </div>
         </div>
         <div className="lg:col-span-6 relative">

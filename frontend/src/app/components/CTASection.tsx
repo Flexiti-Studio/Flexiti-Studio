@@ -13,7 +13,7 @@ const CTASection: React.FC = () => {
                     Let&apos;s turn your vision into a reality. We&apos;re here to help you every step of the way.
                 </p>
                 <div className="mt-8 flex justify-center">
-                    <Button variant="white" href="#contact">
+                    <Button variant="white" href="/contact">
                         Start a Project
                     </Button>
                 </div>

@@ -1,12 +1,10 @@
-const trendingStories = [
-  { num: '01', title: 'The 2024 Guide to Serverless Architecture', tag: 'Engineering · 5 min read' },
-  { num: '02', title: 'Why Your Next App Should be a PWA', tag: 'Product · 4 min read' },
-  { num: '03', title: 'Hiring Technical Talent in the AI Era', tag: 'Leadership · 7 min read' },
-];
+interface BlogSidebarProps {
+  trendingStories: Array<{ num: string, title: string, tag: string }>;
+  topics: string[];
+  onTopicClick?: (topic: string) => void;
+}
 
-const topics = ['React', 'Node.js', 'Fintech', 'Cloud Tech', 'Product Design', 'Leadership', 'Future Tech'];
-
-export default function BlogSidebar() {
+export default function BlogSidebar({ trendingStories, topics, onTopicClick }: BlogSidebarProps) {
   return (
     <aside className="lg:col-span-4 space-y-12">
       {/* Trending Posts */}
@@ -36,7 +34,7 @@ export default function BlogSidebar() {
           <p className="text-primary-fixed-dim font-bold font-label text-xs uppercase tracking-widest mb-4">Work with us</p>
           <h4 className="text-2xl font-bold font-headline mb-4">Bring your ideas to life.</h4>
           <p className="text-surface-variant mb-8 leading-relaxed">We build world-class products for ambitious startups and global enterprises. Let&apos;s talk about your next project.</p>
-          <a className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-primary-container transition-all" href="#">
+          <a className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-primary-container transition-all" href="/contact">
             Hire Flexiti Studio
             <span className="material-symbols-outlined text-sm">open_in_new</span>
           </a>
@@ -49,9 +47,13 @@ export default function BlogSidebar() {
         <h4 className="text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-6">Explore Topics</h4>
         <div className="flex flex-wrap gap-2">
           {topics.map((topic) => (
-            <a key={topic} className="px-4 py-2 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#">
+            <button
+              key={topic}
+              onClick={() => onTopicClick?.(topic)}
+              className="px-4 py-2 rounded-lg bg-surface-container-high text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors"
+            >
               {topic}
-            </a>
+            </button>
           ))}
         </div>
       </div>

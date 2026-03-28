@@ -7,24 +7,26 @@ export const getMuiTheme = (mode: 'light' | 'dark') =>
             ...(mode === 'light'
                 ? {
                     background: {
-                        default: '#ffffff',
+                        default: '#faf8ff',
+                        paper: '#faf8ff',
                     },
                     text: {
-                        primary: '#0f172a',
+                        primary: '#131b2e',
                     },
                     primary: {
-                        main: '#1e40af',
+                        main: '#004ced',
                     },
                 }
                 : {
                     background: {
-                        default: '#0f172a',
+                        default: '#131313',
+                        paper: '#131313',
                     },
                     text: {
-                        primary: '#ffffff',
+                        primary: '#e2e2e2',
                     },
                     primary: {
-                        main: '#60a5fa',
+                        main: '#adc6ff',
                     },
                 }),
         },

@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
-export default function MemesSidebar() {
+interface MemesSidebarProps {
+  activeCategory?: string;
+  onCategoryChange?: (category: string) => void;
+}
+
+export default function MemesSidebar({ activeCategory = 'all', onCategoryChange }: MemesSidebarProps) {
   const [stats, setStats] = useState({ totalVideos: 0, trendingCount: 0, totalDownloads: 0 });
   const [categories, setCategories] = useState<{ name: string; count: number }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -84,12 +89,17 @@ export default function MemesSidebar() {
         <h4 className="text-lg font-bold font-headline mb-6">All Categories</h4>
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
-            <div
+            <button
               key={cat.name}
-              className="px-4 py-2 rounded-xl bg-surface-container-low text-xs font-bold text-on-surface-variant hover:bg-primary hover:text-white transition-all cursor-pointer border border-transparent hover:border-primary/20"
+              onClick={() => onCategoryChange?.(cat.name)}
+              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+                activeCategory === cat.name
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white border-transparent hover:border-primary/20'
+              }`}
             >
               {cat.name} <span className="opacity-50 ml-1">{cat.count}</span>
-            </div>
+            </button>
           ))}
         </div>
       </div>

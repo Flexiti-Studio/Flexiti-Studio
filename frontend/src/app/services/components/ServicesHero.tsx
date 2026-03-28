@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function ServicesHero() {
   return (
     <section className="relative pt-44 pb-32 overflow-hidden">
@@ -13,12 +15,18 @@ export default function ServicesHero() {
           End-to-end digital solutions for modern businesses: Web Apps, Mobile Apps, SaaS, and AI-powered systems architected for performance and growth.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-headline font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95">
+          <Link 
+            href="/contact"
+            className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-headline font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95"
+          >
             Start a Project
-          </button>
-          <button className="bg-surface-container-high text-primary px-8 py-4 rounded-full font-headline font-semibold hover:bg-surface-container transition-all active:scale-95">
+          </Link>
+          <Link 
+            href="/contact"
+            className="bg-surface-container-high text-primary px-8 py-4 rounded-full font-headline font-semibold hover:bg-surface-container transition-all active:scale-95"
+          >
             Book a Call
-          </button>
+          </Link>
         </div>
       </div>
     </section>

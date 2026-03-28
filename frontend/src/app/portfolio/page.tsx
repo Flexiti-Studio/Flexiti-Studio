@@ -6,7 +6,6 @@ import PortfolioGrid from './components/PortfolioGrid';
 import PortfolioPositioning from './components/PortfolioPositioning';
 import PortfolioTechStack from './components/PortfolioTechStack';
 import PortfolioCTA from './components/PortfolioCTA';
-import PortfolioFooter from './components/PortfolioFooter';
 
 export const metadata: Metadata = {
   title: 'Our Work | Flexiti Studio',
@@ -23,7 +22,6 @@ export default function OurWorkPage() {
       <PortfolioPositioning />
       <PortfolioTechStack />
       <PortfolioCTA />
-      <PortfolioFooter />
     </main>
   );
 }

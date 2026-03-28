@@ -21,10 +21,10 @@ const Button: React.FC<ButtonProps> = ({
     const baseStyles = 'flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg text-base font-bold leading-normal tracking-[0.015em] transition-all'
 
     const variants = {
-        primary: 'bg-primary text-white hover:opacity-90',
-        secondary: 'bg-white/10 text-white hover:bg-white/20',
-        white: 'bg-white text-primary hover:bg-gray-50',
-        glass: 'bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10',
+        primary: 'bg-primary text-on-primary hover:opacity-90',
+        secondary: 'bg-secondary-container text-on-secondary-container hover:bg-white/20',
+        white: 'bg-surface-container-lowest text-on-surface hover:bg-surface-container-low',
+        glass: 'bg-white/5 backdrop-blur-md border border-white/10 text-on-surface hover:bg-white/10',
         outline: 'border border-primary text-primary hover:bg-primary/10'
     }
 

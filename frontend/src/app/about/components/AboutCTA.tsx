@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function AboutCTA() {
   return (
     <section className="py-32 px-8">
@@ -7,12 +9,18 @@ export default function AboutCTA() {
           Let&apos;s Build Something Great Together
         </h2>
         <div className="flex flex-wrap justify-center gap-6 relative z-10">
-          <button className="bg-white text-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:opacity-90 transition-all active:scale-95">
+          <Link 
+            href="/contact"
+            className="bg-white text-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:opacity-90 transition-all active:scale-95 flex items-center justify-center"
+          >
             Start a Project
-          </button>
-          <button className="bg-primary-container/20 border border-white/30 text-white px-8 py-4 rounded-full font-headline font-bold text-lg hover:bg-white/10 transition-all active:scale-95">
+          </Link>
+          <Link 
+            href="/contact"
+            className="bg-primary-container/20 border border-white/30 text-white px-8 py-4 rounded-full font-headline font-bold text-lg hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center"
+          >
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </section>

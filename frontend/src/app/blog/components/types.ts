@@ -7,7 +7,7 @@ export interface Article {
   description: string;
   excerpt: string;
   body: any;
-  tags: string[];
+  tags: Array<{ name: string; color?: string }>;
   category: string;
   isTopPick?: boolean;
   readTime: string;

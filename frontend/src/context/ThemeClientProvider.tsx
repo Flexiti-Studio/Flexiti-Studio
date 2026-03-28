@@ -26,7 +26,9 @@ function MuiWrapper({ children }: { children: React.ReactNode }) {
         [resolvedTheme]
     );
 
-    if (!mounted) return null;
-
+    if (!mounted) {
+        return <div className="min-h-screen bg-background text-foreground transition-colors duration-300">{children}</div>;
+    }
+    
     return <MuiThemeProvider theme={muiTheme}>{children}</MuiThemeProvider>;
 }

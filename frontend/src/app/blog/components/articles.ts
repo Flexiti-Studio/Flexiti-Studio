@@ -188,7 +188,8 @@ export const articles: Article[] = [
 export async function getAllArticles(
   page: number = 1,
   limit: number = 6,
-  category?: string
+  category?: string,
+  tag?: string
 ): Promise<{
   articles: Article[];
   total: number;
@@ -197,14 +198,19 @@ export async function getAllArticles(
   const start = (page - 1) * limit;
   const end = start + limit;
 
-  // Build the query based on category filter
-  let query = `*[_type == "article"`;
+  // Build the query based on category and tag filters
+  let filters = `_type == "article"`;
 
   if (category && category !== "all") {
-    query += ` && category == "${category}"`;
+    filters += ` && category == "${category}"`;
   }
 
-  query += `] | order(publishedAt desc) [${start}...${end}] {
+  if (tag) {
+    // Check if the tag exists in the tags array
+    filters += ` && "${tag}" in tags[]->title`;
+  }
+
+  const query = `*[${filters}] | order(publishedAt desc) [${start}...${end}] {
     _id,
     title,
     "slug": slug.current,
@@ -221,14 +227,12 @@ export async function getAllArticles(
     "image": image.asset->url,
     badgeColor,
     tags[]->{
-      name,
+      "name": title,
       badgeColor
     }
   }`;
 
-  const countQuery = `count(*[_type == "article" ${
-    category && category !== "all" ? `&& category == "${category}"` : ""
-  }])`;
+  const countQuery = `count(*[${filters}])`;
 
   try {
     const [articles, total] = await Promise.all([
@@ -613,6 +617,38 @@ export async function getFeaturedTopPicks(): Promise<Article[]> {
     );
   } catch (error) {
     console.error("Error fetching featured top picks:", error);
+    return [];
+  }
+}
+
+// Get trending stories (most recent top picks or just newest)
+export async function getTrendingStories(limit: number = 3): Promise<any[]> {
+  try {
+    const query = `*[_type == "article" && isTopPick == true] | order(publishedAt desc)[0...${limit}] {
+      title,
+      category,
+      readTime
+    }`;
+    const stories = await client.fetch(query);
+    return stories.map((s: any, i: number) => ({
+      num: String(i + 1).padStart(2, '0'),
+      title: s.title,
+      tag: `${s.category} · ${s.readTime || '5 min read'}`
+    }));
+  } catch (error) {
+    console.error("Error fetching trending stories:", error);
+    return [];
+  }
+}
+
+// Get explore topics (unique tags from Sanity)
+export async function getExploreTopics(): Promise<string[]> {
+  try {
+    const query = `*[_type == "tag"] { title }`;
+    const tags = await client.fetch(query);
+    return tags.map((t: any) => t.title);
+  } catch (error) {
+    console.error("Error fetching topics:", error);
     return [];
   }
 }

@@ -35,7 +35,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
     }
 
     const isActive = (href: string) => {
-        return pathname === href ? colors.primary : 'hover:text-blue-500'
+        return pathname === href ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
     }
 
     return (
@@ -46,12 +46,12 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
   sticky top-6 z-50 mx-auto
   flex items-center justify-between whitespace-nowrap
   rounded-2xl
-  border border-white/30
-  bg-white/70
+  border border-outline-variant
+  bg-surface/70
   backdrop-blur-xl backdrop-saturate-150
   shadow-lg shadow-black/10
   px-6 md:px-10 py-3
-  supports-[backdrop-filter]:bg-white/60
+  supports-[backdrop-filter]:bg-surface/60
   dark:bg-black/40
   dark:border-white/10
   dark:shadow-black/40
@@ -157,10 +157,10 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                                 return (
                                     <div key={item.label} className="flex flex-col gap-1">
                                         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-2">Blog</span>
-                                        <Link href="/blog" className="flex items-center gap-2 text-sm font-medium py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                                        <Link href="/blog" className="flex items-center gap-2 text-sm font-medium py-2 px-3 rounded-lg hover:bg-surface-container-high hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
                                             <span className="material-symbols-outlined text-[18px]">article</span> Blog Articles
                                         </Link>
-                                        <Link href="/memes" className="flex items-center gap-2 text-sm font-medium py-2 px-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors" onClick={() => setIsMenuOpen(false)}>
+                                        <Link href="/memes" className="flex items-center gap-2 text-sm font-medium py-2 px-3 rounded-lg hover:bg-surface-container-high hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
                                             <span className="material-symbols-outlined text-[18px]">video_library</span> Free Memes
                                         </Link>
                                     </div>
@@ -170,7 +170,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    className={`text-sm font-medium leading-normal transition-colors py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 ${isActive(item.href)}`}
+                                    className={`text-sm font-medium leading-normal transition-colors py-2 px-3 rounded-lg hover:bg-surface-container-high ${isActive(item.href)}`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     {item.label}

@@ -7,7 +7,6 @@ import LandingProducts from "./components/home/LandingProducts";
 import LandingStats from "./components/home/LandingStats";
 import LandingAbout from "./components/home/LandingAbout";
 import LandingCTA from "./components/home/LandingCTA";
-import LandingFooter from "./components/home/LandingFooter";
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
         <LandingAbout />
         <LandingCTA />
       </div>
-      <LandingFooter />
     </main>
   );
 }

@@ -88,16 +88,29 @@ export default function MemesClient() {
 
       {/* Main Content Area: Grid + Sidebar (on desktop) */}
       <div className="flex flex-col xl:flex-row gap-10">
-        <MemesLibraryGrid
-          onPlay={setActiveVideo}
-          category={category}
-          sort={sort}
-          search={search}
-        />
+        <div className="flex-grow">
+          <MemesLibraryGrid
+            onPlay={setActiveVideo}
+            category={category}
+            sort={sort}
+            search={search}
+          />
 
-        {/* Sidebar only on XL, otherwise handled in page.tsx */}
+          {/* Sidebar stats below library on mobile */}
+          <div className="xl:hidden mt-10">
+            <MemesSidebar 
+              activeCategory={category} 
+              onCategoryChange={setCategory} 
+            />
+          </div>
+        </div>
+
+        {/* Sidebar only on XL */}
         <aside className="hidden xl:block w-80 flex-shrink-0">
-          <MemesSidebar />
+          <MemesSidebar 
+            activeCategory={category} 
+            onCategoryChange={setCategory} 
+          />
         </aside>
       </div>
 

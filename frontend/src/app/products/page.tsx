@@ -7,7 +7,6 @@ import ProductsScalability from './components/ProductsScalability';
 import ProductsLabs from './components/ProductsLabs';
 import ProductsStats from './components/ProductsStats';
 import ProductsCTA from './components/ProductsCTA';
-import ProductsFooter from './components/ProductsFooter';
 
 export const metadata: Metadata = {
   title: 'Products | Flexiti Studio',
@@ -25,7 +24,6 @@ export default function ProductsPage() {
       <ProductsLabs />
       <ProductsStats />
       <ProductsCTA />
-      <ProductsFooter />
     </main>
   );
 }

@@ -14,10 +14,13 @@ export default function LandingNavbar() {
           <Link className="text-slate-500 hover:text-slate-900 transition-colors" href="#about">About</Link>
         </div>
         <div className="flex items-center gap-4">
-          <button className="hidden lg:block text-slate-500 font-semibold text-sm hover:text-primary transition-colors">Contact</button>
-          <button className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:opacity-80 transition-all active:scale-95">
+          <Link href="/contact" className="hidden lg:block text-slate-500 font-semibold text-sm hover:text-primary transition-colors">Contact</Link>
+          <Link 
+            href="/contact"
+            className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold text-sm hover:opacity-80 transition-all active:scale-95"
+          >
             Start a Project
-          </button>
+          </Link>
         </div>
       </div>
     </nav>

@@ -20,8 +20,8 @@ export default function LandingPortfolio() {
             <img alt="Data Viz Platform" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of a professional data visualization software screen with dark mode UI, glowing line charts and financial metrics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvqrjzbfaD7g80f3gufB-4UolEs7ElOP-hdmb-YNE2u5hQOZRScflJot2h448P49CEJYSOrK8f3mdMZR1Gz874Vbqf1LgVeqG5cGliwAvvLt4OfIq6y7ghCxH1K5VsBvKz3G3TOLu-kqdBm0aXYuUUZVaCorRSXZNntqiMMQ6oBBnLWH1IbolH7hoPG_tB3nwpyU4frEcP9nixSyvKaJ1DMISuhOwxQPIYvYfYhraFwoW4FZ0Bu1TCyv7G-dibbKsJmpIawvNx8ypc"/>
             <div className="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent p-10 flex flex-col justify-end">
               <div className="flex gap-2 mb-4">
-                <span className="bg-primary/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">SaaS</span>
-                <span className="bg-white/10 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Fintech</span>
+                <span className="bg-primary-container/40 backdrop-blur-md text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">SaaS</span>
+                <span className="bg-surface-container-highest/60 backdrop-blur-md text-on-surface px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Fintech</span>
               </div>
               <h3 className="text-white text-3xl font-headline font-bold mb-2">Quantum Analytics</h3>
               <p className="text-white/70 max-w-lg">Next-gen financial data processing platform with real-time AI insights.</p>

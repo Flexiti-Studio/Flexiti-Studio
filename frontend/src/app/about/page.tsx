@@ -9,7 +9,6 @@ import AboutEcosystem from './components/AboutEcosystem';
 import AboutStats from './components/AboutStats';
 import AboutWhyUs from './components/AboutWhyUs';
 import AboutCTA from './components/AboutCTA';
-import AboutFooter from './components/AboutFooter';
 
 export const metadata: Metadata = {
   title: 'About | Flexiti Studio — The Digital Architect',
@@ -29,7 +28,6 @@ export default function AboutPage() {
       <AboutStats />
       <AboutWhyUs />
       <AboutCTA />
-      <AboutFooter />
     </main>
   );
 }

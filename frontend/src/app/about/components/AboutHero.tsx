@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function AboutHero() {
   return (
     <section className="relative pt-24 pb-32 overflow-hidden">
@@ -13,12 +15,18 @@ export default function AboutHero() {
             We build flexible, scalable, and impactful digital solutions for modern businesses. From concept to code, we craft the systems that define tomorrow.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-headline font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
+            <Link 
+              href="/contact"
+              className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-full font-headline font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center justify-center"
+            >
               Start a Project
-            </button>
-            <button className="bg-surface-container-high text-primary px-8 py-4 rounded-full font-headline font-bold hover:bg-surface-container-highest transition-all">
+            </Link>
+            <Link 
+              href="/portfolio"
+              className="bg-surface-container-high text-primary px-8 py-4 rounded-full font-headline font-bold hover:bg-surface-container-highest transition-all flex items-center justify-center"
+            >
               View Our Work
-            </button>
+            </Link>
           </div>
         </div>
         <div className="relative">

@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function PortfolioHero() {
   return (
     <section className="relative pt-24 pb-16 px-8 max-w-7xl mx-auto overflow-hidden">
@@ -10,9 +12,12 @@ export default function PortfolioHero() {
           We build scalable digital products for startups and global businesses. Our approach blends technical precision with editorial design.
         </p>
         <div className="pt-8 flex gap-4">
-          <button className="btn-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all">
+          <Link 
+            href="/contact"
+            className="btn-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center"
+          >
             Start a Project
-          </button>
+          </Link>
         </div>
       </div>
       {/* Decorative Element */}

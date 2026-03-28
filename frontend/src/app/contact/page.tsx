@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import ContactHeroForm from './components/ContactHeroForm';
 import ContactTrust from './components/ContactTrust';
 import ContactCTA from './components/ContactCTA';
-import ContactFooter from './components/ContactFooter';
 
 export const metadata: Metadata = {
   title: "Contact | Flexiti Studio — Let's Build Something Powerful",
@@ -40,7 +39,6 @@ export default function ContactPage() {
 
       <ContactTrust />
       <ContactCTA />
-      <ContactFooter />
     </>
   );
 }

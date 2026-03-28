@@ -6,7 +6,6 @@ import ServicesProcess from './components/ServicesProcess';
 import ServicesWhyUs from './components/ServicesWhyUs';
 import ServicesTechStack from './components/ServicesTechStack';
 import ServicesCTABanner from './components/ServicesCTABanner';
-import ServicesFooter from './components/ServicesFooter';
 
 export const metadata: Metadata = {
   title: 'Services | Flexiti Studio',
@@ -23,7 +22,6 @@ export default function ServicesPage() {
       <ServicesWhyUs />
       <ServicesTechStack />
       <ServicesCTABanner />
-      <ServicesFooter />
     </main>
   );
 }

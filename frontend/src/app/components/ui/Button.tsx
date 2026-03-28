@@ -38,12 +38,12 @@ const Button: React.FC<ButtonProps> = ({
 
     // Variant classes
     const variantClasses = {
-        primary: 'bg-primary text-white shadow-lg shadow-primary/30 hover:scale-105 transition-transform',
-        secondary: 'bg-white/50 dark:bg-gray-800/50 text-gray-800 dark:text-gray-200 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-white dark:hover:bg-gray-800 transition-colors',
-        white: 'bg-white text-primary shadow-lg hover:bg-gray-50 hover:scale-105 transition-transform',
-        glass: 'bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 transition-colors',
+        primary: 'bg-primary text-on-primary shadow-lg shadow-primary/30 hover:scale-105 transition-transform',
+        secondary: 'bg-secondary-container text-on-secondary-container ring-1 ring-inset ring-outline-variant hover:bg-surface-container-highest transition-colors',
+        white: 'bg-surface-container-lowest text-on-surface shadow-lg hover:bg-surface-container-low hover:scale-105 transition-transform',
+        glass: 'bg-white/5 backdrop-blur-md border border-white/10 text-on-surface hover:bg-white/10 transition-colors',
         outline: 'border-2 border-primary text-primary hover:bg-primary/10 transition-colors',
-        gradient: 'bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105'
+        gradient: 'bg-gradient-to-r from-primary to-purple-600 text-on-primary shadow-lg hover:shadow-xl transition-all hover:scale-105'
     }
 
     // Disabled state

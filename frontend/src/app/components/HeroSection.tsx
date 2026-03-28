@@ -96,7 +96,7 @@ const HeroSection: React.FC = () => {
                     </p>
                 </div>
                 <div className="flex flex-wrap justify-center gap-4">
-                    <Button variant="primary" href="#contact">
+                    <Button variant="primary" href="/contact">
                         Start a Project
                     </Button>
                     <Button variant="secondary" href="#portfolio">

@@ -6,6 +6,7 @@ import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { ThemeClientProvider } from "@/context/ThemeClientProvider";
 import NextTopLoader from "nextjs-toploader";
 import StudioNavbar from "@/components/navbar/StudioNavbar";
+import GlobalFooter from "@/components/footer/GlobalFooter";
 
 // Landing Page Fonts
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="bg-background transition-colors duration-300">
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0070f3" />
@@ -43,7 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${inter.variable} antialiased pt-6 font-body bg-surface text-on-surface`}
+        className={`${plusJakartaSans.variable} ${inter.variable} antialiased pt-6 font-body bg-background text-foreground`}
         suppressHydrationWarning={true}
       >
         <ThemeClientProvider>
@@ -54,6 +55,7 @@ export default function RootLayout({
             {children}
           </ReactQueryProvider>
         </ThemeClientProvider>
+        <GlobalFooter />
       </body>
     </html>
   );

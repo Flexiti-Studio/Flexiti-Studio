@@ -3,6 +3,8 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+export const revalidate = 60;
+
 import ArticleHeader from './components/ArticleHeader'
 import ArticleSidebar from './components/ArticleSidebar'
 import ArticleContent from './components/ArticleContent'

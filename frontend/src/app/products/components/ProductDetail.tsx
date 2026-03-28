@@ -83,7 +83,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                             </div>
                             <Button
                                 variant="primary"
-                                href="/get-started"
+                                href="/contact"
                                 fullWidth
                                 className="hover:opacity-90"
                             >
