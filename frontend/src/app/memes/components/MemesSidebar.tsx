@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 interface MemesSidebarProps {
   activeCategory?: string;
@@ -8,11 +10,14 @@ interface MemesSidebarProps {
 }
 
 export default function MemesSidebar({ activeCategory = 'all', onCategoryChange }: MemesSidebarProps) {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [stats, setStats] = useState({ totalVideos: 0, trendingCount: 0, totalDownloads: 0 });
   const [categories, setCategories] = useState<{ name: string; count: number }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setMounted(true);
     async function load() {
       try {
         const [statsRes, catsRes] = await Promise.all([
@@ -32,77 +37,92 @@ export default function MemesSidebar({ activeCategory = 'all', onCategoryChange 
     load();
   }, []);
 
+  const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
   if (loading) {
-    return <aside className="space-y-8 animate-pulse">
-      <div className="h-64 bg-slate-100 rounded-3xl" />
-      <div className="h-48 bg-slate-100 rounded-3xl" />
+    return <aside className="space-y-12">
+      <div className={`h-64 rounded-[2.5rem] animate-pulse ${isDark ? 'bg-white/5' : 'bg-slate-100'}`} />
+      <div className={`h-48 rounded-[2.5rem] animate-pulse ${isDark ? 'bg-white/5' : 'bg-slate-100'}`} />
     </aside>;
   }
 
   return (
-    <aside className="space-y-8 sticky top-24">
+    <aside className="space-y-12 sticky top-36">
       {/* Platform Stats */}
-      <div className="bg-surface-container-lowest p-8 rounded-[2rem] shadow-sm border border-slate-50">
-        <h4 className="text-lg font-bold font-headline mb-6">Library Insights</h4>
-        <div className="space-y-6">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        className={`p-10 rounded-[2.5rem] border transition-colors ${isDark ? 'bg-zinc-900 border-white/5 shadow-2xl shadow-black/40' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/40'}`}
+      >
+        <h4 className={`text-xl font-black font-headline mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>Library Insights</h4>
+        <div className="space-y-8">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined">video_library</span>
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-colors ${isDark ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600'}`}>
+                <span className="material-symbols-outlined font-light">video_library</span>
               </div>
-              <span className="text-sm font-bold text-on-surface-variant">Total Assets</span>
+              <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Total Assets</span>
             </div>
-            <span className="text-sm font-black text-on-surface">{stats.totalVideos.toLocaleString()}</span>
+            <span className={`text-sm font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>{stats.totalVideos.toLocaleString()}</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-error/10 flex items-center justify-center text-error">
-                <span className="material-symbols-outlined">trending_up</span>
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-colors ${isDark ? 'bg-red-500/10 border-red-500/20 text-red-500' : 'bg-red-50 border-red-100 text-red-600'}`}>
+                <span className="material-symbols-outlined font-light" style={{ fontVariationSettings: "'FILL' 1" }}>trending_up</span>
               </div>
-              <span className="text-sm font-bold text-on-surface-variant">Trending Now</span>
+              <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Trending Now</span>
             </div>
-            <span className="text-sm font-black text-on-surface">{stats.trendingCount.toLocaleString()}</span>
+            <span className={`text-sm font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>{stats.trendingCount.toLocaleString()}</span>
           </div>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-600">
-                <span className="material-symbols-outlined">download_done</span>
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-colors ${isDark ? 'bg-green-500/10 border-green-500/20 text-green-500' : 'bg-green-50 border-green-100 text-green-600'}`}>
+                <span className="material-symbols-outlined font-light">download_for_offline</span>
               </div>
-              <span className="text-sm font-bold text-on-surface-variant">Downloads</span>
+              <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Downloads</span>
             </div>
-            <span className="text-sm font-black text-on-surface">{stats.totalDownloads.toLocaleString()}</span>
+            <span className={`text-sm font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>{stats.totalDownloads.toLocaleString()}</span>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-slate-50">
-          <div className="flex justify-between items-end mb-2">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-outline">Community Reach</span>
-            <span className="text-xs font-black text-primary">High</span>
+        <div className="mt-10 pt-10 border-t border-dashed border-slate-200 dark:border-white/5">
+          <div className="flex justify-between items-end mb-3">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Community Growth</span>
+            <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">+12% Monthly</span>
           </div>
-          <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-            <div className="h-full w-[85%] bg-gradient-to-r from-primary to-blue-400" />
+          <div className={`h-2.5 w-full rounded-full overflow-hidden ${isDark ? 'bg-zinc-800' : 'bg-slate-100'}`}>
+            <motion.div 
+               initial={{ width: 0 }}
+               whileInView={{ width: '85%' }}
+               transition={{ duration: 1.5, ease: 'easeOut' }}
+               className="h-full bg-gradient-to-r from-blue-600 to-indigo-600" 
+            />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Popular Categories */}
-      <div className="bg-surface-container-lowest p-8 rounded-[2rem] shadow-sm border border-slate-50">
-        <h4 className="text-lg font-bold font-headline mb-6">All Categories</h4>
-        <div className="flex flex-wrap gap-2">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        className={`p-10 rounded-[2.5rem] border transition-colors ${isDark ? 'bg-zinc-900 border-white/5 shadow-2xl shadow-black/40' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/40'}`}
+      >
+        <h4 className={`text-xl font-black font-headline mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>Top Categories</h4>
+        <div className="flex flex-wrap gap-3">
           {categories.map((cat) => (
             <button
               key={cat.name}
               onClick={() => onCategoryChange?.(cat.name)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-4 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border ${
                 activeCategory === cat.name
-                  ? 'bg-primary text-white border-primary'
-                  : 'bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white border-transparent hover:border-primary/20'
+                  ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/30'
+                  : `${isDark ? 'bg-white/5 border-white/5 text-white/40 hover:text-white hover:bg-white/10' : 'bg-slate-50 border-slate-100 text-slate-500 hover:text-slate-900 hover:bg-white'}`
               }`}
             >
-              {cat.name} <span className="opacity-50 ml-1">{cat.count}</span>
+              {cat.name} <span className="opacity-30 ml-2">{cat.count}</span>
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
     </aside>
   );
 }

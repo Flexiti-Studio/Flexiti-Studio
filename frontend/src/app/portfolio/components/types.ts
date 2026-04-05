@@ -10,6 +10,7 @@ export interface PortfolioItem {
   year: number;
   client?: string;
   status: "completed" | "in-progress" | "upcoming";
+  type?: string;
 }
 
 export type PortfolioCategory =

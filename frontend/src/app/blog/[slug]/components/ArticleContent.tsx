@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// app/blog/[slug]/components/ArticleContent.tsx - Update to add IDs
 'use client';
 
 import { PortableText } from '@portabletext/react';
-
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Article, TableOfContentItem } from './types';
 import { urlFor } from '@/sanity/client';
-
 
 interface ArticleContentProps {
     article: Article;
@@ -21,24 +20,23 @@ const generateId = (text: string): string => {
         .replace(/-+/g, '-');
 };
 
-const portableTextComponents = (toc: TableOfContentItem[]) => ({
+const portableTextComponents = (toc: TableOfContentItem[], isDark: boolean) => ({
     block: {
         normal: ({ children }: any) => (
-            <p className="mb-6 text-text-main dark:text-white leading-relaxed">{children}</p>
+            <p className={`mb-10 text-lg md:text-xl leading-[1.8] font-medium ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{children}</p>
         ),
         h1: ({ children }: any) => (
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 mt-12 tracking-tight">{children}</h1>
+            <h1 className={`text-4xl md:text-5xl font-black mb-10 mt-20 tracking-tighter leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>{children}</h1>
         ),
         h2: ({ children }: any) => {
             const id = generateId(children?.toString() || 'section');
-            // Ensure this ID exists in TOC
             const tocItem = toc.find(item => item.id === id);
             const finalId = tocItem ? tocItem.id : id;
 
             return (
                 <h2
                     id={finalId}
-                    className="text-3xl font-bold mb-6 mt-12 scroll-mt-24"
+                    className={`text-3xl md:text-4xl font-black mb-8 mt-16 scroll-mt-28 tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}
                 >
                     {children}
                 </h2>
@@ -46,35 +44,34 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
         },
         h3: ({ children }: any) => {
             const id = generateId(children?.toString() || 'subsection');
-            // Ensure this ID exists in TOC
             const tocItem = toc.find(item => item.id === id);
             const finalId = tocItem ? tocItem.id : id;
 
             return (
                 <h3
                     id={finalId}
-                    className="text-2xl font-bold mb-4 mt-10 scroll-mt-24"
+                    className={`text-2xl md:text-3xl font-black mb-6 mt-12 scroll-mt-28 tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}
                 >
                     {children}
                 </h3>
             );
         },
         blockquote: ({ children }: any) => (
-            <blockquote className="border-l-4 border-primary pl-6 italic my-8 text-xl">
+            <blockquote className={`border-l-4 border-blue-500 pl-8 italic my-12 text-2xl md:text-3xl font-medium leading-relaxed ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 {children}
             </blockquote>
         ),
     },
     marks: {
         strong: ({ children }: any) => (
-            <strong className="font-bold text-text-main dark:text-white">{children}</strong>
+            <strong className={`font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>{children}</strong>
         ),
         link: ({ value, children }: any) => (
             <a
                 href={value?.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:underline"
+                className="text-blue-500 hover:text-blue-400 transition-colors underline decoration-2 underline-offset-4"
             >
                 {children}
             </a>
@@ -82,10 +79,10 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
     },
     list: {
         bullet: ({ children }: any) => (
-            <ul className="list-disc pl-6 mb-6 space-y-2">{children}</ul>
+            <ul className="list-disc pl-8 mb-10 space-y-4 text-lg md:text-xl font-medium">{children}</ul>
         ),
         number: ({ children }: any) => (
-            <ol className="list-decimal pl-6 mb-6 space-y-2">{children}</ol>
+            <ol className="list-decimal pl-8 mb-10 space-y-4 text-lg md:text-xl font-medium">{children}</ol>
         ),
     },
     types: {
@@ -93,17 +90,19 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
             if (!value?.asset?._ref && !value?.asset?._id) return null;
 
             return (
-                <figure className="my-10">
-                    <Image
-                        src={urlFor(value.asset).width(1200).height(630).url()}
-                        alt={value.alt || 'Article image'}
-                        width={1200}
-                        height={630}
-                        className="w-full rounded-2xl shadow-lg"
-                        priority
-                    />
+                <figure className="my-16 group">
+                    <div className="relative overflow-hidden rounded-[3rem] shadow-2xl">
+                         <Image
+                            src={urlFor(value.asset).width(1200).height(800).url()}
+                            alt={value.alt || 'Article image'}
+                            width={1200}
+                            height={800}
+                            className="w-full h-auto transition-transform duration-1000 group-hover:scale-105"
+                            priority
+                        />
+                    </div>
                     {value.caption && (
-                        <figcaption className="text-center text-sm text-text-muted mt-3">
+                        <figcaption className={`text-center text-sm mt-6 font-medium ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
                             {value.caption}
                         </figcaption>
                     )}
@@ -111,12 +110,12 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
             );
         },
         keyInsight: ({ value }: any) => (
-            <div className="my-8 p-6 bg-background-light dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-800">
-                <h4 className="text-lg font-bold mb-2 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-primary">lightbulb</span>
+            <div className={`my-12 p-10 rounded-[3rem] border-2 border-dashed ${isDark ? 'bg-blue-500/5 border-blue-500/20' : 'bg-blue-50 border-blue-200'}`}>
+                <h4 className="text-xl font-black mb-4 flex items-center gap-3">
+                    <span className="material-symbols-outlined text-blue-500">lightbulb_circle</span>
                     {value.title || 'Key Insight'}
                 </h4>
-                <p className="m-0 text-sm md:text-base">
+                <p className={`m-0 text-lg md:text-xl font-medium leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                     {value.text}
                 </p>
             </div>
@@ -125,12 +124,20 @@ const portableTextComponents = (toc: TableOfContentItem[]) => ({
 });
 
 export default function ArticleContent({ article }: ArticleContentProps) {
-    console.log('Article Content:', article.tags);
+    const { theme, resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
     return (
-        <article className="col-span-1 lg:col-span-7 lg:col-start-4 prose prose-lg prose-slate dark:prose-invert prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl max-w-none font-body">
+        <article className={`col-span-1 lg:col-span-8 lg:col-start-3 prose prose-lg max-w-none font-body transition-colors duration-500`}>
             {/* Introduction Section with ID for TOC */}
-            <div id="intro" className="scroll-mt-24">
-                <p className="lead text-xl md:text-2xl text-text-main dark:text-white font-medium mb-8">
+            <div id="intro" className="scroll-mt-24 mb-16">
+                <p className={`text-2xl md:text-3xl font-black leading-[1.4] tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                     {article.description}
                 </p>
             </div>
@@ -139,27 +146,31 @@ export default function ArticleContent({ article }: ArticleContentProps) {
             {article.body && (
                 <PortableText
                     value={article.body}
-                    components={portableTextComponents(article.toc || [])}
+                    components={portableTextComponents(article.toc || [], isDark)}
                 />
             )}
 
             {/* Tags */}
             {article.tags && article.tags.length > 0 && (
-                <div className="border-t border-gray-200 dark:border-gray-800 mt-12 pt-8">
-                    <p className="font-bold text-sm text-text-muted uppercase tracking-wider mb-4">Tags</p>
-                    <div className="flex flex-wrap gap-2">
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="border-t border-dashed border-slate-200 dark:border-white/5 mt-20 pt-12"
+                >
+                    <p className={`text-[10px] font-black uppercase tracking-widest mb-8 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Tagged in</p>
+                    <div className="flex flex-wrap gap-3">
                         {article.tags.map((tag) => (
                             <span
                                 key={tag.name}
-                                className="px-3 py-1 bg-gray-100 dark:bg-surface-dark rounded-full text-sm hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer"
-                                style={{ color: tag.color }}
+                                className={`px-6 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all cursor-pointer ${isDark ? 'bg-zinc-900 border-white/5 text-slate-400 hover:text-white hover:bg-zinc-800' : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-blue-600 hover:border-blue-500/30'}`}
                             >
-                                {tag.name}
+                                #{tag.name}
                             </span>
                         ))}
                     </div>
-                </div>
+                </motion.div>
             )}
         </article>
     );
-}
+}

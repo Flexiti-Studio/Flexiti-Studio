@@ -1,3 +1,9 @@
+'use client'
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
+
 const logos = [
   'https://lh3.googleusercontent.com/aida-public/AB6AXuCproLtqV_CoSktr-Rj3WP3ofd3XlKymFExDD5XEX7XeZec_UqfaTLouPwf0YAJbgI8K9Ug8jtZTqAgk5jIbpMFZP9HVP-UbzGA0P1zIMtyQ46KDJuLO7zqXWdcj17KncYq6y5lZo-MxJk7EPt3v1Rh1qZl9DGPB8G0b2ANRLZxusUnNLFdA-u0LcSaiTlCtCfbK_qwuYRIF6aSCq2tma7y03qclHqB0_z3S83ND-lIIzRnVPy2uWzQ2cSTnFcTs9vR9LB-h6x0lqoy',
   'https://lh3.googleusercontent.com/aida-public/AB6AXuAo90c1O6ZhHqJVR8aCt2V7uptDWLMbYb5tlYnbsqSE1BI4Aay9eXlOFfaXaNZpKN4TkbGcvLozJ44CrjiWNqTHxbHOsIP4EdhfYf1TgNmsf1uiyiew-9OIG0lW1CXX_4NsQ0rEV26crNs7U3_tArnuFo0wNADicKY_UMMz53fcgfkx-Jh39fmV1h2sNQMbu5fZ8KA2odjQvjIUi-HyaTw5w_x_5nanXcu7YZAnqHVdQsBb2wLgQOoMItj6-EUl7_btVmIpCv-qvXwg',
@@ -6,15 +12,36 @@ const logos = [
 ];
 
 export default function ContactTrust() {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+
   return (
-    <section className="py-24 bg-surface-container-low">
+    <section className={`py-32 ${isDark ? 'bg-black' : 'bg-gray-50/50'}`}>
       <div className="max-w-7xl mx-auto px-8">
-        <p className="text-center font-label text-sm font-bold text-outline uppercase tracking-[0.2em] mb-12">
-          Trusted by startups and businesses
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className={`text-center font-bold text-xs uppercase tracking-[0.3em] mb-20 ${
+            isDark ? 'text-white/30' : 'text-black/30'
+          }`}
+        >
+          Engineering the Future for Global Innovators
+        </motion.p>
+        
+        <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
           {logos.map((src, i) => (
-            <img key={i} alt="Partner Logo" className="h-8 md:h-10 object-contain" src={src} />
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, filter: 'grayscale(100%)' }}
+              whileInView={{ opacity: 0.5, filter: 'grayscale(100%)' }}
+              whileHover={{ opacity: 1, filter: 'grayscale(0%)', scale: 1.05 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="relative cursor-pointer transition-all"
+            >
+              <img alt="Partner Logo" className="h-10 md:h-12 object-contain" src={src} />
+            </motion.div>
           ))}
         </div>
       </div>

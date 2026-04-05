@@ -14,6 +14,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: 2023,
     client: "TechCorp Analytics",
     status: "completed",
+    type: "Web App",
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: 2024,
     client: "Global Bank Inc.",
     status: "completed",
+    type: "Mobile App",
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: 2023,
     client: "HomeTech Solutions",
     status: "completed",
+    type: "Hardware",
   },
   {
     id: 4,
@@ -56,6 +59,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: 2024,
     client: "LearnTech Corporation",
     status: "in-progress",
+    type: "E-Learning",
   },
   {
     id: 5,
@@ -70,6 +74,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: 2023,
     client: "Creative Studios",
     status: "completed",
+    type: "Software",
   },
   {
     id: 6,
@@ -84,6 +89,7 @@ export const portfolioItems: PortfolioItem[] = [
     year: 2024,
     client: "LogiTech Global",
     status: "completed",
+    type: "AI System",
   },
 ];
 

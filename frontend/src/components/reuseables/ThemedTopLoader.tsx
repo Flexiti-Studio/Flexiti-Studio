@@ -2,15 +2,25 @@
 
 import { useTheme } from 'next-themes';
 import NextTopLoader from 'nextjs-toploader';
+import { useEffect, useState } from 'react';
 
 export function ThemedTopLoader() {
-  const { theme } = useTheme();
+    const { theme, resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
-  return (
-    <NextTopLoader
-      color={theme === 'dark' ? '#60a5fa' : '#fff'} // blue for both, lighter in dark
-      height={3}
-      showSpinner={false}
-    />
-  );
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    const isDark = resolvedTheme === 'dark' || theme === 'dark';
+
+    return (
+        <NextTopLoader
+            color={isDark ? '#3b82f6' : '#2563eb'}
+            height={3}
+            showSpinner={false}
+        />
+    );
 }

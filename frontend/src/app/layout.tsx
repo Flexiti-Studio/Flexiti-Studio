@@ -53,9 +53,9 @@ export default function RootLayout({
             <StudioNavbar />
             <NextTopLoader showSpinner={false} />
             {children}
+            <GlobalFooter />
           </ReactQueryProvider>
         </ThemeClientProvider>
-        <GlobalFooter />
       </body>
     </html>
   );

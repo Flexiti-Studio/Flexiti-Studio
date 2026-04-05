@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
 
     if (href) {
         return (
-            <Link href={href} className="inline-block">
+            <Link href={href} className={`inline-block ${className.includes('w-full') ? 'w-full' : ''}`}>
                 {buttonContent}
             </Link>
         )

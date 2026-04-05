@@ -1,80 +1,105 @@
-// components/ArticleCard.tsx
-import { ArrowRight, Clock, User } from 'lucide-react';
+'use client';
+
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Article } from './types';
-import { SimpleReadTime } from './ReadTimeDisplay';
 
 interface ArticleCardProps {
     article: Article;
+    index?: number;
 }
 
-export default function ArticleCard({ article }: ArticleCardProps) {
+export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
+    const { theme, resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
     return (
-        <Link href={`/blog/${article.slug}`} className="block">
-            <article className="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow duration-300 h-full">
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="absolute inset-0">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="h-full"
+        >
+            <Link href={`/blog/${article.slug}`} className="block h-full group">
+                <article className={`flex flex-col rounded-[2.5rem] overflow-hidden border transition-all duration-500 h-full ${isDark ? 'bg-zinc-900 border-white/5 shadow-2xl shadow-black/20 hover:border-white/10' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/40 hover:bg-slate-50'}`}>
+                    {/* Image Section */}
+                    <div className="relative aspect-[16/10] overflow-hidden">
                         <img
                             src={article.image}
                             alt={article.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                         />
-                    </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4">
-                        <span
-                            className="px-3 py-1 rounded-lg bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md text-xs font-bold shadow-sm"
-                            style={{ color: article.badgeColor || '#330df2' }}
-                        >
-                            {article.category}
-                        </span>
-                    </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex flex-col flex-1 p-6">
-                    {/* Metadata */}
-                    <div className="flex items-center gap-2 text-xs text-text-muted dark:text-gray-500 mb-3 font-body">
-
-                        <SimpleReadTime readTime={article.readTime} />
-                        <span>•</span>
-                        <time dateTime={article.date}>{article.date}</time>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                        {article.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-text-muted dark:text-gray-400 text-sm font-body leading-relaxed mb-6 line-clamp-3">
-                        {article.description}
-                    </p>
-
-                    {/* Footer */}
-                    <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            {article.author.avatar ? (
-                                <div className="relative size-6 rounded-full overflow-hidden">
-                                    <img
-                                        src={article.author.avatar}
-                                        alt={article.author.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            ) : (
-                                <User className="w-5 h-5 text-text-muted" />
-                            )}
-                            <span className="text-xs font-bold text-text-main dark:text-white">
-                                {article.author.name}
+                        {/* Category Badge */}
+                        <div className="absolute top-6 left-6">
+                            <span className={`px-4 py-1.5 rounded-xl backdrop-blur-md text-[9px] font-black tracking-widest uppercase border ${isDark ? 'bg-black/40 text-blue-400 border-white/10' : 'bg-white/90 text-blue-600 border-slate-100 shadow-sm'}`}>
+                                {article.category}
                             </span>
                         </div>
-                        <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
                     </div>
-                </div>
-            </article>
-        </Link>
+
+                    {/* Content Section */}
+                    <div className="flex flex-col flex-1 p-8 md:p-10">
+                        {/* Metadata */}
+                        <div className="flex items-center gap-4 mb-6 pt-1">
+                            <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                                {article.readTime || '5 min read'}
+                            </span>
+                            <div className={`w-1 h-1 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-200'}`} />
+                            <time className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                                {article.date}
+                            </time>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className={`text-xl md:text-2xl font-black font-headline mb-6 leading-tight transition-colors group-hover:text-blue-500 line-clamp-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                            {article.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className={`text-sm font-medium leading-relaxed mb-8 line-clamp-3 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                            {article.description}
+                        </p>
+
+                        {/* Footer */}
+                        <div className="mt-auto pt-8 border-t border-dashed border-slate-200 dark:border-white/5 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                {article.author.avatar ? (
+                                    <div className={`relative size-8 rounded-full overflow-hidden border ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+                                        <img
+                                            src={article.author.avatar}
+                                            alt={article.author.name}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isDark ? 'bg-white/5 text-slate-400' : 'bg-slate-100 text-slate-500'}`}>
+                                         <span className="material-symbols-outlined text-[18px]">person</span>
+                                    </div>
+                                )}
+                                <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-white/80' : 'text-slate-900'}`}>
+                                    {article.author.name}
+                                </span>
+                            </div>
+                            
+                            <div className={`flex items-center gap-2 text-[9px] font-black uppercase tracking-widest transition-all group-hover:gap-4 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+                               Read more
+                               <span className="material-symbols-outlined text-[18px]">arrow_outward</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </Link>
+        </motion.div>
     );
-}
+}

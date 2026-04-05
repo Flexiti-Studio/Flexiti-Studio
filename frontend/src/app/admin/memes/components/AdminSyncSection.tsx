@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import type { MemeAssetType } from '../types';
+import { useState } from 'react';
 import { generateVideoThumbnail } from '@/lib/video';
 
 interface Props {

@@ -1,50 +1,94 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+
+const heroImages = [
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuB4xKoZYGjCX8j7onsz9rahmpcfXnpzT9dXszHAfWy5mn_1aCmXNAYa0SVHGHuuEAzonTHbbofVU9_XpEIkm0zYwcuTtqhLhwt71fxPwvPnJ7Lc94M41B0H5o1cq2_ciI7HMV4dg2oEdXiRuMNpTZwP1tpR6XixqbAMbjbYTDgLFyBNJDVfKAmIwv9lbKN4UUO6qBys9nAKZYEG5iF1fhplM_mr5rsVf6_7SM9Jzhn5RVc4Hd4yGfEbK6QekVuYPC3NSFuhzNmZA9YF",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAOtq0Zby2BVGjZQIZnW0OfJK0CcjBuaiUD_gvrYFS8-sYy9vorL-bD4uI-AyF0--Y8y7P_tq8PM_HRI1g6VP5yu7rVHvgL8B7AB71sgLOTexuI2h1YG4PyjvN-AKsgbhPFrDZs-YBVerV9oAZedNqzT1x4moHkJy2TDvA9G17ZaM_AhCiMp9UHWdW4cB3tR2MpoVF493edSlx4pOL_dUzdsTDiqndPUm3SxRmGnIHsRrxI7v2qrxM3VQnws9b9z_EX1s9plZtj7kIr",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDpLFY7BRK356CHX4ouF7bLFgcs1KuV8mRZASxtdC2Ys0agjwymt_DZIPhZ4wT6Q3f02RiX0JacdSHvrCeBPxJJMB2JG0-1M9ph6vc8fasNUD7ETesASvEd15RAn_8btm8zZVSW2d8T09dDao63uvCfgeCX0vb8AEos22GTTJsgfLER8CzzOj1GZt7_hZOYZVSJ-HC48Yu4UX4auIq9q48zC2ghegnVv3_2kUUgUypI4CKpmia1eFWvwWlks2vJQOX-WAkobWu6xMhE",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuBNLg0Re5Bndu_6V1B7nVotLmIKkrn1ynM7W1tClVlhVeeQw0NhkLDFR1WURmsrR8x1uyHToFWEnDpT9w7gD4Uw5rb9qbrKSr5Pr-RWC0HHebh-eRKYljrqqLYbnkNJ6w27s1HW_qvmr8qb_iHCCRSAL9ZIu3EUfVhrX2SqiTviXtoExq5YgNVjaoshneDyyFoUtYt0MXa3w7gQRsfj-d9O49zFeeZ5Pv9LrB2YxOEomdvGyi-CwEzquH-OT-bOfUEqRTiYj7ex562j"
+];
+
 export default function MemesHero() {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
   return (
-    <section className="relative overflow-hidden rounded-[2rem] bg-slate-900 p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-transparent opacity-50"></div>
-        <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[100px]"></div>
+    <section className={`relative overflow-hidden rounded-[3rem] p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-16 border transition-colors duration-500 ${isDark ? 'bg-zinc-900/40 border-white/10' : 'bg-slate-50 border-slate-200 shadow-xl shadow-slate-200/50'}`}>
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className={`absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] ${isDark ? 'bg-blue-600/30' : 'bg-blue-400/20'}`} />
+        <div className={`absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] rounded-full blur-[100px] ${isDark ? 'bg-indigo-600/20' : 'bg-indigo-400/10'}`} />
       </div>
-      <div className="relative z-10 max-w-xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-fixed border border-primary/30 mb-6">
-          <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-          <span className="text-[11px] font-bold tracking-wider uppercase">New Collection Dropped</span>
-        </div>
-        <h2 className="text-5xl font-extrabold text-white font-headline leading-[1.1] mb-6">Free Meme Videos</h2>
-        <p className="text-lg text-slate-300 leading-relaxed mb-8">
-          The world&apos;s most curated library of high-fidelity meme templates and reaction clips. Professional-grade assets for modern storytellers and digital curators.
+
+      <motion.div 
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 max-w-2xl"
+      >
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 backdrop-blur-md ${isDark ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-blue-50 text-blue-600 border-blue-200'}`}
+        >
+          <span className="material-symbols-outlined text-[18px] font-light">auto_awesome</span>
+          <span className="text-[10px] font-black tracking-[0.2em] uppercase">Premium Asset Library</span>
+        </motion.div>
+
+        <h1 className={`text-5xl md:text-7xl font-black font-headline leading-[1.05] tracking-tight mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+          Free <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">High-Fidelity</span> <br />
+          Meme Templates.
+        </h1>
+
+        <p className={`text-xl leading-relaxed mb-12 font-medium max-w-lg ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+          The curated collection of viral templates and high-quality reaction clips for professional digital creators.
         </p>
-        <div className="flex flex-wrap gap-4">
-          <button className="px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-headline font-bold text-sm tracking-wide uppercase shadow-lg shadow-primary/25 hover:scale-[1.02] transition-transform active:scale-95">
-            Browse Videos
+
+        <div className="flex flex-wrap gap-5">
+          <button onClick={() => document.getElementById('memes-library')?.scrollIntoView({ behavior: 'smooth' })} className={`px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase transition-all shadow-2xl active:scale-95 ${isDark ? 'bg-white text-black shadow-white/10 hover:bg-slate-100' : 'bg-slate-900 text-white shadow-slate-900/20 hover:bg-black'}`}>
+            Explore Library
           </button>
-          <button className="px-8 py-4 bg-white/10 text-white rounded-xl font-headline font-bold text-sm tracking-wide uppercase backdrop-blur-md hover:bg-white/20 transition-all">
-            Suggest Category
+          <button className={`px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase border transition-all active:scale-95 backdrop-blur-sm ${isDark ? 'border-white/10 text-white hover:bg-white/5' : 'border-slate-200 text-slate-900 hover:bg-slate-100'}`}>
+            Suggest Assets
           </button>
         </div>
-      </div>
-      <div className="relative z-10 w-full md:w-80 grid grid-cols-2 gap-4">
-        <div className="space-y-4">
-          <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl -rotate-3">
-            <img className="w-full h-full object-cover" alt="Meme asset 1"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4xKoZYGjCX8j7onsz9rahmpcfXnpzT9dXszHAfWy5mn_1aCmXNAYa0SVHGHuuEAzonTHbbofVU9_XpEIkm0zYwcuTtqhLhwt71fxPwvPnJ7Lc94M41B0H5o1cq2_ciI7HMV4dg2oEdXiRuMNpTZwP1tpR6XixqbAMbjbYTDgLFyBNJDVfKAmIwv9lbKN4UUO6qBys9nAKZYEG5iF1fhplM_mr5rsVf6_7SM9Jzhn5RVc4Hd4yGfEbK6QekVuYPC3NSFuhzNmZA9YF" />
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ duration: 1, delay: 0.4 }}
+        className="relative z-10 w-full lg:w-[450px]"
+      >
+        <div className="grid grid-cols-2 gap-5">
+          <div className="space-y-5">
+            <motion.div whileHover={{ y: -10, rotate: -2 }} className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
+              <img className="w-full h-full object-cover" src={heroImages[0]} alt="Meme 1" />
+            </motion.div>
+            <motion.div whileHover={{ y: -10, rotate: 2 }} className="aspect-square rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
+              <img className="w-full h-full object-cover" src={heroImages[1]} alt="Meme 2" />
+            </motion.div>
           </div>
-          <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl rotate-2">
-            <img className="w-full h-full object-cover" alt="Meme asset 2"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOtq0Zby2BVGjZQIZnW0OfJK0CcjBuaiUD_gvrYFS8-sYy9vorL-bD4uI-AyF0--Y8y7P_tq8PM_HRI1g6VP5yu7rVHvgL8B7AB71sgLOTexuI2h1YG4PyjvN-AKsgbhPFrDZs-YBVerV9oAZedNqzT1x4moHkJy2TDvA9G17ZaM_AhCiMp9UHWdW4cB3tR2MpoVF493edSlx4pOL_dUzdsTDiqndPUm3SxRmGnIHsRrxI7v2qrxM3VQnws9b9z_EX1s9plZtj7kIr" />
+          <div className="space-y-5 pt-12">
+            <motion.div whileHover={{ y: -10, rotate: 4 }} className="aspect-square rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
+              <img className="w-full h-full object-cover" src={heroImages[2]} alt="Meme 3" />
+            </motion.div>
+            <motion.div whileHover={{ y: -10, rotate: -3 }} className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
+              <img className="w-full h-full object-cover" src={heroImages[3]} alt="Meme 4" />
+            </motion.div>
           </div>
         </div>
-        <div className="space-y-4 pt-8">
-          <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl rotate-[4deg]">
-            <img className="w-full h-full object-cover" alt="Meme asset 3"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpLFY7BRK356CHX4ouF7bLFgcs1KuV8mRZASxtdC2Ys0agjwymt_DZIPhZ4wT6Q3f02RiX0JacdSHvrCeBPxJJMB2JG0-1M9ph6vc8fasNUD7ETesASvEd15RAn_8btm8zZVSW2d8T09dDao63uvCfgeCX0vb8AEos22GTTJsgfLER8CzzOj1GZt7_hZOYZVSJ-HC48Yu4UX4auIq9q48zC2ghegnVv3_2kUUgUypI4CKpmia1eFWvwWlks2vJQOX-WAkobWu6xMhE" />
-          </div>
-          <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl -rotate-2">
-            <img className="w-full h-full object-cover" alt="Meme asset 4"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNLg0Re5Bndu_6V1B7nVotLmIKkrn1ynM7W1tClVlhVeeQw0NhkLDFR1WURmsrR8x1uyHToFWEnDpT9w7gD4Uw5rb9qbrKSr5Pr-RWC0HHebh-eRKYljrqqLYbnkNJ6w27s1HW_qvmr8qb_iHCCRSAL9ZIu3EUfVhrX2SqiTviXtoExq5YgNVjaoshneDyyFoUtYt0MXa3w7gQRsfj-d9O49zFeeZ5Pv9LrB2YxOEomdvGyi-CwEzquH-OT-bOfUEqRTiYj7ex562j" />
-          </div>
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

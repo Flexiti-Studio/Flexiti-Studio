@@ -1,5 +1,4 @@
 import React from 'react'
-import ValueCard from './ValueCard'
 import { coreValues } from './about-data'
 
 
