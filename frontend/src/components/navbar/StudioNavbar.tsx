@@ -265,8 +265,9 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                                 className={`
                                     w-full max-w-none py-5! rounded-2xl text-lg font-black transition-all active:scale-[0.98]
                                     ${isDark 
-                                        ? '!bg-white !text-black shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
+                                        ? '!bg-primary !text-white shadow-[0_20px_50px_rgba(0,0,0,0.3)]' 
                                         : '!bg-slate-900 !text-white shadow-2xl shadow-slate-200'}
+
                                 `}
                             >
                                 {ctaText}

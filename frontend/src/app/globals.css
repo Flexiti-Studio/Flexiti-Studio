@@ -142,8 +142,9 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -175,11 +176,12 @@
   --color-on-surface-variant: #c4c6d0;
   --color-outline: #8e9099;
   --color-outline-variant: #44474e;
-  --color-primary: #adc6ff;
-  --color-on-primary: #002e69;
+  --color-primary: #0052FF;
+  --color-on-primary: #ffffff;
   --color-primary-container: #004494;
   --color-on-primary-container: #d8e2ff;
 }
+
 
 @layer base {
   * {
