@@ -7,50 +7,98 @@ import { useEffect, useState } from 'react';
 import Button from '../../../components/navbar/Button';
 
 export default function LandingCTA() {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
   return (
-    <section className="py-40 relative overflow-hidden bg-slate-900 dark:bg-zinc-950 transition-colors duration-500">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[radial-gradient(circle_at_100%_100%,rgba(99,102,241,0.1),transparent_70%)]" />
+    <section 
+      className={`py-32 relative overflow-hidden transition-colors duration-500 ${
+        isDark ? 'bg-[#030014]' : 'bg-slate-50'
+      }`}
+    >
+      {/* Background Neon Atmospheric Glows */}
+      <div className="absolute inset-0 pointer-events-none opacity-40 dark:opacity-30">
+        <div 
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 aspect-square rounded-full blur-[100px] md:blur-[140px] pointer-events-none transition-all duration-700 ${
+            isDark 
+              ? 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.12)_0%,rgba(124,58,237,0.06)_50%,transparent_70%)]' 
+              : 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0%,rgba(124,58,237,0.03)_50%,transparent_70%)]'
+          }`} 
+        />
       </div>
 
-      <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
+      <div className="max-w-4xl mx-auto px-6 md:px-8 text-center relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          className={`p-12 md:p-16 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-700 ${
+            isDark 
+              ? 'bg-white/[0.01] border-white/[0.06] shadow-[0_40px_100px_-25px_rgba(124,58,237,0.15)]' 
+              : 'bg-white border-slate-200 shadow-[0_30px_60px_-20px_rgba(99,102,241,0.04)]'
+          }`}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white font-bold text-[10px] tracking-[0.3em] uppercase mb-8 border border-white/20">
+          {/* Badge */}
+          <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase mb-8 border transition-colors ${
+            isDark 
+              ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
+              : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+          }`}>
             Ready to scale?
           </span>
-          <h2 className="font-headline text-5xl md:text-7xl font-black mb-12 leading-[1.1] text-white tracking-tight">
+
+          {/* Heading */}
+          <h2 className={`font-headline text-4xl sm:text-5xl md:text-6xl font-extrabold mb-10 leading-[1.15] tracking-tight transition-colors ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
             Let’s Build Your <br /> Next Product
           </h2>
           
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+          {/* CTA Group */}
+          <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-5">
             <Button
-              variant="white"
+              variant="primary"
               href="/contact"
-              className="px-12 py-6 rounded-2xl text-xl font-black !bg-white !text-black shadow-2xl shadow-blue-500/20 hover:scale-105 transition-all active:scale-95"
+              className={`
+                px-10 py-5 rounded-full text-lg font-bold transition-all active:scale-[0.98]
+                bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white
+                shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_25px_rgba(99,102,241,0.4)]
+              `}
             >
               Start a Project
             </Button>
             
             <Link 
               href="/contact"
-              className="px-10 py-5 rounded-2xl font-bold text-lg text-white/80 hover:text-white hover:bg-white/5 transition-all flex items-center gap-3 group"
+              className={`px-10 py-5 rounded-full font-bold text-lg border transition-all active:scale-[0.98] flex items-center justify-center gap-2 group ${
+                isDark 
+                  ? 'border-white/10 bg-white/[0.02] text-white hover:bg-white/[0.06] hover:border-white/20' 
+                  : 'border-slate-200 bg-white text-slate-800 hover:bg-slate-50 shadow-sm'
+              }`}
             >
-              <span className="material-symbols-outlined text-white/60 group-hover:text-white">calendar_today</span>
+              <svg 
+                className={`w-5 h-5 transition-colors ${
+                  isDark ? 'text-white/60 group-hover:text-white' : 'text-slate-400 group-hover:text-slate-700'
+                }`} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                strokeWidth="2.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+              </svg>
               Book a Strategy Call
             </Link>
           </div>
         </motion.div>
       </div>
-
-      {/* Floating particles or subtle noise could go here */}
-      <div className="absolute inset-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.02]" />
     </section>
   );
 }

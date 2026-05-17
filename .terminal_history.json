@@ -31,7 +31,52 @@
       "command": "cd ../",
       "timestamp": 1778094939435,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "git add .",
+      "timestamp": 1778094940106,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git commit -m \"fixed dark mode isssue \"",
+      "timestamp": 1778094990000,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git push origin",
+      "timestamp": 1778095239799,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm run df& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_rjat8l.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_rjat8l.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1778970888889,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "cd frontend",
+      "timestamp": 1778970901164,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm run dev",
+      "timestamp": 1779030550086,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "npmr un build",
+      "timestamp": 1779030558844,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "npm run build",
+      "timestamp": 1779030873919,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd ../",
+      "timestamp": 1779030892993,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
     }
   ],
-  "lastUpdated": 1778094939435
+  "lastUpdated": 1779030892993
 }

@@ -62,29 +62,41 @@ export default function ArticleGrid({
     return (
         <div className="space-y-12">
             {/* Results Count & Sort */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-dashed border-slate-200 dark:border-white/5">
-                <p className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-100 dark:border-white/5">
+                <p className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-colors duration-500 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
                     Showing <span className={isDark ? 'text-white' : 'text-slate-900'}>{startIndex + 1}-{endIndex}</span> of <span className={isDark ? 'text-white' : 'text-slate-900'}>{filteredArticles.length}</span> Insights
                 </p>
 
                 <div className="relative min-w-[180px] w-full sm:w-auto">
-                    <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">sort</span>
+                    {/* Custom SVG Sort Icon */}
+                    <svg className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                    </svg>
+                    
                     <select
-                        className={`w-full h-12 appearance-none rounded-xl pl-12 pr-10 text-[10px] font-black tracking-widest uppercase outline-none border transition-all cursor-pointer ${isDark ? 'bg-white/5 border-white/5 text-white hover:bg-white/10' : 'bg-slate-50 border-slate-100 text-slate-900 hover:bg-white'}`}
+                        className={`w-full h-11 appearance-none rounded-full pl-12 pr-10 text-[9px] font-bold tracking-widest uppercase outline-none border transition-all cursor-pointer ${
+                            isDark 
+                                ? 'bg-zinc-950 border-white/5 text-white hover:bg-zinc-900' 
+                                : 'bg-slate-50 border-slate-200 text-slate-900 hover:bg-white'
+                        }`}
                         onChange={(e) => console.log('Sort by:', e.target.value)}
                     >
                         <option value="newest">Newest First</option>
                         <option value="oldest">Oldest First</option>
                         <option value="popular">Most Popular</option>
                     </select>
-                    <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
+                    
+                    {/* Custom SVG chevron dropdown icon */}
+                    <svg className="w-4 h-4 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
                 </div>
             </div>
 
             {/* Articles Grid */}
             {paginatedArticles.length > 0 ? (
-                <div className="flex flex-col gap-16">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="flex flex-col gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <AnimatePresence mode="popLayout">
                             {paginatedArticles.map((article, idx) => (
                                 <ArticleCard key={article.id} article={article} index={idx} />
@@ -94,41 +106,65 @@ export default function ArticleGrid({
 
                     {/* Pagination */}
                     {showPagination && totalPages > 1 && (
-                        <div className="flex items-center justify-center gap-6 pt-12">
+                        <div className="flex items-center justify-center gap-4 pt-12">
                             <button
                                 onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                                 disabled={currentPage === 1}
-                                className={`w-14 h-14 flex items-center justify-center rounded-2xl transition-all border disabled:opacity-30 ${isDark ? 'bg-white/5 border-white/10 text-white hover:bg-white/10' : 'bg-white border-slate-200 text-slate-900 hover:bg-slate-50'}`}
+                                className={`w-12 h-12 flex items-center justify-center rounded-full transition-all border disabled:opacity-35 ${
+                                    isDark 
+                                        ? 'bg-zinc-900 border-white/5 text-white hover:bg-zinc-800' 
+                                        : 'bg-white border-slate-200 text-slate-900 hover:bg-slate-50'
+                                }`}
                             >
-                                <span className="material-symbols-outlined">chevron_left</span>
+                                <svg className="w-4 h-4 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
                             </button>
                             
-                            <div className={`px-8 py-4 rounded-2xl font-black text-xs border ${isDark ? 'bg-white/5 border-white/10 text-white' : 'bg-white border-slate-200 text-slate-900'}`}>
-                                {currentPage} <span className="text-slate-400 mx-2">/</span> {totalPages}
+                            <div className={`px-6 py-3 rounded-full font-bold text-[10px] uppercase tracking-widest border transition-colors duration-500 ${
+                                isDark ? 'bg-zinc-900 border-white/5 text-white' : 'bg-white border-slate-200 text-slate-900'
+                            }`}>
+                                {currentPage} <span className="text-slate-400 dark:text-white/20 mx-1.5">/</span> {totalPages}
                             </div>
 
                             <button
                                 onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                                 disabled={currentPage === totalPages}
-                                className={`w-14 h-14 flex items-center justify-center rounded-2xl transition-all border disabled:opacity-30 ${isDark ? 'bg-white/5 border-white/10 text-white hover:bg-white/10' : 'bg-white border-slate-200 text-slate-900 hover:bg-slate-50'}`}
+                                className={`w-12 h-12 flex items-center justify-center rounded-full transition-all border disabled:opacity-35 ${
+                                    isDark 
+                                        ? 'bg-zinc-900 border-white/5 text-white hover:bg-zinc-800' 
+                                        : 'bg-white border-slate-200 text-slate-900 hover:bg-slate-50'
+                                }`}
                             >
-                                <span className="material-symbols-outlined">chevron_right</span>
+                                <svg className="w-4 h-4 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
                             </button>
                         </div>
                     )}
                 </div>
             ) : (
                 <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`rounded-[3rem] p-32 text-center border-4 border-dashed transition-colors ${isDark ? 'bg-zinc-900/40 border-white/5' : 'bg-slate-50 border-slate-200'}`}
+                    className={`rounded-[2rem] p-32 text-center border border-dashed transition-colors duration-500 ${
+                        isDark ? 'bg-zinc-950/40 border-white/5' : 'bg-slate-50 border-slate-200'
+                    }`}
                 >
-                    <span className="material-symbols-outlined text-7xl text-slate-400 mb-6 block font-light">edit_note</span>
-                    <p className={`font-black text-2xl mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>No articles found</p>
-                    <p className="text-sm font-medium text-slate-500">We haven&apos;t published any articles in this category yet.</p>
+                    <svg className="w-12 h-12 text-slate-400 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                    </svg>
+                    <p className={`font-bold text-lg mb-2 transition-colors duration-500 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                        No articles found
+                    </p>
+                    <p className="text-xs font-medium text-slate-500">
+                        We haven&apos;t published any articles in this category yet.
+                    </p>
                     <button
                         onClick={() => setActiveCategory('all')}
-                        className={`mt-10 px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 ${isDark ? 'bg-white text-black hover:bg-slate-100' : 'bg-slate-900 text-white hover:bg-black'}`}
+                        className={`mt-8 px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all active:scale-95 border ${
+                            isDark ? 'bg-white text-black border-white hover:bg-slate-100' : 'bg-slate-900 text-white border-slate-900 hover:bg-black'
+                        }`}
                     >
                         View all articles
                     </button>

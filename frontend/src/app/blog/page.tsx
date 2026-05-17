@@ -33,7 +33,7 @@ export default async function BlogPage() {
         <BlogHero />
 
         {/* Featured Article */}
-        <BlogFeaturedStory article={featuredArticle} />
+        <BlogFeaturedStory article={featuredArticle} trendingStories={trendingStories} />
 
         {/* Main Content: Dynamic Feed + Sidebar */}
         <BlogFeed 

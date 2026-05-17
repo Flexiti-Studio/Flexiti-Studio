@@ -72,14 +72,15 @@ export default function BlogFeed({
         <div id="blog-feed-nav" className={`flex items-center gap-3 overflow-x-auto pb-4 mb-16 scrollbar-hide sticky top-28 z-30 transition-all duration-500`}>
           <button
             onClick={() => handleCategoryChange('All')}
-            className={`px-8 py-3 rounded-2xl text-[10px] font-black tracking-widest uppercase transition-all whitespace-nowrap ${
+            className={`px-6 py-2.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${
               selectedCategory === 'All'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                : `border ${isDark ? 'bg-zinc-900 border-white/5 text-slate-400 hover:text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50'}`
+                ? isDark ? 'bg-white border-white text-black' : 'bg-slate-900 border-slate-900 text-white'
+                : isDark ? 'bg-[#07070a] border-white/10 text-slate-400 hover:text-white hover:bg-white/5' : 'bg-white border-slate-200 text-slate-500 hover:text-slate-950 hover:bg-slate-50'
             }`}
           >
             All Insights
           </button>
+          
           <AnimatePresence>
             {categories.map((cat) => (
               <motion.button
@@ -87,10 +88,10 @@ export default function BlogFeed({
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 onClick={() => handleCategoryChange(cat.name)}
-                className={`px-8 py-3 rounded-2xl text-[10px] font-black tracking-widest uppercase transition-all whitespace-nowrap ${
+                className={`px-6 py-2.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${
                   selectedCategory === cat.name
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                    : `border ${isDark ? 'bg-zinc-900 border-white/5 text-slate-400 hover:text-white hover:bg-zinc-800' : 'bg-white border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50'}`
+                    ? isDark ? 'bg-white border-white text-black' : 'bg-slate-900 border-slate-900 text-white'
+                    : isDark ? 'bg-[#07070a] border-white/10 text-slate-400 hover:text-white hover:bg-white/5' : 'bg-white border-slate-200 text-slate-500 hover:text-slate-950 hover:bg-slate-50'
                 }`}
               >
                 {cat.name}
@@ -103,14 +104,16 @@ export default function BlogFeed({
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`mb-12 flex items-center justify-between p-6 rounded-[2rem] border ${isDark ? 'bg-blue-500/5 border-blue-500/10' : 'bg-blue-50 border-blue-100'}`}
+            className={`mb-12 flex items-center justify-between p-6 rounded-3xl border transition-colors duration-500 ${
+              isDark ? 'bg-sky-950/20 border-white/5' : 'bg-sky-50 border-sky-100'
+            }`}
           >
-            <p className={`text-sm font-black uppercase tracking-widest ${isDark ? 'text-white/80' : 'text-slate-900/80'}`}>
-              Topic: <span className="text-blue-500 ml-2">#{selectedTopic}</span>
+            <p className={`text-xs font-bold uppercase tracking-widest ${isDark ? 'text-white/80' : 'text-slate-800'}`}>
+              Topic: <span className="text-sky-500 ml-2">#{selectedTopic}</span>
             </p>
             <button 
               onClick={() => setSelectedTopic(null)}
-              className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] hover:underline"
+              className="text-[10px] font-bold text-sky-500 uppercase tracking-widest hover:underline"
             >
               Clear Filter
             </button>
@@ -129,11 +132,20 @@ export default function BlogFeed({
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`py-32 text-center rounded-[3rem] border-2 border-dashed ${isDark ? 'bg-zinc-950 border-white/5' : 'bg-slate-50 border-slate-200'}`}
+            className={`py-32 text-center rounded-[2rem] border-2 border-dashed transition-colors duration-500 ${
+              isDark ? 'bg-zinc-950 border-white/5' : 'bg-slate-50/50 border-slate-200'
+            }`}
           >
-             <span className="material-symbols-outlined text-6xl text-slate-400 mb-6 font-light">search_off</span>
-            <p className={`text-xl font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>No articles found.</p>
-            <p className="text-sm text-slate-500 mt-2 font-medium">Try selecting a different category or clearing filters.</p>
+            {/* Custom search offline SVG instead of font icon */}
+            <svg className="w-12 h-12 text-slate-400 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <p className={`text-lg font-bold transition-colors duration-500 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              No articles found.
+            </p>
+            <p className="text-xs text-slate-500 mt-2 font-medium">
+              Try selecting a different category or clearing filters.
+            </p>
           </motion.div>
         )}
       </div>

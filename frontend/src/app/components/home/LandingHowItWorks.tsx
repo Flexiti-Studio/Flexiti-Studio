@@ -6,24 +6,44 @@ import { useEffect, useState } from 'react';
 
 const steps = [
   {
+    num: '01',
     title: "Idea / Consultation",
     description: "Defining your vision and market fit.",
-    icon: "lightbulb",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+    )
   },
   {
+    num: '02',
     title: "Design & Planning",
     description: "High-fidelity UI/UX and system architecture.",
-    icon: "draw",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+      </svg>
+    )
   },
   {
+    num: '03',
     title: "Development",
     description: "Agile building with weekly updates.",
-    icon: "code",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    )
   },
   {
+    num: '04',
     title: "Launch & Scale",
     description: "Global deployment and ongoing support.",
-    icon: "auto_awesome",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      </svg>
+    )
   }
 ];
 
@@ -38,26 +58,46 @@ export default function LandingHowItWorks() {
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
   return (
-    <section className="py-32 bg-slate-50 dark:bg-zinc-900/10 overflow-hidden transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-8 relative">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-24"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold text-[10px] tracking-[0.3em] uppercase mb-6 border border-blue-500/20">
+    <section 
+      className={`w-full py-24 px-4 md:px-8 transition-all duration-700 relative overflow-hidden ${
+        isDark 
+          ? 'bg-[#12004a] text-white border-y border-indigo-500/20' 
+          : 'bg-indigo-50/50 text-slate-900 border-y border-indigo-100/60'
+      }`}
+    >
+      {/* Dynamic atmospheric radial glows */}
+      <div 
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ${
+          isDark 
+            ? 'bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.15),transparent_70%)]' 
+            : 'bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.04),transparent_60%)]'
+        }`} 
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto space-y-16">
+        {/* Title Block */}
+        <div className="text-center space-y-4">
+          <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase mb-2 border transition-colors ${
+            isDark 
+              ? 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20' 
+              : 'bg-indigo-100 text-indigo-700 border-indigo-200'
+          }`}>
             Our Process
           </span>
-          <h2 className="font-headline text-4xl md:text-5xl font-black mb-6 text-slate-900 dark:text-white">
+          <h2 className={`text-4xl md:text-5xl font-extrabold tracking-tight transition-colors ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
             A Proven Path to Launch
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-lg font-medium">
+          <p className={`max-w-xl mx-auto text-base font-medium transition-colors ${
+            isDark ? 'text-indigo-200' : 'text-slate-500'
+          }`}>
             Transparency at every stage of the build.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-4 gap-12 relative">
+        {/* 4-Column Card Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
           {steps.map((step, idx) => (
             <motion.div 
               key={idx}
@@ -65,29 +105,49 @@ export default function LandingHowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
-              className="relative z-10 text-center group"
+              className={`group p-8 rounded-[2rem] border transition-all duration-300 flex flex-col justify-between min-h-[220px] cursor-pointer ${
+                isDark 
+                  ? 'border-indigo-400/20 bg-indigo-950/20 hover:bg-indigo-950/40' 
+                  : 'border-indigo-100/80 bg-white hover:bg-indigo-50/30 hover:shadow-xl hover:shadow-indigo-500/5'
+              }`}
             >
-              <div className={`
-                w-24 h-24 rounded-[2rem] shadow-xl flex items-center justify-center mx-auto mb-8 transition-all duration-500
-                ${isDark ? 'bg-white/5 text-white group-hover:bg-blue-600 border border-white/10' : 'bg-white text-slate-900 group-hover:bg-slate-900 group-hover:text-white border border-slate-100'}
-              `}>
-                <span className="material-symbols-outlined text-4xl font-light">{step.icon}</span>
+              {/* Card Header: Step number & arrow click tracker */}
+              <div className="flex items-center justify-between">
+                <span className={`font-extrabold tracking-tight text-xl transition-colors ${
+                  isDark ? 'text-indigo-300' : 'text-indigo-600'
+                }`}>
+                  {step.num}
+                </span>
+
+                {/* Arrow up right visual indicator */}
+                <svg 
+                  className={`w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                    isDark ? 'text-indigo-400 group-hover:text-white' : 'text-indigo-400 group-hover:text-indigo-700'
+                  }`} 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
               </div>
-              <h4 className="font-black text-lg mb-3 text-slate-900 dark:text-white">{step.title}</h4>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed px-4">{step.description}</p>
+
+              {/* Title & Description */}
+              <div className="mt-8 space-y-2">
+                <h4 className={`text-lg font-bold tracking-tight transition-colors ${
+                  isDark ? 'text-white' : 'text-slate-900'
+                }`}>
+                  {step.title}
+                </h4>
+                <p className={`text-sm leading-relaxed transition-colors ${
+                  isDark ? 'text-indigo-200' : 'text-slate-500'
+                }`}>
+                  {step.description}
+                </p>
+              </div>
             </motion.div>
           ))}
-          
-          {/* Connecting Line (Desktop Only) */}
-          <div className={`absolute top-12 left-[12%] right-[12%] h-[1px] ${isDark ? 'bg-white/5' : 'bg-slate-200'} hidden md:block -z-0`}>
-             <motion.div 
-               initial={{ scaleX: 0 }}
-               whileInView={{ scaleX: 1 }}
-               viewport={{ once: true }}
-               transition={{ duration: 1.5, ease: "easeInOut" }}
-               className="h-full bg-blue-500 origin-left opacity-30" 
-             />
-          </div>
         </div>
       </div>
     </section>

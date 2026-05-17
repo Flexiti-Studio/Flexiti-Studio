@@ -23,38 +23,59 @@ const projects = [
 ];
 
 export default function LandingPortfolio() {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
   return (
-    <section className="py-32 bg-surface dark:bg-black transition-colors duration-500" id="portfolio">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+    <section className="py-24 bg-slate-50 dark:bg-[#030014] transition-colors duration-500" id="portfolio">
+      <div className="max-w-7xl mx-auto px-8 w-full">
+        {/* Centered Header block to preserve space design */}
+        <div className="flex flex-col items-center text-center mb-16 space-y-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-2xl"
+            className="max-w-2xl text-center space-y-4"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold text-[10px] tracking-[0.3em] uppercase mb-6 border border-blue-500/20">
+            <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase border transition-colors ${
+              isDark 
+                ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
+                : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+            }`}>
               Selected Work
             </span>
-            <h2 className="font-headline text-4xl md:text-5xl font-black mb-6 text-slate-900 dark:text-white leading-tight">
+            <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
               Built for Success
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg font-medium">
+            <p className="text-slate-500 dark:text-slate-400 text-lg font-medium">
               A selection of platforms we&apos;ve architected for industry leaders.
             </p>
           </motion.div>
+          
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <Link className="text-primary font-black flex items-center gap-2 group text-sm uppercase tracking-widest" href="/portfolio">
+            <Link 
+              className="text-indigo-600 dark:text-indigo-400 font-extrabold flex items-center gap-2 group text-sm uppercase tracking-widest hover:opacity-80 transition-opacity" 
+              href="/portfolio"
+            >
               Explore Full Portfolio
-              <span className="material-symbols-outlined font-black group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
             </Link>
           </motion.div>
         </div>
 
+        {/* Portfolio grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {projects.map((project, idx) => (
             <motion.div 
@@ -63,16 +84,20 @@ export default function LandingPortfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.8 }}
-              className={`${project.span} group relative overflow-hidden rounded-[2.5rem] bg-slate-100 dark:bg-white/5 h-[500px] border border-slate-200 dark:border-white/10`}
+              className={`${project.span} group relative overflow-hidden rounded-[2rem] h-[480px] border transition-all duration-500 ${
+                isDark 
+                  ? 'bg-white/5 border-white/10 hover:border-white/20 shadow-2xl' 
+                  : 'bg-white border-slate-200 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-xl hover:shadow-indigo-500/5'
+              }`}
             >
               <img 
                 alt={project.title} 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
+                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" 
                 src={project.image}
               />
               
               {/* Premium Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
               
               <div className="absolute inset-0 p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <div className="flex gap-3 mb-6">
@@ -86,7 +111,7 @@ export default function LandingPortfolio() {
                   ))}
                 </div>
                 
-                <h3 className="text-white text-3xl md:text-4xl font-black mb-4 leading-tight">
+                <h3 className="text-white text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
                   {project.title}
                 </h3>
                 
@@ -95,8 +120,11 @@ export default function LandingPortfolio() {
                 </p>
                 
                 <div className="mt-8 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 group-hover:mt-6">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black">
-                     <span className="material-symbols-outlined font-black">arrow_outward</span>
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all">
+                    {/* SVG arrow outward */}
+                    <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
                   </div>
                 </div>
               </div>

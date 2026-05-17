@@ -11,7 +11,7 @@ import LandingCTA from "./components/home/LandingCTA";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <div className="pt-20">
+      <div>
         <LandingHero />
         <LandingSocialProof />
         <LandingServices />

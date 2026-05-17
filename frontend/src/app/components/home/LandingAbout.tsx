@@ -5,9 +5,33 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 const features = [
-  { title: "Scalable Systems", description: "Code that grows with your user base.", icon: "layers" },
-  { title: "Modern Tech Stack", description: "Using the latest industry-standard frameworks.", icon: "bolt" },
-  { title: "Clean Architecture", description: "Maintainable code for long-term health.", icon: "architecture" }
+  { 
+    title: "Scalable Systems", 
+    description: "Code that grows with your user base.", 
+    icon: (
+      <svg className="w-5 h-5 text-indigo-500 transition-colors group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    )
+  },
+  { 
+    title: "Modern Tech Stack", 
+    description: "Using the latest industry-standard frameworks.", 
+    icon: (
+      <svg className="w-5 h-5 text-indigo-500 transition-colors group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    )
+  },
+  { 
+    title: "Clean Architecture", 
+    description: "Maintainable code for long-term health.", 
+    icon: (
+      <svg className="w-5 h-5 text-indigo-500 transition-colors group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+      </svg>
+    )
+  }
 ];
 
 export default function LandingAbout() {
@@ -21,18 +45,20 @@ export default function LandingAbout() {
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
   return (
-    <section className="py-32 bg-slate-50 dark:bg-zinc-900/10 transition-colors duration-500 overflow-hidden" id="about">
-      <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
+    <section className="py-24 bg-slate-50 dark:bg-[#030014] transition-colors duration-500 overflow-hidden" id="about">
+      <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center w-full">
+        
+        {/* Left Side: Photo Frame Overlay */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="rounded-[2.5rem] overflow-hidden h-[550px] shadow-2xl relative border border-slate-200 dark:border-white/10"
+          className="rounded-[2.5rem] overflow-hidden h-[500px] shadow-2xl relative border border-slate-200 dark:border-white/10 w-full"
         >
           <img 
             alt="Team Collaboration" 
-            className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000" 
+            className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCylo7xjcBakczlNSBj5DqaYriS58VSiSFUJvkc7ji4-DngqOJvoUGdEuJ9MENA2ix6M85UtTeN5grXQ57x80fL4JEEx3a1nGYfZMFswruT1ULZTGrzC9dynSZNOHsdGCW75Z6FRg89TpvRmEcbnwpISb_Cv3fHcW_UbGaRo9KVuPSXtoqBilWIps8rrF759yLWPUnsLm6GXAXK7e4OW6HPbeOF29ijS6aj36AVnUwVSOK-NItqMnnAsZTG9fto--becXxdjYCNHKQY" 
           />
           <motion.div 
@@ -40,29 +66,42 @@ export default function LandingAbout() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className={`absolute bottom-8 right-8 p-8 rounded-[2.5rem] shadow-2xl backdrop-blur-3xl max-w-[280px] border border-white/20 ${isDark ? 'bg-black/60' : 'bg-white/80'}`}
+            className={`absolute bottom-8 right-8 p-8 rounded-[2rem] shadow-2xl backdrop-blur-3xl max-w-[280px] border border-white/20 ${isDark ? 'bg-black/60' : 'bg-white/80'}`}
           >
-            <p className={`font-black text-lg mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>African-born, <br /> Global reach.</p>
+            <p className={`font-extrabold text-lg mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>African-born, <br /> Global reach.</p>
             <p className={`text-sm font-medium leading-relaxed ${isDark ? 'text-white/60' : 'text-slate-600'}`}>We build with the grit of local challenges and the standards of Silicon Valley.</p>
           </motion.div>
         </motion.div>
 
+        {/* Right Side: Copywriting */}
         <motion.div
            initial={{ opacity: 0, x: 30 }}
            whileInView={{ opacity: 1, x: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
+           className="w-full"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold text-[10px] tracking-[0.3em] uppercase mb-8 border border-blue-500/20">
+          <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase border mb-8 transition-colors ${
+            isDark 
+              ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
+              : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+          }`}>
             Our Mission
           </span>
-          <h2 className="font-headline text-4xl md:text-5xl font-black mb-8 text-slate-900 dark:text-white leading-tight">
+          
+          <h2 className={`font-headline text-4xl md:text-5xl font-extrabold mb-8 transition-colors ${
+            isDark ? 'text-white' : 'text-slate-900'
+          } leading-tight`}>
             Engineering Impact <br /> Through Technology
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-xl leading-relaxed mb-10 font-medium">
+          
+          <p className={`text-xl leading-relaxed mb-10 font-medium transition-colors ${
+            isDark ? 'text-slate-400' : 'text-slate-500'
+          }`}>
              Flexiti Studio builds flexible, scalable, and impactful digital solutions for businesses and founders. We aren&apos;t just developers; we are partners in your growth journey.
           </p>
           
+          {/* Features Column */}
           <div className="grid gap-8">
             {features.map((feature, idx) => (
               <motion.div 
@@ -71,17 +110,21 @@ export default function LandingAbout() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex items-start gap-5 group"
+                className="flex items-start gap-5 group cursor-pointer"
               >
                 <div className={`
-                  mt-1 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 flex-shrink-0
-                  ${isDark ? 'bg-white/5 text-blue-400 border border-white/10 group-hover:bg-blue-600 group-hover:text-white' : 'bg-slate-100 text-blue-600 border border-slate-200 group-hover:bg-slate-900 group-hover:text-white'}
+                  mt-1 w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 flex-shrink-0
+                  ${isDark ? 'bg-white/5 text-indigo-400 border border-white/10 group-hover:bg-indigo-600' : 'bg-slate-100 text-indigo-600 border border-slate-200 group-hover:bg-indigo-600 group-hover:text-white'}
                 `}>
-                  <span className="material-symbols-outlined font-light text-2xl">{feature.icon}</span>
+                  {feature.icon}
                 </div>
                 <div>
-                  <h4 className="font-black text-lg mb-1 text-slate-900 dark:text-white">{feature.title}</h4>
-                  <p className="text-slate-600 dark:text-slate-400 font-medium">{feature.description}</p>
+                  <h4 className={`font-bold text-lg mb-1 transition-colors ${
+                    isDark ? 'text-white' : 'text-slate-900'
+                  }`}>{feature.title}</h4>
+                  <p className={`font-medium transition-colors ${
+                    isDark ? 'text-slate-400' : 'text-slate-500'
+                  }`}>{feature.description}</p>
                 </div>
               </motion.div>
             ))}
