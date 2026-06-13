@@ -1,8 +1,8 @@
 export interface Product {
-  id: number;
+  id: string | number;
   name: string;
   description: string;
-  category: ProductCategory;
+  category: string;
   image: string;
   alt: string;
   features: string[];
@@ -11,15 +11,11 @@ export interface Product {
     price?: string;
     period?: "month" | "year";
   };
-  status: "active" | "beta" | "coming-soon";
+  status: string;
   tags: string[];
 }
 
-export type ProductCategory =
-  | "business"
-  | "education"
-  | "developer-tools"
-  | "all";
+export type ProductCategory = string;
 
 export interface Feature {
   id: number;

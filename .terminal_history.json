@@ -76,7 +76,97 @@
       "command": "cd ../",
       "timestamp": 1779030892993,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "git add .",
+      "timestamp": 1779030900044,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git commit -m \"updated with wild cards \"",
+      "timestamp": 1779030917981,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git push origin",
+      "timestamp": 1779030931403,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_h1xt8d.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_h1xt8d.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1779975343484,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm run dev",
+      "timestamp": 1779975785039,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_jcgrnp.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_jcgrnp.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1779975790135,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_j3tsgo.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_j3tsgo.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1781336669424,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm tru& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_s2bzi.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_s2bzi.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1781337671117,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm run dev",
+      "timestamp": 1781337682775,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "cd frontend",
+      "timestamp": 1781337689380,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm run dev",
+      "timestamp": 1781339583842,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd frontend",
+      "timestamp": 1781379353396,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "npm run dev",
+      "timestamp": 1781381621450,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cla\\",
+      "timestamp": 1781384403013,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cla",
+      "timestamp": 1781384403075,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "npm run dev",
+      "timestamp": 1781384587125,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd ../",
+      "timestamp": 1781384591773,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "gt add .",
+      "timestamp": 1781384594523,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
     }
   ],
-  "lastUpdated": 1779030892993
+  "lastUpdated": 1781384594523
 }

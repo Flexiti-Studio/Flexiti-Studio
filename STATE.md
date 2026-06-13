@@ -6,20 +6,7 @@
 
 ## Completed
 
-### May 17, 2026
-- **Next.js 15 Asynchronous Params Bugfix**:
-  - [x] Resolved runtime `params.tenant` warning/error by typing `params` as a `Promise<{ tenant: string }>` inside `PageProps` and properly awaiting it in both `generateMetadata` and `TenantPage` inside `src/app/[tenant]/page.tsx`.
-  - [x] **Build Verification**: Re-verified clean compilation with zero warnings/errors (`Exit code: 0`).
-
 ### May 16, 2026
-- **Multi-Tenant Subdomain dynamic Routing Setup**:
-  - [x] **Combined Middleware Integration**: Re-engineered `middleware.ts` to merge token-based admin panel route authentication with active subdomain matching (e.g. mapping `tenant.localhost:3000` to internal `/tenant` routes).
-  - [x] **Dynamic Route Mapping**: Created `app/[tenant]/page.tsx` that binds subdomains to corresponding page templates:
-    - `blogs` (and `blog`) renders the full server component `BlogPage`.
-    - `services` renders `ServicesPage`.
-    - `portfolio` renders `OurWorkPage`.
-    - Other arbitrary client subdomains render a gorgeous theme-aware glassmorphic landing space showing `Tenant: [subdomain]`.
-  - [x] **Build Verification**: Re-verified clean compilation with zero warnings (`Exit code: 0`).
 - **Comprehensive Blogs Page Redesign (Blogs Page Skill)**:
   - [x] **Redesigned BlogHero**: Set centered visual structure supporting high-contrast typography, clean capsule indicators, and subtle decorative background glows.
   - [x] **Redesigned BlogFeaturedStory**: Restructured to match the exact 2-column minimalist visual style in the reference image (massive aspect-locked `rounded-[2rem]` featured cover card left, trending list stack with custom numerical badging and hairline separations right).
@@ -56,10 +43,10 @@
   - [x] **Redesigned LandingProducts**: Built a gorgeous, responsive glass container with inner ambient radial gradients, housing custom feature vectors (Briefcase, Thunder, and Brain SVGs).
   - [x] **Redesigned LandingStats**: Created a floating, sleek horizontal stats deck structured with micro-borders and vibrant pink-indigo numeric text gradients.
   - [x] **Redesigned LandingAbout**: Balances split columns and collaborative photo frames, utilizing custom premium bullet features.
-- Spacing & Padding Refinement:
+- **Spacing & Padding Refinement**:
   - [x] **Removed Cumulative Space**: Removed the redundant `pt-20` padding wrapper from the main page entrypoint (`frontend/src/app/page.tsx`).
   - [x] **Adjusted Hero Padding**: Fine-tuned the vertical padding of the Hero section in `LandingHero.tsx` from `pt-40` to a tight and crisp `pt-28`.
-- Centered Hero & Planetary Arch Redesign (Theme-Aware):
+- **Centered Hero & Planetary Arch Redesign (Theme-Aware)**:
   - [x] **Redesigned Centered LandingHero**: Shifted to a premium, centered, single-column visual hierarchy, completely eliminating excessive whitespace.
   - [x] **Centering Services Headers**: Adjusted the service grid layout headers to be perfectly centered, matching the symmetry of the centered planet halo section.
   - [x] **Layered Planetary Glow Arch**: Built multi-layered glow parameters with realistic CSS shadow domes curving over the centered text in both dark and light modes.

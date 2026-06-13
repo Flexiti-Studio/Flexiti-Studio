@@ -37,13 +37,22 @@ export const portfolioItem = defineType({
           { title: 'Software', value: 'software' },
           { title: 'Mobile', value: 'mobile' },
           { title: 'AI Systems', value: 'ai-systems' },
-          { title: 'Hardware', value: 'hardware' },
-          { title: 'Digital Training', value: 'digital-training' },
-          { title: 'Design', value: 'design' },
           { title: 'SaaS', value: 'saas' },
         ],
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'industry',
+      title: 'Industry',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Hardware & IoT', value: 'hardware' },
+          { title: 'Education & Training', value: 'digital-training' },
+          { title: 'Creative Design', value: 'design' },
+        ],
+      },
     }),
     defineField({
       name: 'mainImage',
@@ -101,6 +110,12 @@ export const portfolioItem = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'type',
+      title: 'Project Type',
+      type: 'string',
+      description: 'e.g., Web App, Mobile App, SaaS, Hardware',
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
@@ -137,11 +152,61 @@ export const portfolioItem = defineType({
       ],
     }),
     defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+      description: 'e.g., Full Stack Developer, Lead Designer',
+    }),
+    defineField({
+      name: 'timeline',
+      title: 'Timeline',
+      type: 'string',
+      description: 'e.g., 3 Months (Aug - Oct 2023)',
+    }),
+    defineField({
+      name: 'team',
+      title: 'Team Size / Info',
+      type: 'string',
+      description: 'e.g., Solo, Team of 4, Lead Developer',
+    }),
+    defineField({
+      name: 'challenge',
+      title: 'The Challenge',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
+      name: 'solution',
+      title: 'The Solution',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
+      name: 'result',
+      title: 'The Result',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
+      name: 'images',
+      title: 'Project Gallery / Screenshots',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+      description: 'Upload additional screenshots/images for the project details gallery.',
+    }),
+    defineField({
       name: 'featured',
       title: 'Featured Project',
       type: 'boolean',
       initialValue: false,
       description: 'Mark this project as featured to highlight it',
+    }),
+    defineField({
+      name: 'showOnLanding',
+      title: 'Show on Landing Page (Built for Success)',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Check this to show this project in the "Built for Success" section on the landing page.',
     }),
     defineField({
       name: 'order',
@@ -159,10 +224,12 @@ export const portfolioItem = defineType({
     },
     prepare(selection) {
       const { title, media, subtitle, status } = selection
+      const categoryLabel = subtitle || 'No Category'
+      const statusLabel = status ? (status.charAt(0).toUpperCase() + status.slice(1)) : 'No Status'
       return {
-        title,
+        title: title || 'Untitled Project',
         media,
-        subtitle: `${subtitle} • ${status.charAt(0).toUpperCase() + status.slice(1)}`,
+        subtitle: `${categoryLabel} • ${statusLabel}`,
       }
     },
   },

@@ -47,12 +47,12 @@ export default function LandingSocialProof() {
             <motion.span 
               key={brand}
               initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.6, y: 0 }}
+              whileInView={{ opacity: isDark ? 0.6 : 0.85, y: 0 }}
               whileHover={{ opacity: 1, scale: 1.05 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05, duration: 0.5 }}
               className={`font-headline text-lg md:text-xl font-extrabold tracking-tighter cursor-pointer transition-all duration-300 ${
-                isDark ? 'text-slate-300 hover:text-white' : 'text-slate-500 hover:text-slate-950'
+                isDark ? 'text-slate-300 hover:text-white' : 'text-slate-700 hover:text-slate-950'
               }`}
             >
               {brand}

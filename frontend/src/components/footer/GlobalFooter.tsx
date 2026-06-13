@@ -3,15 +3,21 @@
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import StudioLogo from '@/components/navbar/StudioLogo';
 
 export default function GlobalFooter() {
+    const pathname = usePathname();
     const { theme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    if (pathname?.startsWith('/studio') || pathname?.startsWith('/admin')) {
+        return null;
+    }
 
     const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 

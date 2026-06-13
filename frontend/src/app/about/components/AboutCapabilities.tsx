@@ -1,9 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import { Globe, Smartphone, Cloud, Zap, Cpu, Layers } from 'lucide-react'
+import { Globe, Smartphone, Cloud, Zap, Cpu, Layers, ArrowUpRight } from 'lucide-react'
 
 const capabilities = [
     { 
@@ -45,24 +45,31 @@ const capabilities = [
         icon: Layers, 
         title: 'System Design', 
         desc: 'High-level consulting on tech stacks, database design, and cloud infrastructure.',
-        color: 'text-primary-light',
-        bg: 'bg-primary/10'
+        color: 'text-indigo-400',
+        bg: 'bg-indigo-500/10',
+        isFeatured: true
     },
 ]
 
 export default function AboutCapabilities() {
-    const { theme } = useTheme()
-    const isDark = theme === 'dark'
+    const { theme, resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true
 
     return (
-        <section className={`py-32 ${isDark ? 'bg-black' : 'bg-white'}`}>
+        <section className={`py-32 ${isDark ? 'bg-[#030014]' : 'bg-slate-50'} transition-colors duration-500`}>
             <div className="max-w-7xl mx-auto px-8">
                 <div className="mb-20">
                     <motion.span 
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-primary-light font-bold tracking-[0.3em] uppercase text-sm mb-6 block"
+                        className="text-primary-light font-bold tracking-[0.3em] uppercase text-sm mb-6 block animate-pulse"
                     >
                         Core Capabilities
                     </motion.span>
@@ -71,38 +78,72 @@ export default function AboutCapabilities() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className={`font-black text-5xl md:text-7xl ${isDark ? 'text-white' : 'text-black'} tracking-tighter`}
+                        className={`font-headline font-black text-4xl md:text-6xl ${isDark ? 'text-white' : 'text-slate-900'} tracking-tighter`}
                     >
                         Architecting <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Solutions</span>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Solutions</span>
                     </motion.h2>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {capabilities.map((cap, index) => (
-                        <motion.div 
-                            key={cap.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className={`group p-10 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 ${
-                                isDark ? 'bg-white/5 border-white/10 hover:bg-white/[0.08]' : 'bg-black/5 border-black/10 hover:bg-black/[0.08]'
-                            }`}
-                        >
-                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ${cap.bg}`}>
-                                <cap.icon className={`w-8 h-8 ${cap.color}`} strokeWidth={1.5} />
-                            </div>
-                             <h4 className={`font-bold text-2xl ${isDark ? 'text-white' : 'text-black'} mb-4 tracking-tight group-hover:text-primary-light transition-colors`}>
-                                 {cap.title}
-                             </h4>
-                            <p className={`leading-relaxed ${
-                                isDark ? 'text-white/50' : 'text-black/50'
-                            } font-medium`}>
-                                {cap.desc}
-                            </p>
-                        </motion.div>
-                    ))}
+                    {capabilities.map((cap, index) => {
+                        const isFeatured = cap.isFeatured;
+                        return (
+                            <motion.div 
+                                key={cap.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                className={`group relative p-10 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[300px] ${
+                                    isFeatured
+                                        ? isDark
+                                            ? 'bg-gradient-to-br from-indigo-600 to-purple-700 border-indigo-500 shadow-[0_0_30px_rgba(99,102,241,0.25)] hover:scale-[1.03] text-white'
+                                            : 'bg-gradient-to-br from-indigo-500 to-purple-600 border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:scale-[1.03] text-white'
+                                        : isDark 
+                                            ? 'bg-white/[0.01] border-white/[0.06] hover:bg-white/[0.03] hover:border-white/10 hover:scale-[1.02] text-slate-100' 
+                                            : 'bg-white border-slate-200/60 hover:bg-slate-50 hover:border-slate-300 hover:scale-[1.02] shadow-sm text-slate-800'
+                                }`}
+                            >
+                                {/* Glow hover state for standard glass cards */}
+                                {!isFeatured && (
+                                    <div className="absolute inset-0 bg-gradient-to-r from-[#4f46e5]/5 to-[#7c3aed]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                )}
+
+                                {/* Card Header (Icon + UpRight Arrow) */}
+                                <div className="flex items-center justify-between">
+                                    <div className={`p-4 rounded-2xl transition-all duration-500 ${
+                                        isFeatured 
+                                            ? 'bg-white/15 text-white' 
+                                            : isDark ? 'bg-white/5 text-indigo-400' : 'bg-slate-100 text-indigo-600'
+                                    }`}>
+                                        <cap.icon className="w-8 h-8" strokeWidth={1.5} />
+                                    </div>
+                                    <ArrowUpRight className={`w-6 h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                                        isFeatured ? 'text-white' : isDark ? 'text-slate-500 group-hover:text-white' : 'text-slate-400 group-hover:text-slate-800'
+                                    }`} />
+                                </div>
+
+                                {/* Content block */}
+                                <div className="mt-8 space-y-3">
+                                    <h4 className={`font-headline font-bold text-2xl tracking-tight transition-colors ${
+                                        isFeatured 
+                                            ? 'text-white' 
+                                            : isDark ? 'text-white group-hover:text-primary-light' : 'text-slate-900 group-hover:text-primary'
+                                    }`}>
+                                        {cap.title}
+                                    </h4>
+                                    <p className={`leading-relaxed text-sm font-medium ${
+                                        isFeatured 
+                                            ? 'text-indigo-100' 
+                                            : isDark ? 'text-slate-400' : 'text-slate-600'
+                                    }`}>
+                                        {cap.desc}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

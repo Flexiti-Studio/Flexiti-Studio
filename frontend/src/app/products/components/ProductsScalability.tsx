@@ -76,7 +76,7 @@ export default function ProductsScalability() {
                                 <img
                                     alt="Code Scalability"
                                     className="w-full aspect-square object-cover opacity-80"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIS50Ox79gwRBDfeQniacuGBX3A2MScnAOwizLmKAwX9qaOQ3g4zfmF_uHLFpPPaTufTmDtLbnXnccukp38B2iQSkfitIHs9owRf1_nzeqGHcabpHxuMXoE-4hjSw_VbQGWj_mzf5YJ6UjxSeHrcbVYU_gJ0fY-CRmIB5Xt14GhqoZrkjin8aEYXJD_mO9dWZOWlWbLPDpWSBIrW1owEOfYiLBTpOnsNftjPmvEfYV-VwyTvj68jtOMacCztJG1RCHWPBnlEpape9w"
+                                    src="/branding/office services.png"
                                 />
                             </div>
                         </motion.div>

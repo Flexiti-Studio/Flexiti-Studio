@@ -16,7 +16,7 @@ export default function ProductsHero() {
     const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
     return (
-        <section className={`relative pt-40 pb-32 px-8 overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+        <section className={`relative pt-64 pb-32 px-8 overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
             {/* Ambient Background */}
             <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] blur-[120px] rounded-full opacity-20 pointer-events-none ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
 
@@ -86,7 +86,7 @@ export default function ProductsHero() {
                             <img
                                 alt="Modern SaaS Dashboard Interface"
                                 className="w-full aspect-square object-cover"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn4CnNo4BQb6ZO8oh20npY-aGTjNRKcss8REz9r-xN3jeJHEto1tNYnNOJ8us5jMqroDJ9t0lWgZl0IrYaIZIl62b1QIvpRzmgySpddOakvErG_9N9jTn97BN4bBLDqwmZS0yfeIyPFWbQNylGiOqfTSGWe8NX7BWsc91_x5NQhgFFyYlz1_lke1MoNi3pQaUMIoo-fHW8TenkgA6jFlfecW3TBA2XdX7l1BWdETZ2LFsdzhuUdn-76Bcm21i_-YaPnfwnbNnBoDjC"
+                                src="/branding/dashboard services.png"
                             />
                         </div>
                         

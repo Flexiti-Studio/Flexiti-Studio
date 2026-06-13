@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
     const router = useRouter();
+    const [dots, setDots] = useState<{ left: string; top: string; delay: string }[]>([]);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -17,6 +18,15 @@ export default function NotFound() {
         };
 
         window.addEventListener('mousemove', handleMouseMove);
+
+        // Generate dot positions randomly on the client side only to prevent SSR mismatch
+        const generatedDots = Array.from({ length: 20 }).map((_, i) => ({
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            delay: `${i * 0.5}s`,
+        }));
+        setDots(generatedDots);
+
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
@@ -29,14 +39,14 @@ export default function NotFound() {
         <div className="min-h-screen bg-gradient-to-br from-background-light via-white to-purple-50 dark:from-background-dark dark:via-gray-900 dark:to-purple-900/10 overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden">
-                {[...Array(20)].map((_, i) => (
+                {dots.map((dot, i) => (
                     <div
                         key={i}
                         className="absolute w-[2px] h-[2px] bg-primary/20 rounded-full animate-pulse"
                         style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${i * 0.5}s`,
+                            left: dot.left,
+                            top: dot.top,
+                            animationDelay: dot.delay,
                         }}
                     />
                 ))}

@@ -16,11 +16,11 @@ export default function ServicesCTABanner() {
     const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
     return (
-        <section className={`py-48 px-8 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#07070a]' : 'bg-slate-50'}`}>
+        <section className={`py-48 px-8 relative overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#030014]' : 'bg-slate-50'}`}>
             
             {/* 🌌 Ambient Celestial Deep Glows */}
-            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-[150px] rounded-full opacity-15 pointer-events-none ${isDark ? 'bg-sky-600' : 'bg-sky-400'}`} />
-            <div className={`absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] blur-[120px] rounded-full opacity-10 pointer-events-none ${isDark ? 'bg-indigo-600' : 'bg-indigo-400'}`} />
+            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-[150px] rounded-full opacity-15 pointer-events-none ${isDark ? 'bg-indigo-600' : 'bg-indigo-400'}`} />
+            <div className={`absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] blur-[120px] rounded-full opacity-10 pointer-events-none ${isDark ? 'bg-purple-600' : 'bg-purple-400'}`} />
 
             <div className="max-w-5xl mx-auto text-center relative z-10 space-y-16">
                 <motion.div
@@ -33,7 +33,7 @@ export default function ServicesCTABanner() {
                         isDark ? 'text-white' : 'text-slate-900'
                     }`}>
                         LET&apos;S BUILD <br />
-                        <span className="text-sky-500">SOMETHING POWERFUL.</span>
+                        <span className="text-indigo-500">SOMETHING POWERFUL.</span>
                     </h2>
                     
                     <p className={`text-xl md:text-2xl font-medium max-w-2xl mx-auto leading-relaxed transition-colors ${

@@ -1,17 +1,41 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 
 export default function AboutHero() {
-    const { theme } = useTheme()
-    const isDark = theme === 'dark'
+    const { theme, resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true
 
     return (
-        <section className={`relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
+        <section className={`relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#030014]' : 'bg-slate-50'}`}>
+            {/* 🌌 Planetary Arch Horizon Glow (Dynamic Theme-Aware) */}
+            <div 
+                className={`absolute top-[-10%] sm:top-[-20%] md:top-[-30%] left-1/2 -translate-x-1/2 w-[140%] md:w-[100%] aspect-square rounded-full pointer-events-none transition-all duration-1000 ${
+                    isDark 
+                        ? 'bg-gradient-to-b from-[#7c3aed]/40 via-[#4f46e5]/8 to-transparent blur-[80px] md:blur-[140px]' 
+                        : 'bg-gradient-to-b from-indigo-500/10 via-purple-300/5 to-transparent blur-[60px] md:blur-[100px]'
+                }`} 
+            />
+
+            {/* Layered Crisp Glow Borders representing the Planetary Arch */}
+            <div 
+                className={`absolute top-[4%] sm:top-[2%] md:top-[-3%] left-1/2 -translate-x-1/2 w-[110%] md:w-[85%] aspect-square rounded-full border-t-[3px] filter pointer-events-none transition-all duration-1000 ${
+                    isDark 
+                        ? 'border-[#a78bfa]/40 shadow-[0_-20px_80px_rgba(124,58,237,0.3)] blur-[2px]' 
+                        : 'border-indigo-400/20 shadow-[0_-10px_40px_rgba(99,102,241,0.15)] blur-[1px]'
+                }`} 
+            />
+
             {/* Ambient Background Glows */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-50" />
             <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none opacity-50" />
@@ -38,10 +62,10 @@ export default function AboutHero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
-                        className="font-black text-6xl md:text-8xl lg:text-[7rem] leading-[0.9] tracking-tighter mb-8"
+                        className="font-headline text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-8 text-slate-900 dark:text-white"
                     >
                         About <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-secondary">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-500">
                             Flexiti Studio
                         </span>
                     </motion.h1>
@@ -50,7 +74,7 @@ export default function AboutHero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
-                        className={`text-xl md:text-2xl ${
+                        className={`text-lg md:text-xl ${
                             isDark ? 'text-white/60' : 'text-black/60'
                         } leading-relaxed max-w-xl mb-12 font-medium`}
                     >
@@ -79,7 +103,7 @@ export default function AboutHero() {
                         <Link 
                             href="/portfolio"
                             className={`group px-10 py-5 rounded-[2rem] font-bold text-lg backdrop-blur-xl border transition-all hover:scale-105 active:scale-95 ${
-                                isDark ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-black/5 border-black/10 hover:bg-black/10'
+                                isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-white' : 'bg-black/5 border-black/10 hover:bg-black/10 text-black'
                             }`}
                         >
                             View Our Work
@@ -91,14 +115,14 @@ export default function AboutHero() {
                     initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    className="relative lg:h-[700px] flex items-center"
+                    className="relative lg:h-[600px] flex items-center"
                 >
                     {/* Decorative Elements */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 rounded-[3rem] blur-3xl opacity-30 animate-pulse" />
                     
-                    <div className="relative w-full aspect-square lg:aspect-auto lg:h-[600px] rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl shadow-primary/20 group">
+                    <div className="relative w-full aspect-square lg:aspect-auto lg:h-[500px] rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl shadow-primary/20 group">
                         <Image
-                            src="/images/about/hero-tech.png"
+                            src="/branding/about hero section.png"
                             alt="Digital Architecture Visualization"
                             fill
                             className="object-cover transition-transform duration-1000 group-hover:scale-110"

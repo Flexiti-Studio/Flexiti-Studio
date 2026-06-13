@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-surface text-on-surface-variant">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#030014] text-slate-900 dark:text-white transition-colors duration-500">
       <ServicesHero />
       <ServicesOverview />
       <ServicesDetail />

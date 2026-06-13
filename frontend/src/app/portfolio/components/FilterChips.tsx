@@ -35,7 +35,7 @@ const FilterChips: React.FC<FilterChipsProps> = ({
                         onClick={() => onCategoryChange(category)}
                         className={`
               flex h-8 shrink-0 items-center justify-center gap-x-2
-              
+              cursor-pointer
               rounded-full px-4 transition-all duration-300
               ${isActive
                                 ? 'bg-blue-400  text-white shadow-lg'

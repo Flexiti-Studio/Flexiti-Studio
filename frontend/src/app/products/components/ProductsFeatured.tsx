@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { Product } from './types';
+import ProductDetailModal from './ProductDetailModal';
 
 const featuredProducts = [
     {
@@ -12,7 +14,7 @@ const featuredProducts = [
         status: 'Live',
         desc: 'A hyper-scalable inventory management SaaS designed for high-volume retail. Integrated real-time tracking, multi-channel sync, and predictive restocking alerts.',
         features: ['Advanced API Ecosystem', 'Real-time Inventory Analytics', 'Automated Supplier Workflow'],
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCS_BLys4XZFay7Lx_Gu2yOF91fiq38q_xTaEzgRFt-OIDNrSU8vh3Mjq23pHH3VHHmxsJSMMC9knmsR57Ynt401dB-j9XasAIfGwazpBEZzMaNhe8OzzWUO7tnk7JT4s6Aki95WUq9fsnsWjQDDM0beMpbjiGZFCfMwp1KCc7MNTYnwmOYXd1hV8XSGKTxoO9JtiXL8qQZqnRNiKNDmjwZ-fFS_V0hcCgHvjZwCy8Elntjet4zFNOMKMHk2XGLyRVj4aZOMl1R6w20',
+        image: '/branding/dashboard services.png',
         color: 'blue'
     },
     {
@@ -22,21 +24,49 @@ const featuredProducts = [
         status: 'Beta',
         desc: 'Redefining the educational experience with a unified platform for students, teachers, and administrators. Simplifies complex scheduling and grade tracking.',
         features: ['Dynamic Resource Scheduling', 'Parent-Teacher Portals', 'AI-Powered Learning Insights'],
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuChe5t4deVABDUuFOJedAcvG9U1EhGlsLYEz-nk1NbXfwaDlSCT1Rj0A6uPkOk7SksxW2PIuntKLDRhYT-g9ItllzpRzX-G3XQDuv1L9azMK3Thb7UsTi4JK-t4G3CESCSoiZEzB2dJkdePI7u167i5_VTa0QYX7QVCsUYYGiIt737hn2KdSrAiE0dpwji3LefzDHSCPG7YCEMUrwgTDOuPk80FkdPIsf1gfsa97RF27j8NGebpby-VOftv4ygWWKFpP3OwXAcpQdJa',
+        image: '/branding/built for africans.png',
         color: 'indigo',
         reverse: true
     }
 ];
 
-export default function ProductsFeatured() {
+interface ProductsFeaturedProps {
+    products?: any[];
+}
+
+export default function ProductsFeatured({ products = [] }: ProductsFeaturedProps) {
     const { theme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
     const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
+    // Filter sanity featured products
+    const sanityFeatured = products.filter((p: any) => p.isFeatured === true);
+
+    // Map sanity featured products to the UI format
+    const mappedFeatured = sanityFeatured.map((p: any) => ({
+        id: p.id,
+        name: p.title,
+        title: p.title,
+        desc: p.description,
+        description: p.description,
+        status: p.status,
+        features: p.features || [],
+        image: p.image || '/branding/dashboard services.png',
+        icon: p.icon || 'inventory_2',
+        color: p.color || 'blue',
+        reverse: p.reverse || false,
+        category: p.category,
+        tags: [p.category]
+    }));
+
+    // If we have mapped featured products, use them. Otherwise, use static featuredProducts.
+    const displayProducts = mappedFeatured.length > 0 ? mappedFeatured : featuredProducts;
 
     return (
         <section className={`py-48 px-8 overflow-hidden transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-slate-50'}`}>
@@ -55,8 +85,8 @@ export default function ProductsFeatured() {
                     </h2>
                 </div>
 
-                {featuredProducts.map((product, index) => (
-                    <div key={product.id} className={`grid grid-cols-1 lg:grid-cols-12 gap-20 items-center ${product.reverse ? 'lg:flex-row-reverse' : ''}`}>
+                {displayProducts.map((product: any, index) => (
+                    <div key={product.id || product.title} className={`grid grid-cols-1 lg:grid-cols-12 gap-20 items-center ${product.reverse ? 'lg:flex-row-reverse' : ''}`}>
                         <div className={`lg:col-span-12 xl:col-span-5 space-y-12 ${product.reverse ? 'xl:order-2' : ''}`}>
                             <div className="space-y-6">
                                 <motion.div 
@@ -79,7 +109,7 @@ export default function ProductsFeatured() {
                             </div>
 
                             <ul className="space-y-4">
-                                {product.features.map((feature, fIndex) => (
+                                {product.features.map((feature: string, fIndex: number) => (
                                     <motion.li 
                                         key={feature}
                                         initial={{ opacity: 0, x: -20 }}
@@ -96,8 +126,21 @@ export default function ProductsFeatured() {
                                 ))}
                             </ul>
 
-                            <button className={`px-10 py-5 rounded-full font-black text-xs uppercase tracking-[0.3em] transition-all duration-500 shadow-2xl ${isDark ? 'bg-white text-black hover:bg-slate-100 shadow-white/5' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-slate-900/20'}`}>
-                                {product.status === 'Beta' ? 'Join the Beta' : 'Launch Product'}
+                            <button 
+                                onClick={() => setSelectedProduct({
+                                    id: product.id,
+                                    name: product.title,
+                                    description: product.desc || product.description,
+                                    category: product.category || 'Business Tools',
+                                    image: product.image,
+                                    alt: product.title,
+                                    features: product.features,
+                                    status: product.status === 'Live' ? 'active' : product.status === 'Beta' ? 'beta' : 'coming-soon',
+                                    tags: [product.category || 'Business Tools']
+                                })}
+                                className="px-10 py-5 rounded-full font-black text-xs uppercase tracking-[0.3em] transition-all duration-500 shadow-2xl cursor-pointer bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20"
+                            >
+                                View Details
                             </button>
                         </div>
 
@@ -109,7 +152,20 @@ export default function ProductsFeatured() {
                             className={`lg:col-span-12 xl:col-span-7 relative ${product.reverse ? 'xl:order-1' : ''}`}
                         >
                             <div className={`absolute -inset-10 blur-[120px] rounded-full opacity-20 pointer-events-none transition-opacity duration-1000 ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
-                            <div className={`relative rounded-[3rem] overflow-hidden border shadow-2xl group cursor-crosshair transition-transform duration-700 hover:scale-[1.01] ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
+                            <div 
+                                onClick={() => setSelectedProduct({
+                                    id: product.id,
+                                    name: product.title,
+                                    description: product.desc || product.description,
+                                    category: product.category || 'Business Tools',
+                                    image: product.image,
+                                    alt: product.title,
+                                    features: product.features,
+                                    status: product.status === 'Live' ? 'active' : product.status === 'Beta' ? 'beta' : 'coming-soon',
+                                    tags: [product.category || 'Business Tools']
+                                })}
+                                className={`relative rounded-[3rem] overflow-hidden border shadow-2xl group cursor-pointer transition-transform duration-700 hover:scale-[1.01] ${isDark ? 'border-white/10' : 'border-slate-200'}`}
+                            >
                                 <img
                                     alt={product.title}
                                     className="w-full aspect-video object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -121,6 +177,13 @@ export default function ProductsFeatured() {
                     </div>
                 ))}
             </div>
+
+            {/* Product Detail Modal */}
+            <ProductDetailModal
+                product={selectedProduct}
+                isOpen={!!selectedProduct}
+                onClose={() => setSelectedProduct(null)}
+            />
         </section>
     );
 }

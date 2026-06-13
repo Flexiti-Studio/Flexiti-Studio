@@ -57,9 +57,9 @@ export default function LandingAbout() {
           className="rounded-[2.5rem] overflow-hidden h-[500px] shadow-2xl relative border border-slate-200 dark:border-white/10 w-full"
         >
           <img 
-            alt="Team Collaboration" 
+            alt="Built for Africans" 
             className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCylo7xjcBakczlNSBj5DqaYriS58VSiSFUJvkc7ji4-DngqOJvoUGdEuJ9MENA2ix6M85UtTeN5grXQ57x80fL4JEEx3a1nGYfZMFswruT1ULZTGrzC9dynSZNOHsdGCW75Z6FRg89TpvRmEcbnwpISb_Cv3fHcW_UbGaRo9KVuPSXtoqBilWIps8rrF759yLWPUnsLm6GXAXK7e4OW6HPbeOF29ijS6aj36AVnUwVSOK-NItqMnnAsZTG9fto--becXxdjYCNHKQY" 
+            src="/branding/built for africans.png" 
           />
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

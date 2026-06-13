@@ -16,11 +16,11 @@ export default function ServicesHero() {
     const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
     return (
-        <section className={`relative pt-64 pb-32 overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#07070a]' : 'bg-white'}`}>
+        <section className={`relative pt-64 pb-32 overflow-hidden transition-colors duration-500 ${isDark ? 'bg-[#030014]' : 'bg-white'}`}>
             
-            {/* 🌌 Atmospheric Sky-Blue & Indigo Ambient Backdrop Lights */}
-            <div className={`absolute top-[-10%] left-1/4 w-[60%] aspect-square rounded-full blur-[130px] opacity-15 pointer-events-none ${isDark ? 'bg-sky-500' : 'bg-sky-400'}`} />
-            <div className={`absolute top-[10%] right-1/4 w-[50%] aspect-square rounded-full blur-[120px] opacity-10 pointer-events-none ${isDark ? 'bg-indigo-500' : 'bg-indigo-400'}`} />
+            {/* 🌌 Atmospheric Indigo & Purple Ambient Backdrop Lights */}
+            <div className={`absolute top-[-10%] left-1/4 w-[60%] aspect-square rounded-full blur-[130px] opacity-15 pointer-events-none ${isDark ? 'bg-indigo-500' : 'bg-indigo-400'}`} />
+            <div className={`absolute top-[10%] right-1/4 w-[50%] aspect-square rounded-full blur-[120px] opacity-10 pointer-events-none ${isDark ? 'bg-purple-500' : 'bg-purple-400'}`} />
 
             <div className="max-w-7xl mx-auto px-8 relative z-10 text-center flex flex-col items-center">
                 <motion.div
@@ -31,8 +31,8 @@ export default function ServicesHero() {
                 >
                     <span className={`inline-block px-4 py-1.5 mb-8 rounded-full text-[10px] font-black uppercase tracking-[0.3em] border transition-colors ${
                         isDark 
-                            ? 'bg-sky-500/10 border-sky-500/20 text-sky-400' 
-                            : 'bg-sky-50 border-sky-100 text-sky-600'
+                            ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' 
+                            : 'bg-indigo-50 border-indigo-100 text-indigo-600'
                     }`}>
                         Full-Cycle Engineering
                     </span>
@@ -41,10 +41,10 @@ export default function ServicesHero() {
                         isDark ? 'text-white' : 'text-slate-900'
                     }`}>
                         BUILD SCALABLE <br />
-                        <span className="relative inline-block text-[#eef227] select-none">
+                        <span className="relative inline-block text-purple-600 dark:text-purple-400 select-none">
                             SYSTEMS
                             {/* Handdrawn curly underline accent SVG */}
-                            <span className="absolute bottom-[-10px] left-0 w-full pointer-events-none text-[#eef227]">
+                            <span className="absolute bottom-[-10px] left-0 w-full pointer-events-none text-purple-600 dark:text-purple-400">
                                 <svg viewBox="0 0 100 10" className="w-full h-3 fill-none stroke-current" strokeWidth="3" strokeLinecap="round">
                                     <path d="M5 5 C 20 8, 40 8, 60 5 C 75 3, 85 2, 95 6 C 80 5, 50 3, 20 6" />
                                 </svg>
@@ -93,6 +93,25 @@ export default function ServicesHero() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                         </svg>
                     </Link>
+                </motion.div>
+
+                {/* 💻 Interactive Dashboard Services Mockup */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="mt-20 w-full max-w-5xl relative group"
+                >
+                    {/* Ambient backlight glow */}
+                    <div className={`absolute -inset-4 rounded-[2.5rem] blur-3xl opacity-20 pointer-events-none transition-all duration-700 group-hover:opacity-35 ${isDark ? 'bg-purple-500' : 'bg-purple-400'}`} />
+                    
+                    <div className={`relative rounded-[2rem] overflow-hidden border p-3 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.01] ${isDark ? 'bg-zinc-900/40 border-white/10 shadow-purple-500/5' : 'bg-white border-slate-200'}`}>
+                        <img 
+                            src="/branding/dashboard services.png" 
+                            alt="Flexiti Studio Services Dashboard Preview" 
+                            className="w-full h-auto object-cover rounded-[1.5rem]" 
+                        />
+                    </div>
                 </motion.div>
             </div>
 

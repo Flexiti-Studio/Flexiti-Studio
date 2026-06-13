@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="bg-background transition-colors duration-300">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth bg-background transition-colors duration-300">
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0070f3" />

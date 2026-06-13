@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { PortfolioItem } from './types';
+import { categoryLabels } from './portfolio-data';
 
 interface PortfolioCardProps {
   item: PortfolioItem;
@@ -45,13 +46,13 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onViewCaseStudy }) 
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
         
         {/* Badges */}
-        <div className="absolute top-4 left-4 flex gap-2">
+        <div className="absolute top-4 left-4 flex gap-2 z-20">
           <span className={`px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border backdrop-blur-md transition-colors ${
             isDark 
               ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' 
               : 'bg-white/90 border-indigo-100 text-indigo-700'
           }`}>
-            {item.year}
+            {categoryLabels[item.category] || item.category}
           </span>
           <span className={`px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border backdrop-blur-md transition-colors ${
             isDark 
@@ -78,7 +79,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onViewCaseStudy }) 
           <span className={`text-[10px] font-bold uppercase tracking-[0.25em] transition-colors ${
             isDark ? 'text-indigo-400' : 'text-indigo-600'
           }`}>
-            {item.category}
+            {categoryLabels[item.category] || item.category}
           </span>
           <div className={`w-1 h-1 rounded-full ${isDark ? 'bg-white/10' : 'bg-slate-200'}`} />
           <span className={`text-[10px] font-bold uppercase tracking-[0.25em] transition-colors opacity-50 ${

@@ -1,16 +1,27 @@
 export interface PortfolioItem {
-  id: number;
+  id: string | number;
   title: string;
   description: string;
   category: PortfolioCategory;
   image: string;
-  alt: string;
+  alt?: string;
   tags: string[];
   caseStudyUrl?: string;
   year: number;
   client?: string;
-  status: "completed" | "in-progress" | "upcoming";
+  status: "completed" | "in-progress" | "upcoming" | "planned";
   type?: string;
+  industry?: string;
+  role?: string;
+  timeline?: string;
+  team?: string;
+  challenge?: string;
+  solution?: string;
+  result?: string;
+  images?: string[];
+  featured?: boolean;
+  showOnLanding?: boolean;
+  order?: number;
 }
 
 export type PortfolioCategory =

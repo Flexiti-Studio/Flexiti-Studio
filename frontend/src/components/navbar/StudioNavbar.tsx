@@ -59,6 +59,10 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
     const menuItems = navItems.filter(i => i.label !== 'Blog')
     const hasBlog = navItems.some(i => i.label === 'Blog')
 
+    if (pathname?.startsWith('/studio') || pathname?.startsWith('/admin')) {
+        return null
+    }
+
     return (
         <>
             {/* ── Sticky Navbar Bar ── */}

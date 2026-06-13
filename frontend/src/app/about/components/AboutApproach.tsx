@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
@@ -17,22 +17,28 @@ const steps = [
         num: '02',
         title: 'Scalable Architecture',
         desc: 'Our systems are designed to handle 10x growth from day one without breaking a sweat.',
-        color: "from-primary to-primary-light"
+        color: "from-indigo-500 to-purple-600"
     },
     {
         num: '03',
         title: 'Performance-Focused',
         desc: 'Clean code and optimized assets ensure your users never have to wait for a loading screen.',
-        color: "from-secondary to-secondary-light"
+        color: "from-pink-500 to-purple-500"
     },
 ]
 
 export default function AboutApproach() {
-    const { theme } = useTheme()
-    const isDark = theme === 'dark'
+    const { theme, resolvedTheme } = useTheme()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true
 
     return (
-        <section className={`py-40 ${isDark ? 'bg-black' : 'bg-white'} overflow-hidden`}>
+        <section className={`py-40 ${isDark ? 'bg-[#030014]' : 'bg-white'} overflow-hidden transition-colors duration-500`}>
             <div className="max-w-7xl mx-auto px-8">
                 <div className="grid lg:grid-cols-2 gap-24 items-center">
                     <motion.div
@@ -45,10 +51,10 @@ export default function AboutApproach() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className={`font-black text-5xl md:text-6xl ${isDark ? 'text-white' : 'text-black'} mb-16 tracking-tight`}
+                            className={`font-headline font-black text-4xl md:text-5xl ${isDark ? 'text-white' : 'text-slate-900'} mb-16 tracking-tight`}
                         >
                             The Flexiti <br />
-                            <span className="text-primary-light">Approach</span>
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Approach</span>
                         </motion.h2>
 
                         <div className="space-y-10">
@@ -67,11 +73,11 @@ export default function AboutApproach() {
                                         </div>
                                     </div>
                                     <div className="pt-2">
-                                        <h4 className={`font-bold text-2xl ${isDark ? 'text-white' : 'text-black'} mb-3 tracking-tight group-hover:text-primary-light transition-colors`}>
+                                        <h4 className={`font-headline font-bold text-2xl ${isDark ? 'text-white' : 'text-slate-900'} mb-3 tracking-tight group-hover:text-primary-light transition-colors`}>
                                             {step.title}
                                         </h4>
                                         <p className={`text-lg leading-relaxed ${
-                                            isDark ? 'text-white/50' : 'text-black/50'
+                                            isDark ? 'text-slate-400' : 'text-slate-600'
                                         } font-medium`}>
                                             {step.desc}
                                         </p>
@@ -92,7 +98,7 @@ export default function AboutApproach() {
                         <div className="absolute inset-0 bg-primary/20 rounded-[3rem] blur-3xl opacity-30 animate-pulse" />
                         
                         <div className={`relative rounded-[3rem] p-4 border backdrop-blur-3xl overflow-hidden shadow-2xl ${
-                            isDark ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
+                            isDark ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-slate-100 border-slate-200'
                         }`}>
                             <Image
                                 src="/images/about/process.png"

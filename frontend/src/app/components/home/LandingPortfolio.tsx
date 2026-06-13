@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { PortfolioItem } from '../../portfolio/components/types';
 
-const projects = [
+interface LandingPortfolioProps {
+  projects?: PortfolioItem[];
+}
+
+const staticLandingProjects = [
   {
     title: "Quantum Analytics",
     category: "SaaS • Fintech",
@@ -22,7 +27,7 @@ const projects = [
   }
 ];
 
-export default function LandingPortfolio() {
+export default function LandingPortfolio({ projects = [] }: LandingPortfolioProps) {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -31,6 +36,60 @@ export default function LandingPortfolio() {
   }, []);
 
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
+
+  // Select exactly one web project and one mobile project if available
+  const webProject = projects.find(p => p.category !== 'mobile');
+  const mobileProject = projects.find(p => p.category === 'mobile');
+
+  const selectedProjects: PortfolioItem[] = [];
+  if (webProject) selectedProjects.push(webProject);
+  if (mobileProject) selectedProjects.push(mobileProject);
+
+  // Fallback: fill up to 2 items if needed
+  if (selectedProjects.length < 2 && projects.length > 0) {
+    projects.forEach(p => {
+      if (!selectedProjects.some(sp => sp.id === p.id) && selectedProjects.length < 2) {
+        selectedProjects.push(p);
+      }
+    });
+  }
+
+  // Process and format projects
+  const displayProjects = selectedProjects.length > 0 ? selectedProjects.map((project, idx) => {
+    // Dynamic layout spans: alternating patterns (8-4, 4-8)
+    let span = "md:col-span-6";
+    const mod = idx % 4;
+    if (mod === 0) span = "md:col-span-8";
+    else if (mod === 1) span = "md:col-span-4";
+    else if (mod === 2) span = "md:col-span-4";
+    else if (mod === 3) span = "md:col-span-8";
+
+    // Categories list formatting
+    let categoriesList: string[] = [];
+    if (project.tags && project.tags.length > 0) {
+      categoriesList = project.tags.slice(0, 2);
+    } else if (project.category) {
+      categoriesList = [project.category];
+    } else {
+      categoriesList = ["Platform"];
+    }
+
+    return {
+      id: project.id,
+      title: project.title,
+      description: project.description,
+      image: project.image,
+      categories: categoriesList,
+      span
+    };
+  }) : staticLandingProjects.map((proj) => ({
+    id: proj.title,
+    title: proj.title,
+    description: proj.description,
+    image: proj.image,
+    categories: proj.category.split('•').map(c => c.trim()),
+    span: proj.span
+  }));
 
   return (
     <section className="py-24 bg-slate-50 dark:bg-[#030014] transition-colors duration-500" id="portfolio">
@@ -77,9 +136,9 @@ export default function LandingPortfolio() {
 
         {/* Portfolio grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          {projects.map((project, idx) => (
+          {displayProjects.map((project, idx) => (
             <motion.div 
-              key={idx}
+              key={project.id || idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -90,44 +149,46 @@ export default function LandingPortfolio() {
                   : 'bg-white border-slate-200 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-xl hover:shadow-indigo-500/5'
               }`}
             >
-              <img 
-                alt={project.title} 
-                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" 
-                src={project.image}
-              />
-              
-              {/* Premium Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
-              
-              <div className="absolute inset-0 p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="flex gap-3 mb-6">
-                  {project.category.split('•').map((cat, i) => (
-                    <span 
-                      key={i} 
-                      className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em]"
-                    >
-                      {cat.trim()}
-                    </span>
-                  ))}
-                </div>
+              <Link href="/portfolio" className="absolute inset-0 z-25 block">
+                <img 
+                  alt={project.title} 
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" 
+                  src={project.image}
+                />
                 
-                <h3 className="text-white text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
-                  {project.title}
-                </h3>
+                {/* Premium Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
                 
-                <p className="text-white/60 font-medium max-w-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-2">
-                  {project.description}
-                </p>
-                
-                <div className="mt-8 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 group-hover:mt-6">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all">
-                    {/* SVG arrow outward */}
-                    <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                    </svg>
+                <div className="absolute inset-0 p-10 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-30">
+                  <div className="flex gap-3 mb-6">
+                    {project.categories.map((cat, i) => (
+                      <span 
+                        key={i} 
+                        className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.25em]"
+                      >
+                        {cat}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 className="text-white text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-white/60 font-medium max-w-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-2">
+                    {project.description}
+                  </p>
+                  
+                  <div className="mt-8 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 group-hover:mt-6">
+                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-all">
+                      {/* SVG arrow outward */}
+                      <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
