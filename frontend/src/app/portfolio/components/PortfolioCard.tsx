@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { PortfolioItem } from './types';
@@ -36,10 +37,12 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onViewCaseStudy }) 
     >
       {/* Image Section */}
       <div className="relative aspect-[16/10] overflow-hidden">
-        <img
-          src={item.image}
+        <Image
+          src={item.image || ''}
           alt={item.title}
-          className="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105"
+          fill
+          sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
         
         {/* Overlays */}

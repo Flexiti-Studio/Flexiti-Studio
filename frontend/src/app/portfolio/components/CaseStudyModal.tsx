@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import { PortfolioItem } from './types';
 import { categoryLabels } from './portfolio-data';
 
@@ -107,10 +108,12 @@ const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ item, isOpen, onClose }
                             {/* Gallery Slider */}
                             {galleryImages.length > 0 && (
                                 <div className="relative aspect-video rounded-[2rem] overflow-hidden mb-16 shadow-2xl group border border-white/5 bg-black/20">
-                                    <img 
-                                        src={galleryImages[activeImageIndex]} 
+                                    <Image 
+                                        src={galleryImages[activeImageIndex] || ''} 
                                         alt={`${item.title} - image ${activeImageIndex + 1}`} 
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-102" 
+                                        fill
+                                        sizes="(max-w-1024px) 100vw, 80vw"
+                                        className="object-cover transition-transform duration-1000 group-hover:scale-102" 
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                                     

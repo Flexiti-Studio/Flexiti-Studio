@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const reasons = [
     {
@@ -135,11 +136,14 @@ export default function ServicesWhyUs() {
                                     ? 'bg-white/5 border-white/10' 
                                     : 'bg-white border-slate-200 shadow-xl'
                             }`}>
-                                <img
-                                    className="h-full w-full object-cover rounded-[2rem] opacity-90 transition-transform duration-[1200ms] hover:scale-103"
-                                    alt="Modern architectural space"
-                                    src="/branding/office services.png"
-                                />
+                                <div className="relative h-full w-full rounded-[2rem] overflow-hidden">
+                                    <Image
+                                        className="object-cover opacity-90 transition-transform duration-[1200ms] hover:scale-103"
+                                        alt="Modern architectural space"
+                                        src="/branding/office services.png"
+                                        fill
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

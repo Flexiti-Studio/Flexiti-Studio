@@ -246,7 +246,22 @@
       "command": "git commit -m \"updated data 2\"",
       "timestamp": 1782571783881,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git add .",
+      "timestamp": 1782572053438,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git commit -m \"updated data 3\"",
+      "timestamp": 1782572060012,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git push origin",
+      "timestamp": 1782572068861,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
     }
   ],
-  "lastUpdated": 1782571783881
+  "lastUpdated": 1782572068861
 }

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Product } from './types';
 import ProductDetailModal from './ProductDetailModal';
 
@@ -139,11 +140,13 @@ export default function ProductsGrid({ products = [], activeCategory }: Products
                                 })}
                                 className={`group h-full flex flex-col rounded-[2.5rem] border transition-all duration-500 hover:scale-[1.02] cursor-pointer ${isDark ? 'bg-zinc-900 border-white/5 hover:border-blue-500/30 shadow-2xl shadow-white/5' : 'bg-slate-50 border-slate-200 hover:border-blue-500/30 shadow-xl shadow-slate-100'}`}
                             >
-                                <div className="aspect-[1.2] overflow-hidden rounded-t-[2.5rem]">
-                                    <img
+                                <div className="relative aspect-[1.2] overflow-hidden rounded-t-[2.5rem]">
+                                    <Image
                                         alt={product.title}
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                        src={product.image}
+                                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                        src={product.image || ''}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                     />
                                 </div>
                                 <div className="p-8 flex flex-col flex-grow space-y-6">

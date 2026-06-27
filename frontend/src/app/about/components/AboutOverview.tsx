@@ -34,8 +34,8 @@ export default function AboutOverview() {
                         viewport={{ once: true }}
                         className={`font-headline font-black text-4xl md:text-5xl ${isDark ? 'text-white' : 'text-slate-900'} mb-12 tracking-tight`}
                     >
-                        Engineering <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">The Future</span>
+                        Who is <br />
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Flexiti Studio?</span>
                     </motion.h2>
                     
                     <motion.p 
@@ -46,7 +46,7 @@ export default function AboutOverview() {
                             isDark ? 'text-slate-400' : 'text-slate-600'
                         } font-medium tracking-tight`}
                     >
-                        Flexiti Studio is a premier tech powerhouse dedicated to building web, mobile, SaaS, and complex digital systems for ambitious startups and established businesses. We operate at the intersection of performance and elegance, ensuring every line of code serves a strategic purpose. Our philosophy is rooted in the belief that technology should be an invisible enabler—powerful, seamless, and infinitely scalable.
+                        <strong>Flexiti Studio is a premier software engineering and digital product studio.</strong> We specialize in building custom Next.js web applications, React Native mobile apps, SaaS platforms, and AI-powered systems for ambitious startups and established businesses. We operate at the intersection of performance and elegance, ensuring every line of code serves a strategic purpose.
                     </motion.p>
                 </motion.div>
             </div>

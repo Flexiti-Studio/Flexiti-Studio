@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const stats = [
     { value: '99.9%', label: 'Uptime Guarantee' },
@@ -73,10 +74,12 @@ export default function ProductsScalability() {
                         >
                             <div className={`absolute -inset-10 blur-[100px] rounded-full opacity-20 pointer-events-none ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
                             <div className={`relative rounded-[2.5rem] overflow-hidden border shadow-2xl transition-transform duration-700 hover:rotate-1 ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
-                                <img
+                                <Image
                                     alt="Code Scalability"
                                     className="w-full aspect-square object-cover opacity-80"
                                     src="/branding/office services.png"
+                                    width={800}
+                                    height={800}
                                 />
                             </div>
                         </motion.div>

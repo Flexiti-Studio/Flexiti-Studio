@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { PortfolioItem } from './types';
 import { categoryLabels, staticFeaturedItems } from './portfolio-data';
 
@@ -227,10 +228,12 @@ function FeaturedProjectCard({ project, index, isDark, onViewCaseStudy }: Featur
           }`}
         >
           <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
-            <img 
-              src={project.image} 
+            <Image 
+              src={project.image || ''} 
               alt={project.title} 
-              className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" 
+              fill
+              sizes="(max-w-768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             

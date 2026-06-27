@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Article } from './types';
 
 interface ArticleCardProps {
@@ -38,10 +39,12 @@ export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
                     
                     {/* Image Section aspect-[16/10] */}
                     <div className="relative aspect-[16/10] overflow-hidden rounded-t-[2rem] border-b border-slate-100 dark:border-white/5">
-                        <img
-                            src={article.image}
-                            alt={article.title}
-                            className="w-full h-full object-cover transition-transform duration-[1000ms] group-hover:scale-102"
+                        <Image
+                            src={article.image || '/default-article.jpg'}
+                            alt={article.title || 'Article Image'}
+                            fill
+                            sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-[1000ms] group-hover:scale-102"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
 
@@ -80,10 +83,12 @@ export default function ArticleCard({ article, index = 0 }: ArticleCardProps) {
                             <div className="flex items-center gap-3">
                                 {article.author.avatar ? (
                                     <div className="relative w-6 h-6 rounded-full overflow-hidden border border-slate-200 dark:border-white/10 shrink-0">
-                                        <img
-                                            src={article.author.avatar}
-                                            alt={article.author.name}
-                                            className="w-full h-full object-cover"
+                                        <Image
+                                            src={article.author.avatar || '/default-avatar.jpg'}
+                                            alt={article.author.name || 'Author Avatar'}
+                                            fill
+                                            sizes="24px"
+                                            className="object-cover"
                                         />
                                     </div>
                                 ) : (

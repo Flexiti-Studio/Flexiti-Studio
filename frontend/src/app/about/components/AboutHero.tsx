@@ -78,7 +78,7 @@ export default function AboutHero() {
                             isDark ? 'text-white/60' : 'text-black/60'
                         } leading-relaxed max-w-xl mb-12 font-medium`}
                     >
-                        We build flexible, scalable, and impactful digital solutions for modern businesses. From concept to code, we craft the systems that define tomorrow.
+                        Flexiti Studio is a full-stack Next.js and React Native development agency. From concept to scalable code, we craft high-performance systems that define tomorrow's digital landscape.
                     </motion.p>
 
                     <motion.div 

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
@@ -150,10 +151,12 @@ export default function LandingPortfolio({ projects = [] }: LandingPortfolioProp
               }`}
             >
               <Link href="/portfolio" className="absolute inset-0 z-25 block">
-                <img 
+                <Image 
                   alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" 
-                  src={project.image}
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-1000 ease-out" 
+                  src={project.image || ''}
+                  fill
+                  sizes="(max-w-768px) 100vw, 50vw"
                 />
                 
                 {/* Premium Gradient Overlay */}

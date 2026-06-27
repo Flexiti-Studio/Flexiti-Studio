@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ServicesHero() {
     const { theme, resolvedTheme } = useTheme();
@@ -106,10 +107,12 @@ export default function ServicesHero() {
                     <div className={`absolute -inset-4 rounded-[2.5rem] blur-3xl opacity-20 pointer-events-none transition-all duration-700 group-hover:opacity-35 ${isDark ? 'bg-purple-500' : 'bg-purple-400'}`} />
                     
                     <div className={`relative rounded-[2rem] overflow-hidden border p-3 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.01] ${isDark ? 'bg-zinc-900/40 border-white/10 shadow-purple-500/5' : 'bg-white border-slate-200'}`}>
-                        <img 
+                        <Image 
                             src="/branding/dashboard services.png" 
                             alt="Flexiti Studio Services Dashboard Preview" 
                             className="w-full h-auto object-cover rounded-[1.5rem]" 
+                            width={1200}
+                            height={800}
                         />
                     </div>
                 </motion.div>

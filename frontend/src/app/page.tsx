@@ -9,7 +9,15 @@ import LandingAbout from "./components/home/LandingAbout";
 import LandingCTA from "./components/home/LandingCTA";
 import client from "@/sanity/client";
 
+import { Metadata } from "next";
+
 export const revalidate = 60; // Revalidate landing page cache every 60 seconds
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default async function Home() {
   let landingProjects = [];

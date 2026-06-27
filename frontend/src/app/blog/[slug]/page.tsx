@@ -53,6 +53,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: article.description,
       images: [article.featuredImage || ''],
     },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
   }
 }
 
@@ -69,8 +72,38 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    image: article.featuredImage ? [article.featuredImage] : [],
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt, // Update this if you have an updated date from Sanity
+    author: [{
+      '@type': 'Person',
+      name: article.author.name,
+      // Provide a fallback URL if the author doesn't have one
+      url: 'https://flexitistudio.com/about'
+    }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Flexiti Studio',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://flexitistudio.com/flexiti-logo.png'
+      }
+    }
+  }
+
   return (
     <main className="min-h-screen bg-background-light dark:bg-background-dark">
+      {/* Inject JSON-LD Article Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      
       {/* Article Header */}
       <ArticleHeader article={article} />
 

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const features = [
   { 
@@ -56,10 +57,12 @@ export default function LandingAbout() {
           transition={{ duration: 0.8 }}
           className="rounded-[2.5rem] overflow-hidden h-[500px] shadow-2xl relative border border-slate-200 dark:border-white/10 w-full"
         >
-          <img 
+          <Image 
             alt="Built for Africans" 
-            className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000" 
+            className="object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-1000" 
             src="/branding/built for africans.png" 
+            fill
+            sizes="(max-w-1024px) 100vw, 50vw"
           />
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

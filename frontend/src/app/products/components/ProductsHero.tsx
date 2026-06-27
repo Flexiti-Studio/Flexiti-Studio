@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ProductsHero() {
     const { theme, resolvedTheme } = useTheme();
@@ -83,10 +84,12 @@ export default function ProductsHero() {
                         className="lg:col-span-12 xl:col-span-6 relative perspective-1000"
                     >
                         <div className={`relative rounded-[3rem] overflow-hidden border shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-transform duration-700 hover:rotate-1 hover:scale-[1.02] ${isDark ? 'border-white/10' : 'border-slate-200'}`}>
-                            <img
+                            <Image
                                 alt="Modern SaaS Dashboard Interface"
                                 className="w-full aspect-square object-cover"
                                 src="/branding/dashboard services.png"
+                                width={800}
+                                height={800}
                             />
                         </div>
                         

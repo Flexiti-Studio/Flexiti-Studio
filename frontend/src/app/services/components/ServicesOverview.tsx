@@ -11,8 +11,8 @@ const services = [
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
         ),
-        title: 'Web App Dev',
-        description: 'High-performance React and Next.js applications optimized for speed, SEO, and seamless user interaction.',
+        title: 'Web App Development',
+        description: 'We build high-performance React and Next.js applications optimized for speed, Search Engine Optimization (SEO), and Answer Engine Optimization (AEO).',
     },
     {
         icon: (
@@ -21,8 +21,8 @@ const services = [
                 <path d="M12 18h.01" />
             </svg>
         ),
-        title: 'Mobile App Dev',
-        description: 'Native-feel cross-platform apps built with Flutter or React Native for iOS and Android deployment.',
+        title: 'Mobile App Development',
+        description: 'We create native-feel, cross-platform mobile applications using React Native and Flutter for iOS and Android deployment.',
     },
     {
         icon: (
@@ -91,9 +91,9 @@ export default function ServicesOverview() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className={`text-5xl md:text-7xl font-black font-headline leading-none tracking-tighter mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}
+                        className={`text-5xl md:text-6xl font-black font-headline leading-tight tracking-tighter mb-6 ${isDark ? 'text-white' : 'text-slate-900'}`}
                     >
-                        CORE <br /> COMPETENCIES
+                        What does Flexiti Studio do?
                     </motion.h2>
                     
                     <motion.p 
@@ -101,9 +101,9 @@ export default function ServicesOverview() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className={`max-w-xl text-lg font-medium leading-relaxed ${isDark ? 'text-slate-500' : 'text-slate-500'}`}
+                        className={`max-w-2xl text-lg font-medium leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}
                     >
-                        We bridge the gap between complex engineering and elegant user experiences across the entire digital landscape.
+                        <strong>Flexiti Studio is a full-stack digital agency and software engineering firm.</strong> We specialize in building scalable web applications, mobile apps, multi-tenant SaaS platforms, and custom AI automations for modern businesses.
                     </motion.p>
                 </div>
 

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Article {
   slug?: string;
@@ -52,10 +53,13 @@ export default function BlogFeaturedStory({ article, trendingStories }: BlogFeat
         >
           <Link href={article.slug ? `/blog/${article.slug}` : '#'} className="block">
             <div className="relative aspect-[16/10] w-full rounded-[2rem] overflow-hidden bg-slate-100 dark:bg-zinc-900 border border-slate-100 dark:border-white/5">
-              <img
+              <Image
                 alt={article.title || 'Featured Article'}
-                className="w-full h-full object-cover transition-transform duration-[1000ms] group-hover:scale-102"
+                className="object-cover transition-transform duration-[1000ms] group-hover:scale-102"
                 src={article.image || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80'}
+                fill
+                sizes="(max-w-1024px) 100vw, 60vw"
+                priority
               />
               {/* Premium dark gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />

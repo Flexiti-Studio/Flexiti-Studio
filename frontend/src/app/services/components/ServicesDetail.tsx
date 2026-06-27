@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const details = [
     {
@@ -80,10 +81,12 @@ export default function ServicesDetail() {
                                     ? 'bg-white/5 border-white/10 shadow-black/40' 
                                     : 'bg-white border-slate-200 shadow-slate-200/20'
                             }`}>
-                                <img
+                                <Image
                                     className="relative rounded-[2rem] w-full transition-transform duration-1000 group-hover:scale-105"
                                     alt="Modern engineering dashboard interface"
                                     src="/branding/dashboard services.png"
+                                    width={800}
+                                    height={800}
                                 />
                             </div>
                         </div>
