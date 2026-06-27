@@ -211,7 +211,32 @@
       "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_d6lqsg.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_d6lqsg.ps1\" -ErrorAction SilentlyContinue",
       "timestamp": 1781600641791,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git push origin",
+      "timestamp": 1782570916040,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_wh0s59.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_wh0s59.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1782570930333,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "curl https://www.flexitistudio.com/sitemap.xml",
+      "timestamp": 1782571243952,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_ww88mq.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_ww88mq.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1782571252439,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "curl https://www.flexitistudio.com/sitemap.xml",
+      "timestamp": 1782571332945,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
     }
   ],
-  "lastUpdated": 1781600641791
+  "lastUpdated": 1782571332946
 }

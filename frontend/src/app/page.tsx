@@ -45,8 +45,27 @@ export default async function Home() {
     console.error("Failed to fetch landing projects from Sanity:", error);
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    'name': 'Flexiti Studio',
+    'url': 'https://flexitistudio.com',
+    // 👇 Ensure this points to your exact, absolute logo file path
+    'logo': 'https://flexitistudio.com/flexiti-logo.png', 
+    'sameAs': [
+      'https://www.instagram.com/flexitistudio',
+      'https://twitter.com/flexitistudio',
+      'https://www.linkedin.com/company/flexitistudio'
+    ]
+  };
+
   return (
     <main className="min-h-screen">
+      {/* Inject JSON-LD Federation Search/Knowledge graph Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div>
         <LandingHero />
         <LandingSocialProof />
