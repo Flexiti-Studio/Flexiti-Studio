@@ -236,7 +236,17 @@
       "command": "curl https://www.flexitistudio.com/sitemap.xml",
       "timestamp": 1782571332945,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git add .",
+      "timestamp": 1782571761804,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git commit -m \"updated data 2\"",
+      "timestamp": 1782571783881,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
     }
   ],
-  "lastUpdated": 1782571332946
+  "lastUpdated": 1782571783881
 }
