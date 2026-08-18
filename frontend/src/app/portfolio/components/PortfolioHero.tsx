@@ -23,7 +23,7 @@ export default function PortfolioHero() {
         className={`absolute top-[-20%] sm:top-[-30%] md:top-[-45%] left-1/2 -translate-x-1/2 w-[160%] md:w-[110%] aspect-square rounded-full pointer-events-none transition-all duration-1000 ${
           isDark 
             ? 'bg-gradient-to-b from-[#7c3aed]/40 via-[#4f46e5]/8 to-transparent blur-[80px] md:blur-[140px]' 
-            : 'bg-gradient-to-b from-indigo-500/10 via-purple-300/5 to-transparent blur-[60px] md:blur-[100px]'
+            : 'bg-gradient-to-b from-blue-500/10 via-blue-300/5 to-transparent blur-[60px] md:blur-[100px]'
         }`} 
       />
 
@@ -51,7 +51,7 @@ export default function PortfolioHero() {
           animate={{ opacity: 1, scale: 1 }}
           className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 border backdrop-blur-sm transition-colors ${
             isDark 
-              ? 'bg-[#7c3aed]/10 text-purple-400 border-purple-500/20' 
+              ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
               : 'bg-indigo-50 text-indigo-600 border-indigo-100'
           }`}
         >
@@ -67,7 +67,7 @@ export default function PortfolioHero() {
           className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight leading-[1.05] text-slate-900 dark:text-white max-w-4xl mx-auto uppercase mb-10"
         >
           OUR <br />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-500">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-400 dark:from-blue-400 dark:via-indigo-400 dark:to-blue-300">
             WORK
           </span>
         </motion.h1>
@@ -94,7 +94,7 @@ export default function PortfolioHero() {
         >
           <Link 
             href="/contact"
-            className="inline-flex items-center gap-3 px-10 py-5 rounded-full font-bold text-xs uppercase tracking-widest transition-all bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_25px_rgba(99,102,241,0.4)]"
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-full font-bold text-xs uppercase tracking-widest transition-all bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]"
           >
             Start a Project
             {/* Inline SVG calendar icon replacing legacy material-symbols */}

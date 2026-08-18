@@ -14,7 +14,7 @@ export default function LandingSocialProof() {
 
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
-  const brands = ['Qefas', 'Selfpaced-Tracker', 'School Hub', 'NicxBlog', 'Rotary'];
+  const brands = ['Qefas', 'Selfpaced-Tracker', 'Qefas Hub', 'Flexiti Academe', 'Rotary'];
 
   return (
     <div className="relative z-20 max-w-5xl mx-auto px-6 md:px-8 -mt-10 md:-mt-16 w-full">
@@ -30,10 +30,10 @@ export default function LandingSocialProof() {
           <div className="space-y-0.5">
             <div className="text-amber-500 dark:text-[#fbbf24] text-xs tracking-wider font-bold">★★★★★</div>
             <div className={`text-lg md:text-xl font-black transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              1,200+
+              25+
             </div>
             <div className={`text-[8px] font-extrabold uppercase tracking-widest ${isDark ? 'text-white/30' : 'text-slate-400'}`}>
-              Rated 4.9/5 by founders
+              Projects Built • Rated 4.9/5
             </div>
           </div>
         </div>

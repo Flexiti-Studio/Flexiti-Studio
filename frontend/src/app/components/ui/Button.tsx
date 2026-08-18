@@ -43,7 +43,7 @@ const Button: React.FC<ButtonProps> = ({
         white: 'bg-surface-container-lowest text-on-surface shadow-lg hover:bg-surface-container-low hover:scale-105 transition-transform',
         glass: 'bg-white/5 backdrop-blur-md border border-white/10 text-on-surface hover:bg-white/10 transition-colors',
         outline: 'border-2 border-primary text-primary hover:bg-primary/10 transition-colors',
-        gradient: 'bg-gradient-to-r from-primary to-purple-600 text-on-primary shadow-lg hover:shadow-xl transition-all hover:scale-105'
+        gradient: 'bg-gradient-to-r from-blue-600 to-indigo-600 text-on-primary shadow-lg hover:shadow-xl transition-all hover:scale-105'
     }
 
     // Disabled state

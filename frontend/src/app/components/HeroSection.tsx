@@ -55,7 +55,7 @@ const HeroSection: React.FC = () => {
             />
 
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-purple-900/40" />
+            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-blue-900/40" />
 
             {/* Animated grid */}
             <div

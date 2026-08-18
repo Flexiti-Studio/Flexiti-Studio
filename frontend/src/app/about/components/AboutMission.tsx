@@ -21,7 +21,7 @@ export default function AboutMission() {
             title: "Our Mission",
             desc: "To build flexible, scalable, and impactful digital solutions that empower businesses to solve complex problems and thrive in a digital-first economy.",
             gradient: "from-[#7c3aed]/20 via-[#4f46e5]/5 to-transparent",
-            iconColor: "text-purple-400"
+            iconColor: "text-blue-400"
         },
         {
             icon: Eye,

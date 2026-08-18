@@ -21,7 +21,7 @@ export default function ServicesHero() {
             
             {/* 🌌 Atmospheric Indigo & Purple Ambient Backdrop Lights */}
             <div className={`absolute top-[-10%] left-1/4 w-[60%] aspect-square rounded-full blur-[130px] opacity-15 pointer-events-none ${isDark ? 'bg-indigo-500' : 'bg-indigo-400'}`} />
-            <div className={`absolute top-[10%] right-1/4 w-[50%] aspect-square rounded-full blur-[120px] opacity-10 pointer-events-none ${isDark ? 'bg-purple-500' : 'bg-purple-400'}`} />
+            <div className={`absolute top-[10%] right-1/4 w-[50%] aspect-square rounded-full blur-[120px] opacity-10 pointer-events-none ${isDark ? 'bg-blue-500' : 'bg-blue-400'}`} />
 
             <div className="max-w-7xl mx-auto px-8 relative z-10 text-center flex flex-col items-center">
                 <motion.div
@@ -42,10 +42,10 @@ export default function ServicesHero() {
                         isDark ? 'text-white' : 'text-slate-900'
                     }`}>
                         BUILD SCALABLE <br />
-                        <span className="relative inline-block text-purple-600 dark:text-purple-400 select-none">
+                        <span className="relative inline-block text-blue-600 dark:text-blue-400 select-none">
                             SYSTEMS
                             {/* Handdrawn curly underline accent SVG */}
-                            <span className="absolute bottom-[-10px] left-0 w-full pointer-events-none text-purple-600 dark:text-purple-400">
+                            <span className="absolute bottom-[-10px] left-0 w-full pointer-events-none text-blue-600 dark:text-blue-400">
                                 <svg viewBox="0 0 100 10" className="w-full h-3 fill-none stroke-current" strokeWidth="3" strokeLinecap="round">
                                     <path d="M5 5 C 20 8, 40 8, 60 5 C 75 3, 85 2, 95 6 C 80 5, 50 3, 20 6" />
                                 </svg>
@@ -104,9 +104,9 @@ export default function ServicesHero() {
                     className="mt-20 w-full max-w-5xl relative group"
                 >
                     {/* Ambient backlight glow */}
-                    <div className={`absolute -inset-4 rounded-[2.5rem] blur-3xl opacity-20 pointer-events-none transition-all duration-700 group-hover:opacity-35 ${isDark ? 'bg-purple-500' : 'bg-purple-400'}`} />
+                    <div className={`absolute -inset-4 rounded-[2.5rem] blur-3xl opacity-20 pointer-events-none transition-all duration-700 group-hover:opacity-35 ${isDark ? 'bg-blue-500' : 'bg-blue-400'}`} />
                     
-                    <div className={`relative rounded-[2rem] overflow-hidden border p-3 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.01] ${isDark ? 'bg-zinc-900/40 border-white/10 shadow-purple-500/5' : 'bg-white border-slate-200'}`}>
+                    <div className={`relative rounded-[2rem] overflow-hidden border p-3 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.01] ${isDark ? 'bg-zinc-900/40 border-white/10 shadow-blue-500/5' : 'bg-white border-slate-200'}`}>
                         <Image 
                             src="/branding/dashboard services.png" 
                             alt="Flexiti Studio Services Dashboard Preview" 

@@ -48,8 +48,8 @@ export default function LandingCTA() {
           {/* Badge */}
           <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase mb-8 border transition-colors ${
             isDark 
-              ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
-              : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+              ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
+              : 'bg-blue-50 text-blue-600 border-blue-100'
           }`}>
             Ready to scale?
           </span>
@@ -68,8 +68,8 @@ export default function LandingCTA() {
               href="/contact"
               className={`
                 px-10 py-5 rounded-full text-lg font-bold transition-all active:scale-[0.98]
-                bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white
-                shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_25px_rgba(99,102,241,0.4)]
+                bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white
+                shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]
               `}
             >
               Start a Project

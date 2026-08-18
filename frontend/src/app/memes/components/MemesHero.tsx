@@ -5,10 +5,10 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 const heroImages = [
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuB4xKoZYGjCX8j7onsz9rahmpcfXnpzT9dXszHAfWy5mn_1aCmXNAYa0SVHGHuuEAzonTHbbofVU9_XpEIkm0zYwcuTtqhLhwt71fxPwvPnJ7Lc94M41B0H5o1cq2_ciI7HMV4dg2oEdXiRuMNpTZwP1tpR6XixqbAMbjbYTDgLFyBNJDVfKAmIwv9lbKN4UUO6qBys9nAKZYEG5iF1fhplM_mr5rsVf6_7SM9Jzhn5RVc4Hd4yGfEbK6QekVuYPC3NSFuhzNmZA9YF",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAOtq0Zby2BVGjZQIZnW0OfJK0CcjBuaiUD_gvrYFS8-sYy9vorL-bD4uI-AyF0--Y8y7P_tq8PM_HRI1g6VP5yu7rVHvgL8B7AB71sgLOTexuI2h1YG4PyjvN-AKsgbhPFrDZs-YBVerV9oAZedNqzT1x4moHkJy2TDvA9G17ZaM_AhCiMp9UHWdW4cB3tR2MpoVF493edSlx4pOL_dUzdsTDiqndPUm3SxRmGnIHsRrxI7v2qrxM3VQnws9b9z_EX1s9plZtj7kIr",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDpLFY7BRK356CHX4ouF7bLFgcs1KuV8mRZASxtdC2Ys0agjwymt_DZIPhZ4wT6Q3f02RiX0JacdSHvrCeBPxJJMB2JG0-1M9ph6vc8fasNUD7ETesASvEd15RAn_8btm8zZVSW2d8T09dDao63uvCfgeCX0vb8AEos22GTTJsgfLER8CzzOj1GZt7_hZOYZVSJ-HC48Yu4UX4auIq9q48zC2ghegnVv3_2kUUgUypI4CKpmia1eFWvwWlks2vJQOX-WAkobWu6xMhE",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBNLg0Re5Bndu_6V1B7nVotLmIKkrn1ynM7W1tClVlhVeeQw0NhkLDFR1WURmsrR8x1uyHToFWEnDpT9w7gD4Uw5rb9qbrKSr5Pr-RWC0HHebh-eRKYljrqqLYbnkNJ6w27s1HW_qvmr8qb_iHCCRSAL9ZIu3EUfVhrX2SqiTviXtoExq5YgNVjaoshneDyyFoUtYt0MXa3w7gQRsfj-d9O49zFeeZ5Pv9LrB2YxOEomdvGyi-CwEzquH-OT-bOfUEqRTiYj7ex562j"
+  "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80"
 ];
 
 export default function MemesHero() {

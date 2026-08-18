@@ -16,14 +16,14 @@ const staticLandingProjects = [
     title: "Quantum Analytics",
     category: "SaaS • Fintech",
     description: "Next-gen financial data processing platform with real-time AI insights.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvqrjzbfaD7g80f3gufB-4UolEs7ElOP-hdmb-YNE2u5hQOZRScflJot2h448P49CEJYSOrK8f3mdMZR1Gz874Vbqf1LgVeqG5cGliwAvvLt4OfIq6y7ghCxH1K5VsBvKz3G3TOLu-kqdBm0aXYuUUZVaCorRSXZNntqiMMQ6oBBnLWH1IbolH7hoPG_tB3nwpyU4frEcP9nixSyvKaJ1DMISuhOwxQPIYvYfYhraFwoW4FZ0Bu1TCyv7G-dibbKsJmpIawvNx8ypc",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     span: "md:col-span-8"
   },
   {
     title: "Voda Health",
     category: "Mobile • Health",
     description: "Transforming telemedicine for emerging markets.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgKnlK96GaljKKsaCRy5aGD8xi0kL2a3IUnRV7uoULVPuhWs1mpsYhNZQxuLWdKRW4DzbU8c8rzzfukgli5fiNvHX_zJvG-6QG2elKDXtGhqwF4e4eIsUqsR8A4ODKJOcH_1aJVaqOMLKWVeptXJ4xsRqERh_NSJrerck6zhVJdEi2UFXNSzGyeyKx_w8NAR5h14qCoM0g83LoqmNpqdxopDXzS5njj_wwe1bqOi_ySx66ESOuZaSp7vevWfSGtV1tzZ5oIKIDnm9r",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
     span: "md:col-span-4"
   }
 ];
@@ -105,8 +105,8 @@ export default function LandingPortfolio({ projects = [] }: LandingPortfolioProp
           >
             <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase border transition-colors ${
               isDark 
-                ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
-                : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+                ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
+                : 'bg-blue-50 text-blue-600 border-blue-100'
             }`}>
               Selected Work
             </span>

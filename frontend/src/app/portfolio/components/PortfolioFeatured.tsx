@@ -52,6 +52,14 @@ interface FeaturedProjectCardProps {
 
 function FeaturedProjectCard({ project, index, isDark, onViewCaseStudy }: FeaturedProjectCardProps) {
   const [activeTab, setActiveTab] = useState<'challenge' | 'solution' | 'result'>('challenge');
+  const defaultFallback = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80";
+  const [imgSrc, setImgSrc] = useState(project.image || defaultFallback);
+
+  useEffect(() => {
+    if (project.image) {
+      setImgSrc(project.image);
+    }
+  }, [project.image]);
 
   const getNarrativeContent = () => {
     if (activeTab === 'challenge') return project.challenge || 'Coming Soon';
@@ -109,7 +117,7 @@ function FeaturedProjectCard({ project, index, isDark, onViewCaseStudy }: Featur
                       <motion.div 
                         layoutId={`activeNarrativeTab-${project.id || project.title}`}
                         className={`absolute bottom-0 left-0 right-0 h-[2px] ${
-                          tab === 'challenge' ? 'bg-indigo-500' : tab === 'solution' ? 'bg-purple-500' : 'bg-emerald-500'
+                          tab === 'challenge' ? 'bg-indigo-500' : tab === 'solution' ? 'bg-blue-500' : 'bg-emerald-500'
                         }`}
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
@@ -229,10 +237,11 @@ function FeaturedProjectCard({ project, index, isDark, onViewCaseStudy }: Featur
         >
           <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
             <Image 
-              src={project.image || ''} 
+              src={imgSrc} 
               alt={project.title} 
               fill
               sizes="(max-w-768px) 100vw, 50vw"
+              onError={() => setImgSrc(defaultFallback)}
               className="object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 interface BlogSidebarProps {
-  trendingStories: Array<{ num: string, title: string, tag: string }>;
+  trendingStories: Array<{ num: string, title: string, tag: string, slug?: string }>;
   topics: string[];
   onTopicClick?: (topic: string) => void;
 }
@@ -40,12 +40,11 @@ export default function BlogSidebar({ trendingStories, topics, onTopicClick }: B
         
         <div className="space-y-8">
           {trendingStories.map((story) => (
-            <motion.a 
-              key={story.num} 
-              whileHover={{ x: 3 }}
-              className="group block" 
-              href="#"
-            >
+            <Link href={story.slug ? `/blog/${story.slug}` : "#"} key={story.num}>
+              <motion.div 
+                whileHover={{ x: 3 }}
+                className="group block" 
+              >
               <div className="flex gap-4 items-start">
                 <span className={`text-2xl font-black font-headline tracking-tight transition-colors duration-300 ${
                   isDark ? 'text-white/10 group-hover:text-sky-500/30' : 'text-slate-200 group-hover:text-sky-500/20'
@@ -65,7 +64,8 @@ export default function BlogSidebar({ trendingStories, topics, onTopicClick }: B
                   </span>
                 </div>
               </div>
-            </motion.a>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

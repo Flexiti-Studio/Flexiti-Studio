@@ -96,7 +96,7 @@ export default function ServicesProcess() {
                             whileInView={{ width: "100%" }}
                             viewport={{ once: true }}
                             transition={{ duration: 2, ease: "easeInOut" }}
-                            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 shadow-[0_0_15px_rgba(99,102,241,0.8)]"
+                            className="h-full bg-gradient-to-r from-indigo-500 to-blue-500 shadow-[0_0_15px_rgba(37,99,235,0.8)]"
                         />
                     </div>
 

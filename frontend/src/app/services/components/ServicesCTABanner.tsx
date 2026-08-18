@@ -20,7 +20,7 @@ export default function ServicesCTABanner() {
             
             {/* 🌌 Ambient Celestial Deep Glows */}
             <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-[150px] rounded-full opacity-15 pointer-events-none ${isDark ? 'bg-indigo-600' : 'bg-indigo-400'}`} />
-            <div className={`absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] blur-[120px] rounded-full opacity-10 pointer-events-none ${isDark ? 'bg-purple-600' : 'bg-purple-400'}`} />
+            <div className={`absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] blur-[120px] rounded-full opacity-10 pointer-events-none ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
 
             <div className="max-w-5xl mx-auto text-center relative z-10 space-y-16">
                 <motion.div

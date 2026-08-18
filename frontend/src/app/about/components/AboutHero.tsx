@@ -10,6 +10,9 @@ export default function AboutHero() {
     const { theme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
 
+    const defaultHeroPic = "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80";
+    const [heroImg, setHeroImg] = useState("/images/about/about page 1.png");
+
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -22,8 +25,8 @@ export default function AboutHero() {
             <div 
                 className={`absolute top-[-10%] sm:top-[-20%] md:top-[-30%] left-1/2 -translate-x-1/2 w-[140%] md:w-[100%] aspect-square rounded-full pointer-events-none transition-all duration-1000 ${
                     isDark 
-                        ? 'bg-gradient-to-b from-[#7c3aed]/40 via-[#4f46e5]/8 to-transparent blur-[80px] md:blur-[140px]' 
-                        : 'bg-gradient-to-b from-indigo-500/10 via-purple-300/5 to-transparent blur-[60px] md:blur-[100px]'
+                        ? 'bg-gradient-to-b from-[#2563eb]/40 via-[#3b82f6]/8 to-transparent blur-[80px] md:blur-[140px]' 
+                        : 'bg-gradient-to-b from-blue-500/10 via-blue-300/5 to-transparent blur-[60px] md:blur-[100px]'
                 }`} 
             />
 
@@ -65,7 +68,7 @@ export default function AboutHero() {
                         className="font-headline text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-8 text-slate-900 dark:text-white"
                     >
                         About <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-500">
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-400 dark:from-blue-400 dark:via-indigo-400 dark:to-blue-300">
                             Flexiti Studio
                         </span>
                     </motion.h1>
@@ -122,9 +125,10 @@ export default function AboutHero() {
                     
                     <div className="relative w-full aspect-square lg:aspect-auto lg:h-[500px] rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl shadow-primary/20 group">
                         <Image
-                            src="/branding/about hero section.png"
+                            src={heroImg}
                             alt="Digital Architecture Visualization"
                             fill
+                            onError={() => setHeroImg(defaultHeroPic)}
                             className="object-cover transition-transform duration-1000 group-hover:scale-110"
                             priority
                             sizes="(max-w-768px) 100vw, 50vw"
@@ -132,15 +136,7 @@ export default function AboutHero() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                     </div>
 
-                    {/* Floating Badge */}
-                    <motion.div 
-                        animate={{ y: [0, -20, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute -bottom-10 -left-10 hidden lg:block bg-white/10 backdrop-blur-2xl border border-white/20 p-8 rounded-[2.5rem] shadow-2xl z-20"
-                    >
-                        <div className="text-primary-light font-black text-4xl mb-1">Africa Born</div>
-                        <div className="text-white/60 font-bold uppercase tracking-widest text-sm text-center">Global Impact</div>
-                    </motion.div>
+
                 </motion.div>
             </div>
         </section>

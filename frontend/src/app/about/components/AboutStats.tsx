@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 
 const stats = [
-    { value: '50+', label: 'Projects Built', color: 'text-purple-400' },
-    { value: '12+', label: 'Systems Developed', color: 'text-indigo-400' },
-    { value: '30+', label: 'Clients Served', color: 'text-blue-400' },
-    { value: '15+', label: 'Tools Created', color: 'text-emerald-400' },
+    { value: '25+', label: 'Projects Delivered', color: 'text-blue-400' },
+    { value: '20+', label: 'Founders & Clients', color: 'text-indigo-400' },
+    { value: '4 Wks', label: 'Avg MVP Launch', color: 'text-blue-300' },
+    { value: '99.9%', label: 'System Uptime', color: 'text-emerald-400' },
 ];
 
 export default function AboutStats() {

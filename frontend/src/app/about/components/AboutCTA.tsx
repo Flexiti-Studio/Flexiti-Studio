@@ -43,7 +43,7 @@ export default function AboutCTA() {
                             className="font-headline font-black text-4xl md:text-6xl text-white mb-10 tracking-tight leading-tight"
                         >
                             Let&apos;s Build Something <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-300">
                                 Great Together
                             </span>
                         </motion.h2>

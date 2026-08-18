@@ -17,8 +17,8 @@ const capabilities = [
         icon: Smartphone, 
         title: 'Mobile App Dev', 
         desc: 'Native and cross-platform mobile experiences that users love to interact with daily.',
-        color: 'text-purple-400',
-        bg: 'bg-purple-500/10'
+        color: 'text-blue-400',
+        bg: 'bg-blue-500/10'
     },
     { 
         icon: Cloud, 
@@ -81,7 +81,7 @@ export default function AboutCapabilities() {
                         className={`font-headline font-black text-4xl md:text-6xl ${isDark ? 'text-white' : 'text-slate-900'} tracking-tighter`}
                     >
                         Architecting <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Solutions</span>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Solutions</span>
                     </motion.h2>
                 </div>
 
@@ -98,8 +98,8 @@ export default function AboutCapabilities() {
                                 className={`group relative p-10 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[300px] ${
                                     isFeatured
                                         ? isDark
-                                            ? 'bg-gradient-to-br from-indigo-600 to-purple-700 border-indigo-500 shadow-[0_0_30px_rgba(99,102,241,0.25)] hover:scale-[1.03] text-white'
-                                            : 'bg-gradient-to-br from-indigo-500 to-purple-600 border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:scale-[1.03] text-white'
+                                            ? 'bg-gradient-to-br from-blue-600 to-indigo-700 border-blue-500 shadow-[0_0_30px_rgba(37,99,235,0.25)] hover:scale-[1.03] text-white'
+                                            : 'bg-gradient-to-br from-blue-500 to-indigo-600 border-blue-400 shadow-[0_0_20px_rgba(37,99,235,0.15)] hover:scale-[1.03] text-white'
                                         : isDark 
                                             ? 'bg-white/[0.01] border-white/[0.06] hover:bg-white/[0.03] hover:border-white/10 hover:scale-[1.02] text-slate-100' 
                                             : 'bg-white border-slate-200/60 hover:bg-slate-50 hover:border-slate-300 hover:scale-[1.02] shadow-sm text-slate-800'

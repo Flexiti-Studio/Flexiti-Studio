@@ -117,7 +117,7 @@ export default function PortfolioGrid({ items = staticItems, onViewCaseStudy }: 
                   {activeCategory === cat.id && (
                     <motion.div 
                       layoutId="activeFilter"
-                      className={`absolute inset-0 rounded-xl -z-10 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-md ${
+                      className={`absolute inset-0 rounded-xl -z-10 bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md ${
                         isDark ? 'shadow-indigo-500/20' : 'shadow-indigo-500/10'
                       }`}
                       transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}

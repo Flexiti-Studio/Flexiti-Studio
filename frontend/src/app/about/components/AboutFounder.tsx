@@ -12,6 +12,9 @@ export default function AboutFounder() {
     const { theme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
 
+    const defaultFounderPic = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80";
+    const [founderImg, setFounderImg] = useState("/images/about/founder.jpg");
+
     useEffect(() => {
         setMounted(true)
     }, [])
@@ -65,9 +68,10 @@ export default function AboutFounder() {
                                 
                                 <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl z-10">
                                     <Image
-                                        src="/images/about/founder.jpg"
+                                        src={founderImg}
                                         alt="Ola — Founder of Flexiti Studio"
                                         fill
+                                        onError={() => setFounderImg(defaultFounderPic)}
                                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                         priority
                                     />

@@ -28,7 +28,7 @@ export default function AboutEcosystem() {
                         viewport={{ once: true }}
                         className={`font-headline font-black text-4xl md:text-5xl ${isDark ? 'text-white' : 'text-slate-900'} mb-6 tracking-tight`}
                     >
-                        Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Ecosystem</span>
+                        Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Ecosystem</span>
                     </motion.h2>
                     <motion.p 
                         initial={{ opacity: 0 }}
@@ -62,7 +62,7 @@ export default function AboutEcosystem() {
                             whileInView={{ height: 80 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, delay: 0.5 }}
-                            className="absolute -bottom-20 left-1/2 w-[2px] bg-gradient-to-b from-indigo-500 to-purple-500 origin-top" 
+                            className="absolute -bottom-20 left-1/2 w-[2px] bg-gradient-to-b from-blue-500 to-indigo-500 origin-top" 
                         />
                     </motion.div>
 
@@ -95,7 +95,7 @@ export default function AboutEcosystem() {
                                 <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
                                     isDark ? 'bg-white/5 shadow-black/20' : 'bg-slate-100 shadow-slate-200/20'
                                 }`}>
-                                    <Terminal className="text-purple-400 w-10 h-10" strokeWidth={1.5} />
+                                    <Terminal className="text-blue-400 w-10 h-10" strokeWidth={1.5} />
                                 </div>
                                 <h3 className={`font-headline font-black text-2xl md:text-3xl ${isDark ? 'text-white' : 'text-slate-900'} mb-4 tracking-tight`}>
                                     Flexiti Studio

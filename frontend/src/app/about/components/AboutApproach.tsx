@@ -17,13 +17,13 @@ const steps = [
         num: '02',
         title: 'Scalable Architecture',
         desc: 'Our systems are designed to handle 10x growth from day one without breaking a sweat.',
-        color: "from-indigo-500 to-purple-600"
+        color: "from-blue-500 to-indigo-600"
     },
     {
         num: '03',
         title: 'Performance-Focused',
         desc: 'Clean code and optimized assets ensure your users never have to wait for a loading screen.',
-        color: "from-pink-500 to-purple-500"
+        color: "from-indigo-500 to-blue-500"
     },
 ]
 
@@ -54,7 +54,7 @@ export default function AboutApproach() {
                             className={`font-headline font-black text-4xl md:text-5xl ${isDark ? 'text-white' : 'text-slate-900'} mb-16 tracking-tight`}
                         >
                             The Flexiti <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Approach</span>
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Approach</span>
                         </motion.h2>
 
                         <div className="space-y-10">
@@ -101,7 +101,7 @@ export default function AboutApproach() {
                             isDark ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-slate-100 border-slate-200'
                         }`}>
                             <Image
-                                src="/images/about/process.png"
+                                src="/images/about/about page 2.png"
                                 alt="Modern Design and Engineering Process"
                                 className="rounded-[2rem] w-full object-cover aspect-[4/3] shadow-inner"
                                 width={800}

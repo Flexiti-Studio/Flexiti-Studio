@@ -193,7 +193,7 @@ const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ item, isOpen, onClose }
                                     {/* Technologies */}
                                     {item.tags && item.tags.length > 0 && (
                                         <section className="space-y-6">
-                                            <h3 className={`text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3 ${isDark ? 'text-purple-400' : 'text-purple-600'}`}>
+                                            <h3 className={`text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-3 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
                                                 <span className="w-1.5 h-1.5 rounded-full bg-current" /> Technologies
                                             </h3>
                                             <div className="flex flex-wrap gap-2">
@@ -247,17 +247,28 @@ const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ item, isOpen, onClose }
                                     </div>
 
                                     <div className="flex flex-col gap-4 pt-4">
-                                        {item.caseStudyUrl && (
-                                            <a 
-                                                href={item.caseStudyUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={`w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-2xl flex items-center justify-center gap-3 ${isDark ? 'bg-white text-black hover:bg-slate-100 shadow-white/5' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-slate-900/20'}`}
-                                            >
-                                                View Live Project
-                                                <span className="material-symbols-outlined text-lg">north_east</span>
-                                            </a>
-                                        )}
+                                        {item.caseStudyUrl && (() => {
+                                            const formattedUrl = (url: string) => {
+                                                if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) {
+                                                    return url;
+                                                }
+                                                return `https://${url}`;
+                                            };
+                                            const finalUrl = formattedUrl(item.caseStudyUrl);
+                                            const isExternal = finalUrl.startsWith('http://') || finalUrl.startsWith('https://');
+
+                                            return (
+                                                <a 
+                                                    href={finalUrl}
+                                                    target={isExternal ? "_blank" : "_self"}
+                                                    rel={isExternal ? "noopener noreferrer" : undefined}
+                                                    className={`w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-2xl flex items-center justify-center gap-3 ${isDark ? 'bg-white text-black hover:bg-slate-100 shadow-white/5' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-slate-900/20'}`}
+                                                >
+                                                    View Live Project
+                                                    <span className="material-symbols-outlined text-lg">north_east</span>
+                                                </a>
+                                            );
+                                        })()}
                                         <a 
                                             href="/contact"
                                             className={`w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all border flex items-center justify-center gap-3 ${isDark ? 'bg-transparent border-white/10 text-white hover:bg-white/5' : 'bg-transparent border-slate-200 text-slate-900 hover:bg-slate-50'}`}

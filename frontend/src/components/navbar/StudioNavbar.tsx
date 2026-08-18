@@ -78,12 +78,12 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
             >
                 <Container maxWidth="xl" className={`flex items-center h-20 px-6 md:px-10 transition-colors ${isMenuOpen ? (isDark ? 'text-white' : 'text-black') : 'text-slate-900 dark:text-white'}`}>
 
-                    {/* Logo & Text — always left */}
+                    {/* Logo & Text — logo icon on mobile, text on desktop */}
                     <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-none">
                         {logo || (
                             <>
                                 <StudioLogo size="lg" />
-                                <h2 className="text-xl font-bold leading-tight tracking-[-0.015em] text-slate-900 dark:text-white">
+                                <h2 className="hidden md:block text-xl font-bold leading-tight tracking-[-0.015em] text-slate-900 dark:text-white">
                                     Flexiti Studio
                                 </h2>
                             </>
@@ -91,21 +91,27 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                     </Link>
 
                     {/* Desktop nav */}
-                    <div className="hidden md:flex flex-1 justify-end items-center gap-8">
-                        <nav className="flex items-center gap-8">
+                    <div className="hidden md:flex flex-1 justify-end items-center gap-6">
+                        <nav className="flex items-center gap-1.5 p-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/[0.04] backdrop-blur-md">
                             {navItems.map((item) => {
+                                const isItemActive = pathname === item.href || (item.href !== '/' && !!pathname?.startsWith(item.href));
                                 if (item.label === 'Blog') {
+                                    const isBlogActive = pathname === '/blog' || pathname === '/memes' || !!pathname?.startsWith('/blog');
                                     return (
                                         <div key="blog" className="relative group">
-                                            <button className={`flex items-center gap-1 text-sm font-bold transition-colors ${pathname === '/blog' || pathname === '/memes' ? 'text-primary' : 'text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary'}`}>
+                                            <button className={`relative flex items-center gap-1.5 text-sm transition-all duration-300 ${
+                                                isBlogActive 
+                                                    ? 'px-4 py-2 rounded-full font-black bg-indigo-600 dark:bg-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.6)] ring-2 ring-indigo-400/50' 
+                                                    : 'px-3.5 py-2 rounded-full font-bold text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10'
+                                            }`}>
                                                 Blog
                                                 <span className="material-symbols-outlined text-base group-hover:rotate-180 transition-transform duration-200">expand_more</span>
                                             </button>
                                             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 p-2">
-                                                <Link href="/blog" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-500/10 transition-colors">
+                                                <Link href="/blog" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${pathname?.startsWith('/blog') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300 font-bold' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
                                                     <span className="material-symbols-outlined text-[18px]">article</span> Blog
                                                 </Link>
-                                                <Link href="/memes" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-500/10 transition-colors">
+                                                <Link href="/memes" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${pathname?.startsWith('/memes') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300 font-bold' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
                                                     <span className="material-symbols-outlined text-[18px]">video_library</span> Free Memes
                                                 </Link>
                                             </div>
@@ -113,7 +119,15 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                                     )
                                 }
                                 return (
-                                    <Link key={item.label} href={item.href} className={`text-sm font-bold transition-colors ${pathname === item.href ? 'text-primary' : 'text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary'}`}>
+                                    <Link 
+                                        key={item.label} 
+                                        href={item.href} 
+                                        className={`relative text-sm transition-all duration-300 ${
+                                            isItemActive 
+                                                ? 'px-4 py-2 rounded-full font-black bg-indigo-600 dark:bg-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.6)] ring-2 ring-indigo-400/50' 
+                                                : 'px-3.5 py-2 rounded-full font-bold text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10'
+                                        }`}
+                                    >
                                         {item.label}
                                     </Link>
                                 )
@@ -170,7 +184,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                             <motion.div 
                                 animate={{ scale: [1.2, 1, 1.2], opacity: isDark ? [0.2, 0.3, 0.2] : [0.08, 0.12, 0.08] }}
                                 transition={{ duration: 12, repeat: Infinity }}
-                                className={`absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full blur-[80px] ${isDark ? 'bg-purple-600/20' : 'bg-purple-400/10'}`} 
+                                className={`absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full blur-[80px] ${isDark ? 'bg-blue-600/20' : 'bg-blue-400/10'}`} 
                             />
                         </div>
 
@@ -206,8 +220,8 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                                             flex items-center justify-between w-full px-5 py-4
                                             rounded-2xl border text-lg font-bold
                                             transition-all active:scale-[0.98]
-                                            ${pathname === item.href
-                                                ? (isDark ? 'bg-blue-600/20 border-blue-500/40 text-blue-300' : 'bg-blue-50 border-blue-200 text-blue-600 shadow-sm')
+                                            ${(pathname === item.href || (item.href !== '/' && !!pathname?.startsWith(item.href)))
+                                                ? (isDark ? 'bg-indigo-600/30 border-indigo-500/60 text-white font-extrabold ring-1 ring-indigo-500/50' : 'bg-indigo-50 border-indigo-300 text-indigo-700 font-extrabold shadow-sm')
                                                 : (isDark ? 'bg-white/[0.04] border-white/[0.06] text-white hover:bg-white/[0.08]' : 'bg-gray-50 border-gray-100 text-gray-900 hover:bg-gray-100 shadow-sm')}
                                         `}
                                     >
@@ -244,7 +258,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                                         onClick={() => setIsMenuOpen(false)}
                                         className={`flex items-center gap-4 w-full px-5 py-4 rounded-2xl border transition-all active:scale-[0.98] shadow-sm group ${isDark ? 'bg-white/[0.04] border-white/[0.06] text-white hover:bg-white/[0.08]' : 'bg-white border-gray-100 text-gray-900 hover:bg-gray-50'}`}
                                     >
-                                        <div className={`p-2 rounded-xl shrink-0 group-hover:scale-110 transition-transform ${isDark ? 'bg-purple-500/15 text-purple-400' : 'bg-purple-50 text-purple-600'}`}>
+                                        <div className={`p-2 rounded-xl shrink-0 group-hover:scale-110 transition-transform ${isDark ? 'bg-blue-500/15 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
                                             <span className="material-symbols-outlined">video_library</span>
                                         </div>
                                         <div>

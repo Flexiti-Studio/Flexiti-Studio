@@ -7,7 +7,7 @@ export default function HeroSection() {
             <div className="w-full max-w-[960px] flex flex-col items-center gap-8">
                 <div className="w-full relative overflow-hidden rounded-2xl bg-surface-dark text-white p-8 md:p-16 text-center shadow-2xl shadow-primary/10">
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-purple-900/80 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-blue-900/80 pointer-events-none" />
 
                     {/* Content */}
                     <div className="relative z-10 flex flex-col items-center gap-4">

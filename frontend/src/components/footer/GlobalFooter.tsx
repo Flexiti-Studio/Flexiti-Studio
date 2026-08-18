@@ -46,7 +46,7 @@ export default function GlobalFooter() {
         <footer className={`w-full pt-32 pb-16 relative overflow-hidden transition-colors duration-500 border-t ${isDark ? 'bg-black border-white/5' : 'bg-white border-slate-200'}`}>
             {/* Ambient Background Effects */}
             <div className={`absolute top-0 left-1/4 w-96 h-96 blur-[120px] opacity-[0.07] pointer-events-none rounded-full ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
-            <div className={`absolute bottom-0 right-1/4 w-96 h-96 blur-[120px] opacity-[0.07] pointer-events-none rounded-full ${isDark ? 'bg-purple-600' : 'bg-purple-400'}`} />
+            <div className={`absolute bottom-0 right-1/4 w-96 h-96 blur-[120px] opacity-[0.07] pointer-events-none rounded-full ${isDark ? 'bg-blue-600' : 'bg-blue-400'}`} />
 
             <div className="max-w-7xl mx-auto px-8 relative z-10">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-16 mb-24">

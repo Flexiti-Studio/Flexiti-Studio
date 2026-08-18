@@ -50,7 +50,7 @@ export default function PortfolioPositioning() {
               <h2 className={`text-4xl md:text-6xl font-extrabold font-headline leading-tight tracking-tight transition-colors ${
                 isDark ? 'text-white' : 'text-slate-900'
               }`}>
-                We don&apos;t just build projects — we build <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">scalable systems.</span>
+                We don&apos;t just build projects — we build <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500">scalable systems.</span>
               </h2>
               
               <p className={`text-lg font-medium leading-relaxed transition-colors ${

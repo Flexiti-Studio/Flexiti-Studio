@@ -5,10 +5,10 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 const stats = [
-  { label: "Projects Completed", value: "100+" },
-  { label: "Clients Served", value: "50+" },
-  { label: "Systems Built", value: "500+" },
-  { label: "Uptime Guarantee", value: "99.9%" }
+  { label: "Projects Delivered", value: "25+" },
+  { label: "Founders & Clients", value: "20+" },
+  { label: "Avg MVP Launch Time", value: "4 Wks" },
+  { label: "Production Uptime", value: "99.9%" }
 ];
 
 export default function LandingStats() {
@@ -44,7 +44,7 @@ export default function LandingStats() {
                 idx === 1 ? 'pt-8 sm:pt-0' : ''
               }`}
             >
-              <div className="text-4xl md:text-5xl lg:text-6xl font-black mb-3 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-black mb-3 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-400">
                 {stat.value}
               </div>
               

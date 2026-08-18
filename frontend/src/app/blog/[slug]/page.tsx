@@ -72,18 +72,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  const defaultImage = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80";
+  const featuredImg = article.featuredImage || defaultImage;
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': ['Article', 'TechArticle'],
     headline: article.title,
     description: article.description,
-    image: article.featuredImage ? [article.featuredImage] : [],
+    image: [featuredImg],
     datePublished: article.publishedAt,
-    dateModified: article.publishedAt, // Update this if you have an updated date from Sanity
+    dateModified: article.publishedAt,
     author: [{
       '@type': 'Person',
-      name: article.author.name,
-      // Provide a fallback URL if the author doesn't have one
+      name: article.author?.name || 'Flexiti Studio Team',
       url: 'https://flexitistudio.com/about'
     }],
     publisher: {
@@ -113,7 +115,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="relative w-full aspect-[21/9] md:aspect-[16/7] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl shadow-primary/10">
             <Image
-              src={article.featuredImage}
+              src={featuredImg}
               alt={article.title}
               fill
               className="object-cover"

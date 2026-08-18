@@ -35,7 +35,7 @@ export default function AboutOverview() {
                         className={`font-headline font-black text-4xl md:text-5xl ${isDark ? 'text-white' : 'text-slate-900'} mb-12 tracking-tight`}
                     >
                         Who is <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Flexiti Studio?</span>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Flexiti Studio?</span>
                     </motion.h2>
                     
                     <motion.p 

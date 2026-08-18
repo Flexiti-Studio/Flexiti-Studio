@@ -55,15 +55,49 @@ export default async function Home() {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': ['Organization', 'ProfessionalService'],
     'name': 'Flexiti Studio',
     'url': 'https://flexitistudio.com',
-    // 👇 Ensure this points to your exact, absolute logo file path
-    'logo': 'https://flexitistudio.com/flexiti-logo.png', 
+    'logo': 'https://flexitistudio.com/flexiti-logo.png',
+    'description': 'Flexiti Studio is a custom software engineering agency specializing in SaaS MVP development, enterprise AI automations, and web & mobile app architecture.',
     'sameAs': [
       'https://www.instagram.com/flexitistudio',
       'https://twitter.com/flexitistudio',
       'https://www.linkedin.com/company/flexitistudio'
+    ],
+    'offers': [
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'Custom Software Engineering',
+          'description': 'End-to-end full-stack web and mobile application development with Next.js and React Native.'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'AI Automation Services',
+          'description': 'Custom LLM integrations, AI workflow automation, and agentic business process engineering.'
+        }
+      },
+      {
+        '@type': 'Offer',
+        'itemOffered': {
+          '@type': 'Service',
+          'name': 'SaaS MVP Development',
+          'description': 'Rapid turn-key SaaS MVP design, scalable cloud architecture, and monetization setups.'
+        }
+      }
+    ],
+    'knowsAbout': [
+      'Custom Software Development',
+      'AI Automations',
+      'SaaS Development',
+      'Next.js',
+      'React Native',
+      'TypeScript'
     ]
   };
 

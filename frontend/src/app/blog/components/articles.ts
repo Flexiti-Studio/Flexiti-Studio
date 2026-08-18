@@ -627,13 +627,15 @@ export async function getTrendingStories(limit: number = 3): Promise<any[]> {
     const query = `*[_type == "article" && isTopPick == true] | order(publishedAt desc)[0...${limit}] {
       title,
       category,
-      readTime
+      readTime,
+      slug
     }`;
     const stories = await client.fetch(query);
     return stories.map((s: any, i: number) => ({
       num: String(i + 1).padStart(2, '0'),
       title: s.title,
-      tag: `${s.category} · ${s.readTime || '5 min read'}`
+      tag: `${s.category} · ${s.readTime || '5 min read'}`,
+      slug: s.slug?.current || s.slug || ''
     }));
   } catch (error) {
     console.error("Error fetching trending stories:", error);

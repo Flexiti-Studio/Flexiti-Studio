@@ -43,8 +43,8 @@ export default function ContactCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className={`relative text-lg md:text-2xl max-w-2xl mb-12 font-medium leading-relaxed ${
-              isDark ? 'text-white/50' : 'text-black/50'
+            className={`relative text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed ${
+              isDark ? 'text-white' : 'text-black/50'
             }`}
           >
             Join the ranks of successful innovators who chose Flexiti Studio to architect their digital future.
@@ -58,7 +58,7 @@ export default function ContactCTA() {
           >
             <Link 
               href="/contact"
-              className={`group relative bg-primary ${isDark ? 'text-black' : 'text-white'} px-12 py-6 rounded-full font-black text-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20 flex items-center gap-4`}
+              className={`group relative bg-primary text-white px-12 py-6 rounded-full font-black text-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20 flex items-center gap-4`}
             >
               <span className="relative z-10">Start Your Project</span>
               <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-2 transition-transform" />

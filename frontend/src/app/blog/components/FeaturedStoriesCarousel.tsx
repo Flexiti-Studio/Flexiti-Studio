@@ -35,7 +35,7 @@ export default function FeaturedStoriesCarousel({
     const categoryColors: Record<string, { bg: string; text: string }> = {
         'Design': { bg: 'bg-red-500/10', text: 'text-red-500' },
         'Development': { bg: 'bg-blue-500/10', text: 'text-blue-500' },
-        'AI': { bg: 'bg-purple-500/10', text: 'text-purple-500' },
+        'AI': { bg: 'bg-blue-500/10', text: 'text-blue-500' },
         'Business': { bg: 'bg-green-500/10', text: 'text-green-500' },
         'Strategy': { bg: 'bg-yellow-500/10', text: 'text-yellow-500' },
         'Security': { bg: 'bg-indigo-500/10', text: 'text-indigo-500' },
@@ -52,7 +52,7 @@ export default function FeaturedStoriesCarousel({
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 md:mb-8 gap-4">
                 <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-purple-600">
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-blue-600">
                         <Star className="w-6 h-6 text-white" />
                     </div>
                     <div>

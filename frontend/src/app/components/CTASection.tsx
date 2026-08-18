@@ -5,7 +5,7 @@ import Button from './ui/Button'
 const CTASection: React.FC = () => {
     return (
         <section id="contact" className="py-16 sm:py-24">
-            <div className="mx-auto rounded-xl bg-gradient-to-r from-primary to-purple-600 p-8 text-center md:p-12">
+            <div className="mx-auto rounded-xl bg-gradient-to-r from-primary to-blue-600 p-8 text-center md:p-12">
                 <h2 className="text-3xl font-bold text-white sm:text-4xl">
                     Ready to build your next big idea?
                 </h2>

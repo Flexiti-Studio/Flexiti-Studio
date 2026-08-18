@@ -107,7 +107,7 @@ export default function ServicesDetail() {
                                         : 'bg-slate-50 border-slate-200 shadow-xl shadow-slate-100'
                                 }`}
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-blue-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                                 <div className="flex items-center gap-6 mb-8 relative z-10">
                                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-colors ${

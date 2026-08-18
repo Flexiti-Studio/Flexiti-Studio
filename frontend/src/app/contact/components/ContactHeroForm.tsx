@@ -66,12 +66,12 @@ export default function ContactHeroForm() {
 
   const inputClasses = `w-full px-6 py-5 rounded-2xl border transition-all duration-300 outline-none font-medium ${
     isDark 
-      ? 'bg-white/[0.03] border-white/10 focus:border-primary-light focus:bg-white/[0.06] placeholder:text-white/20' 
-      : 'bg-black/[0.02] border-black/10 focus:border-primary focus:bg-black/[0.04] placeholder:text-black/20'
+      ? 'bg-white/[0.03] border-white/10 focus:border-primary-light focus:bg-white/[0.06] placeholder:text-white/20 text-white' 
+      : 'bg-black/[0.02] border-black/10 focus:border-primary focus:bg-black/[0.04] placeholder:text-black/20 text-slate-900'
   }`;
 
   const labelClasses = `block text-sm font-bold uppercase tracking-widest mb-3 ${
-    isDark ? 'text-white/40' : 'text-black/40'
+    isDark ? 'text-white' : 'text-black/40'
   }`;
 
   return (
@@ -102,7 +102,7 @@ export default function ContactHeroForm() {
                   <CheckCircle className="w-12 h-12" />
                 </div>
                 <h3 className="text-4xl font-black mb-6 tracking-tight">Project Initialized.</h3>
-                <p className={`text-xl max-w-md mx-auto mb-12 ${isDark ? 'text-white/50' : 'text-black/50'}`}>
+                <p className={`text-xl max-w-md mx-auto mb-12 ${isDark ? 'text-white' : 'text-black/50'}`}>
                   Your inquiry has been encrypted and transmitted. An architect will respond within 24 hours.
                 </p>
                 <button 
@@ -160,11 +160,11 @@ export default function ContactHeroForm() {
                   <div className="space-y-2">
                     <label className={labelClasses}>Solution Type</label>
                     <select name="project_type" className={inputClasses}>
-                      <option className="bg-slate-900">Custom Web Platform</option>
-                      <option className="bg-slate-900">Mobile Ecosystem</option>
-                      <option className="bg-slate-900">SaaS Architecture</option>
-                      <option className="bg-slate-900">MVP Engineering</option>
-                      <option className="bg-slate-900">AI Integration</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Custom Web Platform</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Mobile Ecosystem</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>SaaS Architecture</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>MVP Engineering</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>AI Integration</option>
                     </select>
                   </div>
                 </div>
@@ -173,18 +173,18 @@ export default function ContactHeroForm() {
                   <div className="space-y-2">
                     <label className={labelClasses}>Capital Allocation</label>
                     <select name="budget" className={inputClasses}>
-                      <option className="bg-slate-900">Elite (₦1M+)</option>
-                      <option className="bg-slate-900">Scale (₦500k – ₦1M)</option>
-                      <option className="bg-slate-900">Growth (₦200k – ₦500k)</option>
-                      <option className="bg-slate-900">Bootstrap (₦50k – ₦200k)</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Elite (₦1M+)</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Scale (₦500k – ₦1M)</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Growth (₦200k – ₦500k)</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Bootstrap (₦50k – ₦200k)</option>
                     </select>
                   </div>
                   <div className="space-y-2">
                     <label className={labelClasses}>Velocity Profile</label>
                     <select name="timeline" className={inputClasses}>
-                      <option className="bg-slate-900">Immediate Apex</option>
-                      <option className="bg-slate-900">Standard Sprint (1–2mo)</option>
-                      <option className="bg-slate-900">Flexible Delivery</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Immediate Apex</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Standard Sprint (1–2mo)</option>
+                      <option className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>Flexible Delivery</option>
                     </select>
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export default function ContactHeroForm() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`group relative w-full py-6 rounded-2xl bg-primary ${isDark ? 'text-black' : 'text-white'} font-black text-xl tracking-tighter overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-primary/20`}
+                  className={`group relative w-full py-6 rounded-2xl bg-primary text-white font-black text-xl tracking-tighter overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-primary/20`}
                 >
                   <div className="relative z-10 flex items-center justify-center gap-4">
                     {isSubmitting ? (
@@ -248,7 +248,7 @@ export default function ContactHeroForm() {
           transition={{ delay: 0.6 }}
           className="space-y-8"
         >
-          <h3 className="text-3xl font-black tracking-tight mb-8">Direct Channels</h3>
+          <h3 className={`text-3xl font-black tracking-tight mb-8 ${isDark ? 'text-white' : 'text-slate-900'}`}>Direct Channels</h3>
           
           <div className="space-y-4">
             {[
@@ -261,8 +261,8 @@ export default function ContactHeroForm() {
                 href={channel.href}
                 className={`flex items-center gap-5 p-5 rounded-3xl border transition-all duration-300 group ${
                   channel.highlighted 
-                    ? `bg-primary border-primary ${isDark ? 'text-black' : 'text-white'} shadow-xl shadow-primary/20 hover:scale-[1.03]` 
-                    : `${isDark ? 'bg-white/[0.03] border-white/10 hover:bg-white/[0.06]' : 'bg-black/[0.02] border-black/10 hover:bg-black/[0.05]'}`
+                    ? `bg-primary border-primary text-white shadow-xl shadow-primary/20 hover:scale-[1.03]` 
+                    : `${isDark ? 'bg-white/[0.03] border-white/10 hover:bg-white/[0.06] text-white' : 'bg-black/[0.02] border-black/10 hover:bg-black/[0.05] text-slate-900'}`
                 }`}
               >
                 <div className={`shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner transition-colors ${
@@ -294,7 +294,7 @@ export default function ContactHeroForm() {
               transition={{ delay: 0.8 + (i * 0.1) }}
               key={item.title}
               className={`p-6 rounded-[2rem] border ${
-                isDark ? 'bg-white/[0.02] border-white/5' : 'bg-black/[0.01] border-black/5'
+                isDark ? 'bg-white/[0.02] border-white/5 text-white' : 'bg-black/[0.01] border-black/5 text-slate-900'
               }`}
             >
               <div className="flex items-center gap-4 mb-3">
@@ -303,7 +303,7 @@ export default function ContactHeroForm() {
                 </div>
                 <h4 className="font-black text-sm uppercase tracking-wider">{item.title}</h4>
               </div>
-              <p className={`text-xs font-medium leading-relaxed ${isDark ? 'text-white/40' : 'text-black/40'}`}>
+              <p className={`text-xs font-medium leading-relaxed ${isDark ? 'text-white' : 'text-black/40'}`}>
                 {item.desc}
               </p>
             </motion.div>

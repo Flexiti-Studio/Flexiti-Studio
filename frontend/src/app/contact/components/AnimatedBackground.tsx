@@ -26,7 +26,7 @@ const AnimatedBackground: React.FC = () => {
                 }}
             />
             <div
-                className="absolute bottom-0 right-0 h-96 w-96 bg-purple-500/20 rounded-full blur-3xl opacity-30 animate-spin-slow-reverse"
+                className="absolute bottom-0 right-0 h-96 w-96 bg-blue-500/20 rounded-full blur-3xl opacity-30 animate-spin-slow-reverse"
                 style={{
                     transform: `translate(${-mousePosition.x * 0.1}px, ${-mousePosition.y * 0.1}px)`
                 }}

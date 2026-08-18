@@ -25,11 +25,20 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://flexitistudio.com'),
   title: {
-    default: 'Flexiti Studio | High-Performance Web Development',
-    template: '%s | Flexiti Studio', // Automatically formats child pages (e.g. "Services | Flexiti Studio")
+    default: 'Flexiti Studio | Custom Software Engineering & AI Automation Agency',
+    template: '%s | Flexiti Studio',
   },
-  description: 'Flexiti Studio is a premier digital agency specializing in high-performance Next.js and React applications, SEO optimization, and seamless user experiences.',
-  keywords: ['Web Development', 'Next.js Agency', 'React Developers', 'SEO Optimization', 'Digital Agency'],
+  description: 'Flexiti Studio builds high-performance web and mobile products, custom SaaS solutions, and scalable AI automations. Turn your ideas into production-ready software.',
+  keywords: [
+    'Where to build custom software',
+    'AI automation agency for businesses',
+    'SaaS MVP development studio',
+    'Next.js / React Native software development team',
+    'Custom Software Engineering',
+    'AI Automation Services',
+    'SaaS Product Development',
+    'Web App Architecture'
+  ],
   authors: [{ name: 'Flexiti Studio' }],
   creator: 'Flexiti Studio',
   publisher: 'Flexiti Studio',
@@ -37,22 +46,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://flexitistudio.com',
-    title: 'Flexiti Studio | High-Performance Web Development',
-    description: 'We build high-performance Next.js and React applications optimized for speed and Answer Engines.',
+    title: 'Flexiti Studio | Custom Software Engineering & AI Automation Agency',
+    description: 'Flexiti Studio builds high-performance web and mobile products, custom SaaS solutions, and scalable AI automations. Turn your ideas into production-ready software.',
     siteName: 'Flexiti Studio',
     images: [
       {
-        url: '/flexiti-logo.png', // Uses the logo we mapped earlier!
+        url: '/flexiti-logo.png',
         width: 1200,
         height: 630,
-        alt: 'Flexiti Studio Cover Image',
+        alt: 'Flexiti Studio - Custom Software Engineering & AI Automation Agency',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Flexiti Studio | Web Development Experts',
-    description: 'We build high-performance Next.js and React applications.',
+    title: 'Flexiti Studio | Custom Software Engineering & AI Automation Agency',
+    description: 'Flexiti Studio builds high-performance web and mobile products, custom SaaS solutions, and scalable AI automations.',
     images: ['/flexiti-logo.png'],
   },
   robots: {

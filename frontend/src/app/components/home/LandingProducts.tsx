@@ -67,8 +67,8 @@ export default function LandingProducts() {
         <div className="mb-16 text-center sm:text-left">
           <span className={`inline-block px-4 py-1.5 rounded-full font-bold text-[10px] tracking-[0.3em] uppercase border transition-colors ${
             isDark 
-              ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' 
-              : 'bg-indigo-50 text-indigo-600 border-indigo-100'
+              ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' 
+              : 'bg-blue-50 text-blue-600 border-blue-100'
           }`}>
             Flexiti Ecosystem
           </span>

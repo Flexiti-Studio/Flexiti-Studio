@@ -20,6 +20,7 @@ interface TrendingStory {
   num: string;
   title: string;
   tag: string;
+  slug?: string;
 }
 
 interface BlogFeaturedStoryProps {
@@ -102,10 +103,10 @@ export default function BlogFeaturedStory({ article, trendingStories }: BlogFeat
             isDark ? 'divide-white/5' : 'divide-slate-100'
           }`}>
             {trendingStories.map((story) => (
-              <a 
+              <Link 
                 key={story.num} 
                 className="group py-4 first:pt-0 last:pb-0 flex items-start gap-4 cursor-pointer block"
-                href="#"
+                href={story.slug ? `/blog/${story.slug}` : "#"}
               >
                 {/* Visual Number badge on the left */}
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border text-xs font-bold font-headline transition-all duration-300 group-hover:scale-105 ${
@@ -128,7 +129,7 @@ export default function BlogFeaturedStory({ article, trendingStories }: BlogFeat
                     {story.tag}
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </motion.div>

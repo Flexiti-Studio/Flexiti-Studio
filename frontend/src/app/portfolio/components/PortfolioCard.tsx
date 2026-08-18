@@ -22,6 +22,15 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onViewCaseStudy }) 
 
   const isDark = mounted ? (resolvedTheme === 'dark' || theme === 'dark') : true;
 
+  const defaultFallback = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80";
+  const [imgSrc, setImgSrc] = useState(item.image || defaultFallback);
+
+  useEffect(() => {
+    if (item.image) {
+      setImgSrc(item.image);
+    }
+  }, [item.image]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -38,10 +47,11 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onViewCaseStudy }) 
       {/* Image Section */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
-          src={item.image || ''}
+          src={imgSrc}
           alt={item.title}
           fill
           sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
+          onError={() => setImgSrc(defaultFallback)}
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
         
@@ -68,7 +78,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, onViewCaseStudy }) 
 
         {/* Diagonal Arrow Hover overlay bubble */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 z-10">
-          <div className="w-14 h-14 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-[0_0_30px_rgba(99,102,241,0.5)]">
+          <div className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-[0_0_30px_rgba(37,99,235,0.5)]">
             <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
             </svg>

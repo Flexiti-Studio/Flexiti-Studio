@@ -122,7 +122,7 @@ export default function ServicesOverview() {
                             }`}
                         >
                             {/* Ambient light glow behind cards on hover */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                             <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-10 border transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
                                 isDark ? 'bg-zinc-950 border-white/5' : 'bg-slate-50 border-slate-200'

@@ -22,7 +22,7 @@ const reasons = [
         icon: Target,
         title: 'Startup Focused',
         desc: "We understand the unique constraints and needs of founders—growth is always the primary metric.",
-        color: 'text-purple-400'
+        color: 'text-blue-400'
     },
     {
         icon: Palette,
@@ -65,7 +65,7 @@ export default function AboutWhyUs() {
                         </motion.span>
                         <h2 className={`font-headline font-black text-4xl md:text-5xl ${isDark ? 'text-white' : 'text-slate-900'} mb-8 tracking-tighter leading-none`}>
                             Why Choose <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Our Studio?</span>
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Our Studio?</span>
                         </h2>
                         <p className={`text-lg font-medium leading-relaxed ${
                             isDark ? 'text-slate-400' : 'text-slate-600'

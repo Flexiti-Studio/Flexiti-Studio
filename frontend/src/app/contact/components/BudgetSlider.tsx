@@ -43,7 +43,7 @@ const BudgetSlider: React.FC<BudgetSliderProps> = ({
                     <div className="relative w-full h-1.5 rounded-full bg-card-border">
                         {/* Filled Track */}
                         <div
-                            className="absolute h-1.5 rounded-full bg-gradient-to-r from-primary to-purple-500"
+                            className="absolute h-1.5 rounded-full bg-gradient-to-r from-primary to-blue-500"
                             style={{ width: `${value}%` }}
                         />
 
