@@ -346,7 +346,22 @@
       "command": "cd ../",
       "timestamp": 1787088054768,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "git add .",
+      "timestamp": 1787088058477,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git commit -m \"errors fixed\"",
+      "timestamp": 1787088074369,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git push origin",
+      "timestamp": 1787088116117,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
     }
   ],
-  "lastUpdated": 1787088054768
+  "lastUpdated": 1787088116117
 }
