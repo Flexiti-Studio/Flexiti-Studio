@@ -361,7 +361,97 @@
       "command": "git push origin",
       "timestamp": 1787088116117,
       "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git add .",
+      "timestamp": 1787088973278,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git commit -m \"errors fixed 2\"",
+      "timestamp": 1787088979649,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "git push origin",
+      "timestamp": 1787088986069,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_r1kpl.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_r1kpl.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1787090099395,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "& \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_mcrxl4.ps1\"; Remove-Item \"C:\\Users\\HP\\AppData\\Local\\Temp\\wshist_mcrxl4.ps1\" -ErrorAction SilentlyContinue",
+      "timestamp": 1787090102879,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm install sanity",
+      "timestamp": 1787090621485,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm ls sanity --depth=0",
+      "timestamp": 1787114597493,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm run build",
+      "timestamp": 1787120084734,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm install styled-components@5.3.10",
+      "timestamp": 1787120732679,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm run build",
+      "timestamp": 1787120804023,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm install styled-components@6",
+      "timestamp": 1787120942732,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm run build",
+      "timestamp": 1787121086020,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm install react@19.2.0 react-dom@19.2.0",
+      "timestamp": 1787121289903,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm run build",
+      "timestamp": 1787121394507,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm ls react --depth=0",
+      "timestamp": 1787121424158,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm ls react --all",
+      "timestamp": 1787121632151,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm install react@19.2.8 react-dom@19.2.8",
+      "timestamp": 1787121690592,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
+    },
+    {
+      "command": "cd \"c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend\"; npm run build",
+      "timestamp": 1787121778460,
+      "cwd": "c:\\Users\\HP\\Documents\\GitHub\\flexiti studio project\\Flexiti-Studio\\frontend"
     }
   ],
-  "lastUpdated": 1787088116117
+  "lastUpdated": 1787121778460
 }

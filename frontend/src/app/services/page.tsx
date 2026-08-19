@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+export const dynamic = 'force-dynamic'
 import ServicesHero from './components/ServicesHero';
 import ServicesOverview from './components/ServicesOverview';
 import ServicesDetail from './components/ServicesDetail';
