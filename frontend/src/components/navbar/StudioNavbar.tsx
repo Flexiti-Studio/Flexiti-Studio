@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation'
 import StudioLogo from './StudioLogo'
 import { StudioNavbarProps } from './StudioNavbarProps'
 import Button from './Button'
-import { Container } from '@mui/material'
 import { ThemeToggle } from './ThemeToggle'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
@@ -76,7 +75,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                     ${className}
                 `}
             >
-                <Container maxWidth="xl" className={`flex items-center h-20 px-6 md:px-10 transition-colors ${isMenuOpen ? (isDark ? 'text-white' : 'text-black') : 'text-slate-900 dark:text-white'}`}>
+                <div className={`max-w-[1536px] mx-auto w-full flex items-center h-20 px-6 md:px-10 transition-colors ${isMenuOpen ? (isDark ? 'text-white' : 'text-black') : 'text-slate-900 dark:text-white'}`}>
 
                     {/* Logo & Text — logo icon on mobile, text on desktop */}
                     <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity flex-none">
@@ -153,7 +152,7 @@ const StudioNavbar: React.FC<StudioNavbarProps> = ({
                         </button>
                     </div>
 
-                </Container>
+                </div>
             </header>
 
             {/* ── Mobile Full-Screen Menu — rendered OUTSIDE header to avoid stacking-context issues ── */}

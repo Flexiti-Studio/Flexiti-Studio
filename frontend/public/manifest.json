@@ -1,6 +1,6 @@
 {
-  "name": "flexiti studio template",
-  "short_name": "flexiti next",
+  "name": "Flexiti Studio",
+  "short_name": "Flexiti Studio",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
